@@ -1,0 +1,30 @@
+.post-title-banner {
+  width: 100%;
+}
+
+.post-photo {
+  max-height: 66vh;
+  overflow-y: hidden;
+  margin-top: 2%;
+}
+
+.post-title-banner img {
+  width: 100%;
+  position: relative;
+}
+
+html, body {
+  background-color: white;
+}
+
+.article-header {
+  box-shadow: 0px;
+}
+
+.footer {
+  margin-top: 5%;
+}
+
+a.post.alert {
+  display: none;
+}
