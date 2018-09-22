@@ -4,6 +4,10 @@
     <h1 class="post-title"><a href="{{ post.url | prepend: site.baseurl }}" title="Permalink to {{ post.title }}">{{ post.title }}</a></h1>
   </header>
 
+  <div class="main-page-post-img">
+    <img src="{{ post.cover }}" class="main-page-post-img"></img>
+  </div>
+
   <p><a href="{{ post.url | prepend: site.baseurl }}" title="Permalink to {{ post.title }}" class="read-more">{{ post.content | strip_html | truncatewords: 50 }}</a></p>
 
   <footer class="post-meta">

@@ -1,5 +1,7 @@
 .post-title-banner {
   width: 100%;
+  padding-top: 0;
+  margin-top: 0;
 }
 
 .post-photo {
