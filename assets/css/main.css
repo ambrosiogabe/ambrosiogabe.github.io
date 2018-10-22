@@ -56,8 +56,16 @@ img.main-page-post-img {
 div.main-page-post-img {
   height: auto;
   width: auto;
-  background-color: rgba(86, 163, 131, 0.1);
   border-radius: 45px;
+}
+
+.paginate-numbers {
+  display: inline-block;
+}
+
+.paginate-current-number {
+  display: inline-block;
+  color: blue;
 }
 
 @media only screen and (max-width: 800px) {
