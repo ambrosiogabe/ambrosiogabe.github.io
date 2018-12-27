@@ -1,12 +1,102 @@
 <header class="header{% if page.slug == 'home' %} alt{% endif %}">
   <div class="container">
-    <h1><a href="{{ "/" | prepend: site.baseurl }}"><strong>GameTuts</strong>.io</a></h1>
-    <nav class="navbar">
+    <div id="web-title">
+      <h1 style="z-index: 2;"><a href="{{ "/" | prepend: site.baseurl }}"><strong>GameTuts</strong>.io</a></h1>
+    </div>
+
+    <nav class="navbar topnav" id="topnav">
       <ul>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+        </a>
+
         <li><a href="{{ '/about' | prepend: site.baseurl }}">About</a></li>
         <li><a href="{{ "/projects/index.html" | prepend: site.baseurl }}">Projects</a></li>
-        <li><a href="#!" data-modal="modalSearch"><i class="fa fa-search"></i></a></li>
       </ul>
     </nav>
   </div>
 </header>
+
+<script>
+var toggle = false;
+
+function myFunction() {
+  var nav = document.getElementById("topnav");
+  var title = document.getElementById("web-title");
+
+  if (!toggle) {
+    title.style.display = "none";
+    nav.className += " navbar-toggled";
+    toggle = true;
+  } else {
+    title.style.display = "inline-block";
+    nav.className = "navbar topnav";
+    toggle = false;
+  }
+}
+</script>
+
+<style>
+#topnav {
+  width: 100%;
+  top: 0;
+  right: 0;
+  z-index: 0;
+  max-height: 100px;
+  transition: max-height 0.6s;
+  padding-top: 20px;
+}
+
+#topnav .icon {
+  display: none;
+}
+
+#topnav ul {
+  float: right;
+  padding-right: 20%;
+  padding-top: 0px;
+}
+
+@media screen and (max-width: 800px) {
+  #topnav ul {
+    padding-right: 6%;
+  }
+
+  #topnav li {
+    display: none;
+    max-height: 0px;
+    opacity: 0;
+    transition: opacity 0.6s;
+  }
+
+  #topnav .icon {
+    display: block;
+  }
+
+  .navbar-toggled {
+    background-color: #ddd !important;
+    top: 0 !important;
+    right: 0 !important;
+    max-height: 500px !important;
+  }
+
+  .navbar-toggled a {
+    color: #666 !important;
+  }
+
+  .navbar-toggled a {
+    color: #484848 !important;
+  }
+
+  .navbar-toggled li {
+    display: block !important;
+    background-color: #ddd !important;
+    max-height: 500px !important;
+    opacity: 1 !important;
+  }
+
+  .navbar-toggled .icon {
+    float: right;
+  }
+}
+</style>
