@@ -153,7 +153,7 @@
     margin: auto;
     padding: 0;
     width: 90% !important;
-    max-width: 1200px !important;
+    max-width: 1200px;
   }
 
 
@@ -181,12 +181,24 @@
     .modal-content {
       width: 96% !important;
     }
+
+    .thumbnail-container {
+      width: 100% !important;
+    }
   }
   @media (max-width: 400px) {
     #photos {
     -moz-column-count:    1;
     -webkit-column-count: 1;
     column-count:         1;
+    }
+
+    .modal-content {
+      width: 96% !important;
+    }
+
+    .thumbnail-container {
+      width: 100% !important;
     }
   }
 
@@ -330,7 +342,7 @@
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
-    width: 80% !important;
+    width: 80%;
     margin: auto;
     margin-top: 10px;
     -webkit-overflow-scrolling: touch;
