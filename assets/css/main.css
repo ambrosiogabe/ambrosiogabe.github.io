@@ -81,3 +81,8 @@ div.main-page-post-img {
     padding-right: 0;
   }
 }
+
+
+.gallery .container {
+  width: 90% !important;
+}

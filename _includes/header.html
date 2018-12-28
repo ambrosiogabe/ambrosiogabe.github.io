@@ -10,33 +10,75 @@
           <i class="fa fa-bars"></i>
         </a>
 
-        <li><a href="{{ '/about' | prepend: site.baseurl }}">About</a></li>
-        <li><a href="{{ "/projects/index.html" | prepend: site.baseurl }}">Projects</a></li>
+        <li class="sm-screen" id="other-tab2"><a href="/">Home</a></li>
+        <li id="other-tab"><a href="{{ '/about' | prepend: site.baseurl }}">About</a></li>
+        <li id="dropdown-menu" class="dropdown-menu"><a class="dropdown-title" href="#">Projects</a>
+          <div class="dropdown-menu-container">
+            <ul>
+              <li><a href="/projects/index.html">Coding Projects</a></li>
+              <li><a href="/gallery/index.html">Gallery</a></li>
+              <li><a href="">Games</a></li>
+            </ul>
+          </div>
+        <li class="sm-screen"><a href="/projects/index.html">Coding Projects</a></li>
+        <li class="sm-screen"><a href="/gallery/index.html">Gallery</a></li>
+        <li class="sm-screen"><a href="">Games</a></li>
+        </li>
       </ul>
     </nav>
   </div>
 </header>
 
-<script>
-var toggle = false;
-
-function myFunction() {
-  var nav = document.getElementById("topnav");
-  var title = document.getElementById("web-title");
-
-  if (!toggle) {
-    title.style.display = "none";
-    nav.className += " navbar-toggled";
-    toggle = true;
-  } else {
-    title.style.display = "inline-block";
-    nav.className = "navbar topnav";
-    toggle = false;
-  }
-}
-</script>
-
 <style>
+.sm-screen {
+  display: none !important;
+}
+
+.dropdown-menu-container {
+  display: none;
+}
+
+.dropdown-menu.active {
+  background-color: #ddd;
+}
+
+.dropdown-menu.active .dropdown-title {
+  width: 100%;
+  background-color: #bbb;
+  text-align: right;
+}
+
+.dropdown-menu.active a {
+  float: right;
+  color: #666 !important;
+}
+
+.dropdown-menu.active li {
+  width: 100%;
+  padding-right: 5%;
+  margin-left: 0;
+  max-height: 5vh;
+  margin: 0 !important;
+}
+
+.dropdown-menu.active a:hover {
+  color: #181818 !important;
+}
+
+.dropdown-menu ul {
+  padding-right: 0% !important;
+  max-width: 100% !important;
+}
+
+.active .dropdown-menu-container {
+  display: block !important;
+  border-radius: 10px !important;
+}
+
+.header.alt #topnav {
+  padding-top: 20px;
+}
+
 #topnav {
   width: 100%;
   top: 0;
@@ -44,7 +86,6 @@ function myFunction() {
   z-index: 0;
   max-height: 100px;
   transition: max-height 0.6s;
-  padding-top: 20px;
 }
 
 #topnav .icon {
@@ -58,10 +99,14 @@ function myFunction() {
 }
 
 @media screen and (max-width: 800px) {
-  #topnav {
-    padding-top: 0;
+  #dropdown-menu {
+    display: none !important;
   }
-  
+
+  #other-tab2 {
+    margin-top: 4.5em;
+  }
+
   #topnav ul {
     padding-right: 6%;
   }
@@ -81,15 +126,16 @@ function myFunction() {
     background-color: #ddd !important;
     top: 0 !important;
     right: 0 !important;
-    max-height: 500px !important;
+    max-height: 900px !important;
   }
 
   .navbar-toggled a {
     color: #666 !important;
+    transition: all 0.3s;
   }
 
-  .navbar-toggled a {
-    color: #484848 !important;
+  .navbar-toggled a:hover {
+    color: #181818 !important;
   }
 
   .navbar-toggled li {

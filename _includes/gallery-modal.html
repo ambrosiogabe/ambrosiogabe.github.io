@@ -1,0 +1,358 @@
+<!-- The Modal/Lightbox -->
+<div id="myModal" class="gallery-modal">
+  <span class="close cursor" onclick="closeModal()">&times;</span>
+  <div class="modal-content" style="min-height:80vh;">
+
+    <div class="mySlides">
+      <div class="numberText">1 / </div>
+      <img src="/assets/gallery/img1.jpg" class="slide-show-image">
+    </div>
+
+    <div class="mySlides">
+      <div class="numberText">2 / </div>
+      <img src="/assets/gallery/img2.jpg" class="slide-show-image">
+    </div>
+
+    <div class="mySlides">
+      <div class="numberText">3 / </div>
+      <img src="/assets/gallery/img3.jpg" class="slide-show-image">
+    </div>
+
+    <div class="mySlides">
+      <div class="numberText">4 / </div>
+      <img src="/assets/gallery/img4.jpg" class="slide-show-image">
+    </div>
+
+    <div class="mySlides">
+      <div class="numberText">5 / </div>
+      <img src="/assets/gallery/img5.jpg" class="slide-show-image">
+    </div>
+
+    <div class="mySlides">
+      <div class="numberText">6 / </div>
+      <img src="/assets/gallery/img6.jpg" class="slide-show-image">
+    </div>
+
+    <div class="mySlides">
+      <div class="numberText">7 / </div>
+      <img src="/assets/gallery/img7.jpg" class="slide-show-image">
+    </div>
+
+    <div class="mySlides">
+      <div class="numberText">8 / </div>
+      <img src="/assets/gallery/img8.jpg" class="slide-show-image">
+    </div>
+
+    <div class="mySlides">
+      <div class="numberText">9 / </div>
+      <img src="/assets/gallery/img9.jpg" class="slide-show-image">
+    </div>
+
+    <!-- Next/previous controls -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  </div>
+
+  <div class="modal-content thumbnail-container">
+    <!-- Thumbnail image controls -->
+    <div class="column"><img class="demo" src="/assets/gallery/img1_sm.jpg" onclick="currentSlide(1)"></div>
+    <div class="column"><img class="demo" src="/assets/gallery/img2_sm.jpg" onclick="currentSlide(2)"></div>
+    <div class="column"><img class="demo" src="/assets/gallery/img3_sm.jpg" onclick="currentSlide(3)"></div>
+    <div class="column"><img class="demo" src="/assets/gallery/img4_sm.jpg" onclick="currentSlide(4)"></div>
+    <div class="column"><img class="demo" src="/assets/gallery/img5_sm.jpg" onclick="currentSlide(5)"></div>
+    <div class="column"><img class="demo" src="/assets/gallery/img6_sm.jpg" onclick="currentSlide(6)"></div>
+    <div class="column"><img class="demo" src="/assets/gallery/img7_sm.jpg" onclick="currentSlide(7)"></div>
+    <div class="column"><img class="demo" src="/assets/gallery/img8_sm.jpg" onclick="currentSlide(8)"></div>
+    <div class="column"><img class="demo" src="/assets/gallery/img9_sm.jpg" onclick="currentSlide(9)"></div>
+  </div>
+</div>
+
+<script>
+  // Open the Modal
+  function openModal() {
+    document.getElementById('myModal').style.display = "block";
+  }
+
+  // Close the Modal
+  function closeModal() {
+    document.getElementById('myModal').style.display = "none";
+  }
+
+  var slideIndex = 1;
+  showSlides(slideIndex);
+
+  // Next/previous controls
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+
+  // Thumbnail image controls
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+
+  function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("demo");
+
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";
+    dots[slideIndex-1].className += " active";
+  }
+
+</script>
+
+
+<style>
+  #photos {
+    /* Prevent vertical gaps */
+    line-height: 0;
+
+    -webkit-column-count: 5;
+    -webkit-column-gap:   0px;
+    -moz-column-count:    5;
+    -moz-column-gap:      0px;
+    column-count:         5;
+    column-gap:           0px;
+  }
+
+  #galleryParent {
+    overflow: hidden;
+  }
+
+  #photos #galleryParent img:hover {
+    transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    cursor: pointer;
+  }
+
+  #photos #galleryParent {
+    margin: 2%;
+  }
+
+  #photos #galleryParent img {
+    /* Just in case there are inline attributes */
+    width: 100% !important;
+    height: auto !important;
+    transition: all .5s;
+    background-position: center;
+    background-size: cover;
+  }
+
+
+  /* Modal Content */
+  .modal-content {
+    position: relative;
+    margin: auto;
+    padding: 0;
+    width: 90% !important;
+    max-width: 1200px !important;
+  }
+
+
+  @media (max-width: 1200px) {
+    #photos {
+    -moz-column-count:    4;
+    -webkit-column-count: 4;
+    column-count:         4;
+    }
+  }
+  @media (max-width: 1000px) {
+    #photos {
+    -moz-column-count:    3;
+    -webkit-column-count: 3;
+    column-count:         3;
+    }
+  }
+  @media (max-width: 800px) {
+    #photos {
+    -moz-column-count:    2;
+    -webkit-column-count: 2;
+    column-count:         2;
+    }
+
+    .modal-content {
+      width: 96% !important;
+    }
+  }
+  @media (max-width: 400px) {
+    #photos {
+    -moz-column-count:    1;
+    -webkit-column-count: 1;
+    column-count:         1;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* Modal stuff */
+  /* The Modal (background) */
+  .gallery-modal {
+    display: none;
+    position: fixed;
+    z-index: 4;
+    left: 0;
+    top: 0;
+    padding-top: 2%;
+    width: 100% !important;
+    height: 100vh !important;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  /* The Close Button */
+  .close {
+    z-index: 5;
+    color: white;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 35px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #999;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* Hide the slides by default */
+  .mySlides {
+    display: none;
+  }
+
+  /* Next & previous buttons */
+  .prev,
+  .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto !important;
+    padding: 16px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  /* Position the "next button" to the right */
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover,
+  .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  /* Number text (1/3 etc) */
+  .numberText {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+  }
+
+  /* Caption text */
+  .caption-container {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 2px 16px;
+    color: white;
+  }
+
+  img.demo {
+    opacity: 0.6;
+  }
+
+  .active,
+  .demo:hover {
+    opacity: 1;
+  }
+
+  img.hover-shadow {
+    transition: 0.3s;
+  }
+
+  .slide-show-image {
+    width: auto !important;
+    max-width: 100% !important;
+    max-height: 80vh !important;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+
+  .mySlides {
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  .column {
+   flex: 0 0 auto;
+  }
+
+  .thumbnail-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    width: 80% !important;
+    margin: auto;
+    margin-top: 10px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .thumbnail-container::-webkit-scrollbar {
+    height: 8px !important;
+  }
+
+  /* Track */
+  .thumbnail-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
+  }
+
+  /* Handle */
+  .thumbnail-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 30px;
+  }
+
+  /* Handle on hover */
+  .thumbnail-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+</style>
