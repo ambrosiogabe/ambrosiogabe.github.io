@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "How to Make a Dedicated Terraria Server on Windows 10"
-date:   2019-12-02 1:57:32 -0500
+date:   2019-12-01 1:57:32 -0500
 categories: [Games]
 tags: [terraria, server, windows]
 comments: true
