@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "5 Steps to Learn How to Sight-Read Music"
-date:   2018-04-10 1:57:32 -0500
+date:   2018-09-21 1:57:32 -0500
 categories: [Music]
 tags: [music, tutorial, sight-reading]
 comments: true

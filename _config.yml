@@ -43,19 +43,6 @@ plugins:
 #   - vendor/gems/
 #   - vendor/ruby/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 permalink: /:title/
 markdown: kramdown
 
@@ -85,7 +72,7 @@ disqus_shortname: 'ambrosiogabe-github-io'
 author:
   name: Gabe Ambrosio
   image: /assets/images/profile.jpg
-  email: ambrosiogabe@gmail.com
+  email: gamesbygabe1@gmail.com
   bio: "This is a site made from a self-taught game programmer that will take you along the journeys that I go on. I will post updates of games or projects I am in the process of making, along with how I make them."
   url: #http://nandomoreira.me
   facebook: #http://facebook.com/fernando.dev
