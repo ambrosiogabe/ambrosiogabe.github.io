@@ -12,14 +12,16 @@
 
         <li class="sm-screen" id="other-tab2"><a href="/">Home</a></li>
         <li id="other-tab"><a href="{{ '/about' | prepend: site.baseurl }}">About</a></li>
-        <li id="dropdown-menu" class="dropdown-menu"><a class="dropdown-title" href="#">Projects</a>
-          <div class="dropdown-menu-container">
-            <ul>
-              <li><a href="/projects/index.html">Coding Projects</a></li>
-              <li><a href="/gallery/index.html">Gallery</a></li>
-              <li><a href="">Games</a></li>
+        <li>
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown" data-animations="zoomIn">Projects</button>
+            <ul class="animated zoomInDown dropdown-menu">
+                <li><a style="color:black; margin-left: 2.5em;" href="/projects/index.html">Coding Projects</a></li>
+                <li><a style="color:black;" href="/gallery/index.html">Gallery</a></li>
+                <li><a style="color:black;" href="">Games</a></li>
             </ul>
           </div>
+        </li>
         <li class="sm-screen"><a href="/projects/index.html">Coding Projects</a></li>
         <li class="sm-screen"><a href="/gallery/index.html">Gallery</a></li>
         <li class="sm-screen"><a href="">Games</a></li>
@@ -30,77 +32,61 @@
 </header>
 
 <style>
-.sm-screen {
-  display: none !important;
+@media screen and (min-width: 801px) {
+  .navbar.topnav {
+    float: right;
+  }
+
+  .sm-screen {
+    display: none !important;
+  }
+
+  #topnav .icon {
+    display: none;
+  }
+
+  .dropdown button {
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  .header.alt nav .dropdown button {
+    color: #ddd;
+  }
+
+  .navbar .dropdown button {
+    color: #666;
+  }
+
+  .dropdown button:focus {
+    box-shadow: 0 0 0 0;
+    border-color: rgba(0, 0, 0, 0);
+  }
+
+  .dropdown li {
+    display: block;
+  }
 }
 
-.dropdown-menu-container {
-  display: none;
-}
-
-.dropdown-menu.active {
-  background-color: #ddd;
-}
-
-.dropdown-menu.active .dropdown-title {
-  width: 100%;
-  background-color: #bbb;
-  text-align: right;
-}
-
-.dropdown-menu.active a {
-  float: right;
-  color: #666 !important;
-}
-
-.dropdown-menu.active li {
-  width: 100%;
-  padding-right: 5%;
-  margin-left: 0;
-  max-height: 5vh;
-  margin: 0 !important;
-}
-
-.dropdown-menu.active a:hover {
-  color: #181818 !important;
-}
-
-.dropdown-menu ul {
-  padding-right: 0% !important;
-  max-width: 100% !important;
-}
-
-.active .dropdown-menu-container {
-  display: block !important;
-  border-radius: 10px !important;
-}
-
-.header.alt #topnav {
-  padding-top: 20px;
-}
-
-#topnav {
-  width: 100%;
-  top: 0;
-  right: 0;
-  z-index: 0;
-  max-height: 100px;
-  transition: max-height 0.6s;
-}
-
-#topnav .icon {
-  display: none;
-}
-
-#topnav ul {
-  float: right;
-  padding-right: 20%;
-  padding-top: 0px;
-}
 
 @media screen and (max-width: 800px) {
-  #dropdown-menu {
+  .dropdown {
     display: none !important;
+  }
+
+  #topnav {
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 0;
+    max-height: 100px;
+    transition: max-height 0.6s;
+  }
+
+  #topnav ul {
+    float: right;
+    padding-right: 20%;
+    padding-top: 0px;
   }
 
   #other-tab2 {

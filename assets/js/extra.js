@@ -17,23 +17,6 @@ function myFunction() {
 }
 
 window.onload = function() {
-  var other_tab = document.getElementById("other-tab");
-  container = document.getElementById("dropdown-menu");
-
-  container.onmouseover = function() {
-    if (screen.width > 800) {
-      container.className += " active";
-      other_tab.style.display = "none";
-    }
-  }
-
-  container.onmouseleave = function() {
-    if (screen.width > 800) {
-      container.className = "dropdown-menu";
-      other_tab.style.display = "inline-block";
-    }
-  }
-
   var numbers = document.getElementsByClassName("numberText");
   if (numbers != null || numbers != undefined) {
     for (var i=0; i < numbers.length; i++) {

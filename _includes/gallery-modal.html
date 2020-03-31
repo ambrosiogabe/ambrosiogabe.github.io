@@ -156,12 +156,20 @@
     max-width: 1200px;
   }
 
+  @media screen and (min-width: 801px) {
+    .thumbnail-container {
+      display: none !important;
+    }
+    .modal-content {
+      background-color: rgba(0, 0, 0, 0);
+    }
+  }
 
   @media (max-width: 1200px) {
     #photos {
-    -moz-column-count:    4;
-    -webkit-column-count: 4;
-    column-count:         4;
+      -moz-column-count:    4;
+      -webkit-column-count: 4;
+      column-count:         4;
     }
   }
   @media (max-width: 1000px) {
