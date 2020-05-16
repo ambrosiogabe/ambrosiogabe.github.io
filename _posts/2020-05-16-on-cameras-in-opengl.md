@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Cameras in OpenGL"
-date:   2020-16-05 1:57:32 -0500
+date:   2020-04-16 1:57:32 -0500
 categories: [Games]
 tags: [opengl, cameras, games]
 comments: true
