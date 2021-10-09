@@ -15,6 +15,22 @@
   position: relative;
 }
 
+.post img {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.post .image-subtitle {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  font-style: italic;
+  font-size: 0.9em;
+  text-align: center;
+  margin-top: -3%;
+  padding-top: 0;
+}
+
 html, body {
   background-color: white;
 }
@@ -29,4 +45,9 @@ html, body {
 
 a.post.alert {
   display: none;
+}
+
+p.math-stuff {
+  font-size: 1.3em;
+  padding: 0 0 0 0 !important;
 }
