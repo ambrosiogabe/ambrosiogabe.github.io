@@ -64,7 +64,7 @@ We have another problem though. Sure we can draw the outline of the shape, but t
 
 This will work fairly well, however when we get to a complex letter like “B” we run into another problem. What is considered the “inside” of the letter? We intuitively know that it’s these pixels:
 
-![These Pixels](/assets/images/mathBehindFonts/thesePixels.png)
+![These Pixels](/assets/images/mathBehindFonts/thesePixels2.png)
 
 But how does the computer know it’s these pixels and not the pixel inside the holes as well? Well, some clever mathematicians have already solved this for us. Let’s look at this problem from another angle. Instead of drawing the outline, why don’t we “test” each pixel to determine whether it is inside the outline or outside the outline. If we think about it this way we can come up with a solution that should work. Notice that with the letter “B” we can look at a pixel over here, and if we draw a line to the right how many times do we hit a line?
 
@@ -76,7 +76,7 @@ Well we run into 4 lines. What about when we start inside here?
 
 We run into three lines. There’s a pattern here. Every time a pixel is “inside” the outline of “B” we run into an odd number of lines going to the right, but if the pixel is “outside” the outline of “B” we run into an even number of lines. The TrueType file format simplifies this concept even more by introducing a “winding” contour, which is a curve that goes clockwise, and a “non-winding” contour, which is a curve that goes counter-clockwise. Whenever we test a pixel, we can simply add 1 every time we hit a winding contour, and subtract one every time we hit a non-winding contour. When we add it all up we will get 0 if the pixel is outside the curve, and a non-zero value when the pixel is inside the curve.
 
-![Winding Contours](/assets/images/mathBehindFonts/windingContours.png)
+![Winding Contours](/assets/images/mathBehindFonts/windingContours2.png)
 
 This brings up the question of how do we test if a pixel “hits” a curve? In order to understand how we can check if a pixel is going to hit a curve, we first have to understand how a Bézier curve works.
 
