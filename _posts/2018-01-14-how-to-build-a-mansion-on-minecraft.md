@@ -8,8 +8,9 @@ comments: true
 subtitle: This is the best mansion design I have come up with and it's a pretty neat project...
 cover: /assets/images/minecraft/mikesMansion1.png
 author: Mike Ambrosio
-bio: My name is Mike Ambrosio, been that way for life. I am the creator of the Dumb Poop Origins Series with the MPA17 Studios youtube channel. Also yomikester239 on Planet Minecraft and I've been recently very interested in Graphic Design and Animations and I love almost all video games!
+bio: My name is Mike Ambrosio, been that way for life. Recently, I've been interested in Graphic Design and Animations, and I love almost all video games!
 ---
+
 Block Count
 ===========
 To start off, I’m going to announce how many of each different block you will need in order to build the house.
