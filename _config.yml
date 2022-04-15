@@ -47,7 +47,8 @@ permalink: /:title/
 markdown: kramdown
 
 paginate: 4 #6
-comments: true
+# TODO: Comments be broken
+#comments: true
 paginate_path: "/page/:num"
 
 baseurl: "" # change to empty string ""
@@ -65,9 +66,9 @@ meta_keywords: "site, website, game, tutorials, java, python, web-dev, unreal, u
 #url: http://nandomoreira.me
 #production_url: http://nandomoreira.me
 #repo: https://github.com/nandomoreirame/nandomoreira-jekyll-theme
-# Comments
-disqus: true
-disqus_shortname: 'ambrosiogabe-github-io'
+# Comments TODO: Comments be broken
+#disqus: true
+#disqus_shortname: 'ambrosiogabe-github-io'
 
 author:
   name: Gabe Ambrosio
