@@ -4,9 +4,7 @@ title:  "How to Program a Singly Linked List-Java"
 date:   2017-09-15 8:22:32 -0500
 categories: [Data-Structures]
 tags: [programming, java, singly, lists]
-cover: /assets/images/singlyLinkedList.png
-comments: true
-subtitle: Perhaps you have seen lists in Python, or array lists in Java, a singly linked list is similar, but different...
+cover: /public/assets/images/singlyLinkedList.png
 ---
 
 Perhaps you have seen lists in Python, or array lists in Java. A singly linked list is similar, but different in that you can use it to add elements indefinitely without worrying about size restriction, but it does not have a way to reach the element by index.

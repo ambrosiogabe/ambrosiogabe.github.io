@@ -4,18 +4,18 @@ title:  "How to Code a List in Java"
 date:   2018-01-03 1:57:32 -0500
 categories: [Data-Structures]
 tags: [programming, java, lists, data-structures]
-cover: /assets/images/list.jpeg
-comments: true
-subtitle: This article is going to be a very in depth example of how to code a list in Java...
+cover: /public/assets/images/list.jpeg
 ---
 Intro
 =====
+
 This article is going to be a very in depth example of how to code a list in Java. A list is a data structure that holds a number of items that you can access in constant time. The advantage of a list in comparison to an array is that a list expands or shrinks as needed, so there is no need to know the number of elements in advance. This is helpful for programs in which you need a collection of items, but you are not sure how many there are going to be.
 
 Now if you have programmed in Python than you know exactly what lists are. We will implement the same type of technique now in Java and it will function very similarly to the way the Java.util.List works.
 
 Methods
 =======
+
 Before we begin programming our list it would be very nice to have a list of the methods that we will need. Now, we would like our list to do the following:
 
 <ul>
@@ -42,6 +42,7 @@ So follow along if you want and I hope you enjoy learning how to create a list i
 
 Size()
 ======
+
 To start this off, we would like to declare an abstract class called List and initialize the array and everything. If you have a foreknowledge of Java this should all be fairly straightforward, in code it would look like this:
 
 {% highlight java %}
@@ -69,6 +70,7 @@ This is just one line of code that returns our private variable size.
 
 IsEmpty()
 =========
+
 This next method is also very simple, we simply want to return a boolean of whether the list is empty or not. We can do this by just checking whether or not size = 0. Or, in other words:
 
 {% highlight java %}
@@ -81,6 +83,7 @@ This just returns whether size is equal to 0 or not. Moving on...
 
 Get(i)
 ======
+
 Next up is the get method. This method is seemingly simple, but there is an added complexity which we will get to. Since our list structure is being made with an array we will simply access the element of the array at index i and return it! It really is that simple. Now, we can't add elements yet, but we will get there. In theory, our method should work like so:
 
 {% highlight java %}
@@ -133,6 +136,7 @@ All we did is add in an if statement that says, if the user tries to get an elem
 
 Add(i, e)
 =========
+
 Next up we will go over how to add an element at index i. Now as you may have guessed this method is also going to throw an out of bounds exception for the same reason. Before we go coding this let's think about the most efficient way to do this. First of all, we are going to have to shift all the elements at the index one right, that way we have an empty spot where we can add our element. After that we can add the element.
 
 The most efficient way to do this would be to loop through the array structure backwards starting from the end of our list, and stopping at the index. Then we can shift each element inside the loop. Let's program this:
@@ -180,6 +184,7 @@ So inside the loop we shift the array right one by the line seen above. We simpl
 
 Add(e)
 ======
+
 The add function is very similar to adding an element at an index. It's actually a little bit simpler so I will spend very short time on it. Here is the code:
 
 {% highlight java %}
@@ -263,6 +268,7 @@ The decreaseSize() method works in almost the exact same way as our other method
 
 Remove(i)
 =========
+
 The last function we would like to add to our list ADT is a remove method. This remove method simply removes the element at index i, then shifts the rest of the elements left one. We will implement this in close to the same we we implemented add(i, e). Here is the code:
 
 {% highlight java %}

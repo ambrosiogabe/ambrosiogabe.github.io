@@ -1,105 +1,33 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-#title: Your awesome title
-#email: your-email@example.com
-#description: >- # this means to ignore newlines until "baseurl:"
-#  Write an awesome description for your new site here. You can edit this
-#  line in _config.yml. It will appear in your document head meta (for
-#  Google search results) and in your feed.xml site description.
-#baseurl: "" # the subpath of your site, e.g. /blog
-#url: "" # the base hostname & protocol for your site, e.g. http://example.com
-#twitter_username: jekyllrb
-#github_username:  jekyll
-
-# Build settings
-#markdown: kramdown
-#theme: minima
-plugins:
-  - jekyll-feed
-  - jekyll-paginate
-
-# Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
-
-permalink: /:title/
+# Dependencies
 markdown: kramdown
+highlighter: rouge
+plugins: [jekyll-paginate, jekyll-gist, jekyll-minifier]
 
-paginate: 4 #6
-# TODO: Comments be broken
-#comments: true
-paginate_path: "/page/:num"
+# Markdown Processor Settings
+kramdown:
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge
 
-baseurl: "" # change to empty string ""
-#domain_name: nandomoreira.me
-#google_analytics: UA-52446115-1
+# Permalinks
+permalink: pretty
 
-# cover: /assets/images/header-cover.png
+sass:
+  style: compressed
 
-# site title, description, meta_description, meta_keywords
-# Details for the RSS feed generator
-name: Gabe Ambrosio
-title: GameTuts.io
-description: # Something
-meta_keywords: "site, website, game, tutorials, java, python, web-dev, unreal, unity"
-#url: http://nandomoreira.me
-#production_url: http://nandomoreira.me
-#repo: https://github.com/nandomoreirame/nandomoreira-jekyll-theme
-# Comments TODO: Comments be broken
-#disqus: true
-#disqus_shortname: 'ambrosiogabe-github-io'
+# Setup
+title: Gabe's Blog
+tagline: "A Jekyll theme"
+description: 'A site for programmers by a programmer'
+baseurl: /
 
 author:
   name: Gabe Ambrosio
-  image: /assets/images/profile.jpg
-  email: gamesbygabe1@gmail.com
-  bio: "This is a site made from a self-taught game programmer that will take you along the journeys that I go on. I will post updates of games or projects I am in the process of making, along with how I make them."
-  url: #http://nandomoreira.me
-  facebook: #http://facebook.com/fernando.dev
-  twitter: #http://twitter.com/nandomoreirame
-  instagram: #http://instagram.com/nandomoreira.me
-  github: #http://github.com/nandomoreirame
-  linkedin: #http://linkedin.com/in/nandomoreirame
+  github: https://github.com/ambrosiogabe
+  youtube: https://www.youtube.com/gameswithgabe
 
-# thought
-thought:
-  text: All we have to decide is what to do with the time given us.
-  author: J.R.R Tolkien
+paginate: 10
+paginate_path: "page/:num"
 
-
-exclude:
-  - README.md
-  - Gemfile
-  - Gemfile.lock
-  - node_modules
-  - gulpfile.js
-  - package.json
-  - _site
-  - src
-  - vendor
-  - CNAME
-  - LICENSE
-  - Rakefile
-  - old
-  - vendor/bundle/
+# Custom vars
+version: 2.1.0

@@ -4,8 +4,6 @@ title:  "How to Code a List in Java: Bonus Material"
 date:   2018-01-05 1:57:32 -0500
 categories: [Data-Structures]
 tags: [programming, java, lists, data-structures]
-comments: true
-subtitle: This article covers the bonus material in the previous article how to program a list...
 ---
 
 Intro

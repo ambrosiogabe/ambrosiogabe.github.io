@@ -4,14 +4,13 @@ title:  "How to Build a Recursive Factorial Function in Python/Java"
 date:   2017-09-13 17:20:32 -0500
 categories: [Programming]
 tags: [programming, python, java, recursion]
-cover: /assets/images/python.png
-comments: true
-subtitle: Have you ever wondered how to implement a recursive function that does th factorial of a number for you? Well maybe you haven't...
+cover: /public/assets/images/python.png
 ---
 Have you ever wondered how to implement a recursive function that does th factorial of a number for you? Well maybe you haven't, and maybe you just need to crank something out for class. Anyway you came here looking for some information on how to do it, so I'll show you how it's done and try and give you some insight on what's happening behind the scenes.
 
 <u>Python 3</u>
 ---------------
+
 So in Python 3 you would first want to declare two functions, your main function, and your factorial function like this.
 
 {% highlight python %}
@@ -56,7 +55,7 @@ def main():
 main()
 {% endhighlight %}
 
-This last bit of code simply starts the recursion. Our program now checks if the input is greater than 0, if it is, then it tells itself to return the result of n times the factorial of the next smaller number. This will work it's way down to 0, then reverse and return 1, then 1 * 2, then 1 * 2 * 3... until it reaches n. So there you have it! I will show the same function in Java right below this.
+This last bit of code simply starts the recursion. Our program now checks if the input is greater than 0, if it is, then it tells itself to return the result of n times the factorial of the next smaller number. This will work it's way down to 0, then reverse and return 1, then 1 *2, then 1* 2 * 3... until it reaches n. So there you have it! I will show the same function in Java right below this.
 
 <u>Java</u>
 -----------

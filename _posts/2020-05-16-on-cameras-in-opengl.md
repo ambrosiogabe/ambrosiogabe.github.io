@@ -4,9 +4,7 @@ title:  "Cameras in OpenGL"
 date:   2020-04-16 1:57:32 -0500
 categories: [Games]
 tags: [opengl, cameras, games]
-comments: true
-subtitle: A feature that almost every game has and uses is a camera. But how is a camera represented in game code? In this blog post...
-cover: /assets/images/opengl_cameras/titleImage.jpg
+cover: /public/assets/images/opengl_cameras/titleImage.jpg
 ---
 A feature that almost every game has and uses is a camera. But how is a camera represented in game code? In this blog post I will explain how cameras work in OpenGL, and provide a simple explanation with some visuals of how you can set up a camera.
 
@@ -14,7 +12,7 @@ A feature that almost every game has and uses is a camera. But how is a camera r
 
 Once again, cameras are commonly used in game development to let the player "view" the scene. There are two main types of cameras that you can use, perspective and orthographic, and they are used for 3D games and 2D games respectively. The main difference in these cameras is the way that the player percieves the game world. In a perspective projection, objects that are further away from the camera appear smaller in size, just like in real life. Whereas, in an orthographic projection, objects appear the same no matter the distance from the camera. The image below demonstrates the difference between these projections.
 
-![Ortho vs. Projection](/assets/images/opengl_cameras/visual1.png)
+![Ortho vs. Projection](/public/assets/images/opengl_cameras/visual1.png)
 
 As you can see, there is no perception of depth in the orthographic projection. This makes it ideal for 2D games, where you want a layered approach to drawing things. Since there is no distortion as objects are placed further away from the camera, you can draw 2D sprites that you want behind other sprites, further back. Think of this the same way layers work in Photoshop.
 
@@ -28,7 +26,7 @@ The first step that you would want to do to set up your Camera class in OpenGL, 
     Matrix4f perspectiveProjection = new Matrix4f().identity();
     Matrix4f orthoProjection = new Matrix4f().identity();
 
-    perspectiveProjection = perspectiveProjection.perspective(fov, 
+    perspectiveProjection = perspectiveProjection.perspective(fov,
         aspectRatio, 0.1f, 100000.0f);
 
     orthoProjection.ortho(0, 1920, 0, 1080.0f, 0.5f, 100.0f);
@@ -40,7 +38,7 @@ The documentation that JOML provides for these two functions are listed [here](h
 
 #### Matrix4f.perspective()
 
-This function takes in 4 floats, they are documented as `fovy`, `aspect`, `zNear` and `zFar` respectively. Each of these is used to build an appropriate perspective. The `fovy` is used to define the *field-of-view* in degrees, which basically defines how warped the perspective is. The higher this number is, the more of a fish-bowl look your game will have. A good number for this is typically 45, because that's close to what we see in real life. 
+This function takes in 4 floats, they are documented as `fovy`, `aspect`, `zNear` and `zFar` respectively. Each of these is used to build an appropriate perspective. The `fovy` is used to define the *field-of-view* in degrees, which basically defines how warped the perspective is. The higher this number is, the more of a fish-bowl look your game will have. A good number for this is typically 45, because that's close to what we see in real life.
 
 The `aspect` is the aspect ratio you want your camera to have, this will typically contain the same aspect as the player's window, so 16:9 for an HD monitor, or 4:3 for a tablet, etc. The last values are the `zNear` and `zFar` clipping planes. These values determine how close an object can be to the camera before disappearing (`zNear`) and how far away an object has to be from the camera before disappearing (`zFar`). As you can see, I chose 0.5 and 100000.0 for these values. I chose these because 0.5 is the closest I want my camera to ever get to an object, and you can typically set the `zFar` to an arbitrarily large number without any performance penalties for reasons that are beyond the scope of this article.
 
@@ -57,7 +55,7 @@ The next thing we need, is a view matrix. The view matrix is literally just the 
     Vector3f cameraRight = new Vector3f(0, 0, 1);
     Vector3f cameraUp = new Vector3f(0, 1, 0);
 
-    // Position would be defined somewhere else, it is simply 
+    // Position would be defined somewhere else, it is simply
     // the position of the camera in world space
     Vector3f center = new Vector3f(position.x, position.y, position.z);
     center.add(cameraForward);
@@ -70,11 +68,11 @@ As you can see in the code, I define three vectors for the `cameraForward`, `cam
 
 The function takes three variables, the `eye`, `center` and `up`. These three vectors are used to create the view matrix. The `eye` is the camera's position, the `center` is a point that the camera is looking towards, and `up` is what direction the top of the camera is facing. Let's see what these look like visually.
 
-![Camera Visualization 1](/assets/images/opengl_cameras/visual2.png)
+![Camera Visualization 1](/public/assets/images/opengl_cameras/visual2.png)
 
 In the image, we can clearly see that the center is just some point that is directly in front of the camera, and the eye is the position, and so on and so forth. This means that if we change any of the vectors, we will change the entire direction of the camera. Lets try an example, if we change the camera's up vector from the current vector to: `cameraUp = new Vector3f(1, 0, 0);` the resulting configuration of our camera will look like this:
 
-![Camera Visualization 2](/assets/images/opengl_cameras/visual3.png)
+![Camera Visualization 2](/public/assets/images/opengl_cameras/visual3.png)
 
 Now we have our camera facing an entirely different direction, all by changing one simple vector! In reality, you would also have to change your eye vector, and center vector to match the new configuration of the camera. By the way, this view matrix will work for 2D orthographic projections as well. Typically, in a 2D scenario, you would want a fixed view matrix for your camera, where the camera is pointed towards the xy plane as the first picture shows. Then, you can draw all your sprites on the xy plane, and the camera will always be pointing towards the correct direction.
 

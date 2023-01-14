@@ -4,18 +4,18 @@ title:  "How to Code a Recursive Binary Search Function in Java"
 date:   2018-01-02 1:57:32 -0500
 categories: [Programming]
 tags: [programming, java, recursion, search]
-cover: /assets/images/binarySearch.png
-comments: true
-subtitle: Recursion can be a very tricky concept to master, but it is so helpful in many different ways. In this article...
+cover: /public/assets/images/binarySearch.png
 ---
 Intro
 =====
+
 Recursion can be a very tricky concept to master, but it is so helpful in many different ways. In this article I will show you how to code a recursive binary search function. The binary search is an amazing search algorithm that searches for a number or an item in a list of those items and finds it in log(n) time. Normally, to find an item in an array you would need to search through the entire array and then see if any of them matches. In the worst case for this, you would search the entire array! Now, what if that array is sorted? We know that we don't have to look through every item because that would be a waste of time. This is where the binary search algorithm comes in handy.
 
 Given a sorted array, the binary search splits the array down the middle then determines whether to look farther ahead in the array, or farther back, then continues. This means that the absolute worst case, in which the item you are looking for is not in the array, or it is at the very end, it would only take log(n) time to find it! That is a massive cut on the time complexity of an unsorted array by searching linearly. Now there are methods to search those very quickly too which I will cover in later posts.
 
 The Code
 ========
+
 Now, the way I start any function is by looking at what goes in, and what comes out. We want our function to return a boolean, whether the item is in the array or not, and we want to give it the lowest index, the highest index, the item we are looking for, and the array. Now, with all this in mind we can draw out the bones of our function. Here is what we have so far:
 
 {% highlight java %}
@@ -43,7 +43,7 @@ The return false on the bottom is for the Java syntax which requires a value to 
 
 After we find the middle index we have three cases, either the middle is the number we are looking for, it is greater than the number we are looking for, or it is less than the number we are looking for. If it is greater than the number we are looking for we want to search the left half of the search area for our number, if it is greater than the number, we want to search the right half, etc. Here's a diagram showing what's going on:
 
-![binarySearch](/assets/images/binarySearch.png)
+![binarySearch](/public/assets/images/binarySearch.png)
 
 As you can see the black is the search area, if the element is greater the search area splits to the right half, if it is less it splits to the left half. We are simply doing this in code. Now let's program what this would look like:
 

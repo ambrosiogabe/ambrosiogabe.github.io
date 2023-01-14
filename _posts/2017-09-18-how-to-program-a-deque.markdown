@@ -4,9 +4,7 @@ title:  "How to Program a Deque in Java"
 date:   2017-09-18 16:37:45 -0500
 categories: [Data-Structures]
 tags: [programming, java, deque, array]
-cover: /assets/images/deque.png
-comments: true
-subtitle: Deques are another important data structure. They are like queues, except they are double ended which enhances them in certain ways... Read more
+cover: /public/assets/images/deque.png
 ---
 
 Deques are another important data structure. They are like queues, except that they are double ended. What this means is that you can add an element to the front of the deque, or to the end of the deque. It also means you can remove an element from the front of a deque or the end of a deque. Now, this is very efficient, it is O(1). The only hindrance is that it is limited on the amount of space it can take up. Since a deque is also constructed using an array as the base it has a fixed size. This means your deques cannot grow or shrink. Posted below is the code to a fully functional deque in Java. I will briefly explain key sections for further understanding.

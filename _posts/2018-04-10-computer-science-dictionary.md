@@ -4,17 +4,17 @@ title:  "Computer Science To English"
 date:   2018-04-10 1:57:32 -0500
 categories: [Computer-Science]
 tags: [programming, dictionary]
-comments: true
-subtitle: In the world of Computer Science, there is a lot of confusing terminology...
-cover: /assets/images/dictionary.jpg
+cover: /public/assets/images/dictionary.jpg
 ---
 
 # Intro
+
 There are many different types of communities in the world. Sometimes, concepts can get lost in translation when two communities are speaking to each other. These communities can be Computer Science professionals, teachers, firefighters, etc. Each one of these has their own distinct terminologies that can only be understood within the context of that community. So, I have put together a list of terms native to the Computer Science industry.
 
 I will prefix each word with the **T for the traditional meaning and CS for the Computer Science meaning.** All traditional definitions come from the first definition at dictionary.com unless otherwise noted.
 
 # Dictionary
+
 * **T Alpha<sup>1</sup>:**  The first; beginning.
 * **CS Alpha:** The term used to define the opacity in a color. Example: RGBA refers to the red, green, blue, and alpha in a specific pixel, where alpha represents the transparency.
 <br><br>
@@ -39,7 +39,7 @@ I will prefix each word with the **T for the traditional meaning and CS for the 
 * **T Bug<sup>3</sup>:** (Loosely) any insect or insectlike invertebrate.
 * **CS Bug:** A problem with a program. In other words, a program misbehaves and does not do what it was created to do. The term was coined when diagnosing a problem with one of the first computers. This particular computer was the size of an entire room and was misbehaving. When they finally found out what was causing the problem, it was because an actual insect had gotten caught in the computer.
 
-![Old-Computer](/assets/images/old-computer.jpg)
+![Old-Computer](/public/assets/images/old-computer.jpg)
 *You can see how a bug could get stuck in this.*
 
 * **T Bite:** To cut, wound, or tear with the teeth
@@ -48,7 +48,7 @@ I will prefix each word with the **T for the traditional meaning and CS for the 
 * **T Character:** The aggregate of features and traits that form the individual nature of some person or thing.
 * **CS Character:** A symbol that is represented using a hexadecimal number. Examples include: * $ d 1 . )<br>So a character in computer science is any symbol used in languages.
 
-![Characters](/assets/images/characters.jpg)
+![Characters](/public/assets/images/characters.jpg)
 *Characters*
 
 * **T Class:** A number of persons or things regarded as forming a group by reason of common attributes, characteristics, qualities, or traits; kind; sort.
@@ -60,7 +60,7 @@ I will prefix each word with the **T for the traditional meaning and CS for the 
 * **T Editor:** A person having managerial and sometimes policy-making responsibility related to the writing, compilation, and revision of content for a publishing firm or for a newspaper, magazine, or other publication.
 * **CS Editor:** A program that highlights key words according to the programming language being written on it. It also can give auto-complete statements, and help streamline the programming process.
 
-![Text-editor](/assets/images/text-editor.jpg)
+![Text-editor](/public/assets/images/text-editor.jpg)
 *A programming text editor*
 
 * **T FAT:** Having too much flabby tissue; corpulent; obese.
@@ -78,7 +78,7 @@ I will prefix each word with the **T for the traditional meaning and CS for the 
 * **T Java<sup>4</sup>:** (Usually lowercase) Slang. coffee.
 * **CS Java:** A computer programming language. This language in particular is useful because it runs mostly the same across all platforms.
 
-![Java](/assets/images/coffee.jpg)
+![Java](/public/assets/images/coffee.jpg)
 *Java*
 
 * **T Kernel:** The softer, usually edible part contained in the shell of a nut or the stone of a fruit.
@@ -99,7 +99,7 @@ I will prefix each word with the **T for the traditional meaning and CS for the 
 * **T Ruby:** A red variety of corundum, used as a gem.
 * **CS Ruby:** Yet another programming language. This one is much like Python in its simplistic style.
 
-![Ruby](/assets/images/ruby.jpg)
+![Ruby](/public/assets/images/ruby.jpg)
 *A gem, similar to a Ruby*
 
 * **T Stack:** A more or less orderly pile or heap.
@@ -118,9 +118,11 @@ I will prefix each word with the **T for the traditional meaning and CS for the 
 * **CS Window:** A program's space that occupies a part of a computer screen.
 
 # Conclusion
+
 So, as you can see, this list is not comprehensive. But, it covers the most common Computer Science terms that you will encounter when speaking to a Computer Scientist. Hopefully you can use this to decipher some of what they are trying to tell you, but most likely it will be a challenge. Computer Scientists tend to be very abstract!
 
 # Citations
+
 1. The third definition on dictionary.com for alpha.
 2. The second definition on dictionary.com for bit.
 3. The second definition on dictionary.com for bug.
