@@ -1,0 +1,33 @@
+# Dependencies
+markdown: kramdown
+highlighter: rouge
+plugins: [jekyll-paginate, jekyll-gist, jekyll-minifier]
+
+# Markdown Processor Settings
+kramdown:
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge
+
+# Permalinks
+permalink: pretty
+
+sass:
+  style: compressed
+
+# Setup
+title: Gabe's Blog
+tagline: "A Jekyll theme"
+description: 'A site for programmers by a programmer'
+baseurl: /
+
+author:
+  name: Gabe Ambrosio
+  github: https://github.com/ambrosiogabe
+  youtube: https://www.youtube.com/gameswithgabe
+
+paginate: 10
+paginate_path: "page/:num"
+
+# Custom vars
+version: 2.1.0
