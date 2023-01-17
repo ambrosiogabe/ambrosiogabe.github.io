@@ -47,12 +47,12 @@ Go up one directory back into the Terraria folder. Copy and paste the extracted 
 
 Navigate into the Servers folder that you just created. Create a new file called `myServerName.txt`, where `myServerName` is your server name. Open the file and copy and paste the following contents into the file.
 
-```java
-    maxplayers=4
-    port=7777
-    password=serverPassword
-    world=C:\Users\username\Documents\My Games\Terraria\Worlds\myWorld.wld
-    worldpath=C:\Users\username\Documents\My Games\Terraria\Worlds\
+```batch
+maxplayers=4
+port=7777
+password=serverPassword
+world=C:\Users\username\Documents\My Games\Terraria\Worlds\myWorld.wld
+worldpath=C:\Users\username\Documents\My Games\Terraria\Worlds\
 ```
 
 Replace the server password with whatever you want your password to be, make sure there are no spaces in the password. Also, replace the world path, with the actual path to your world. You can get this by holding Shift and right-clicking your world file, then clicking copy as path. Then press Ctrl-V in your text file to paste the path into place. Lastly, you can replace maxplayers with the maximum amount of players you want allowed. You can also set up more server configuration stuff if you want, the details about how to do so can be found [here](https://terraria.gamepedia.com/Guide:Setting_up_a_Terraria_server).
@@ -61,8 +61,8 @@ Replace the server password with whatever you want your password to be, make sur
 
 This next step will create the batch script, which will automatically start your server. Create a new file in your Servers folder called `myServer.bat` and replace `myServer` with the name of your server. Then right-click the file, click edit, and copy and paste the following into it:
 
-```java
-    "C:\Users\username\Documents\My Games\Terraria\tshock_4.3.26\TerrariaServer.exe" -config "C:\Users\username\Documents\My Games\Terraria\Servers\myServer.txt"
+```batch
+"C:\Users\username\Documents\My Games\Terraria\tshock_4.3.26\TerrariaServer.exe" -config "C:\Users\username\Documents\My Games\Terraria\Servers\myServer.txt"
 ```
 
 Make sure the first file path is where goes to where you installed your TShock folder, and the second path goes to the server startup file we made in step 2.
@@ -83,8 +83,8 @@ First go the folder where you installed nssm. Click into the win64 folder and th
 
 Type in the following and hit enter:
 
-```java
-    .\nssm.exe install TerrariaServer
+```batch
+.\nssm.exe install TerrariaServer
 ```
 
 This should pop up a window labeled NSSM Service installer. You will see 3 text boxes with labels and buttons to the right of them. For the Path label, hit the button to the right of the textbox, then look for the `myServer.bat` file that we created in step 3. Click the file then press open. Your window should look like this:
@@ -117,8 +117,8 @@ If you go back to your Servers folder, there should be a new file called `myServ
 
 Lastly, to connect to your server, open up a command prompt window by typing in cmd in the Windows search bar and pressing enter. Next type this in to the Command Prompt Window:
 
-```java
-    ipconfig
+```batch
+ipconfig
 ```
 
 This will display your Ip Address so that your friends can connect locally. This Ip will change from time to time, so make sure to check it frequently so your friends can know if it changed. The address they will use to connect is the one located here:

@@ -10,7 +10,7 @@ Queues are very similar to deques. The only difference is they follow the First 
 
 So here is the implementation of the queue in Java.
 
-{% highlight java %}
+```java
 public class Queue<Type> {
   int size;
   int front;
@@ -59,7 +59,8 @@ public class Queue<Type> {
   public int size() {return size;}
   public Type first() {return array[front];}
 }
-{% endhighlight %}
+
+```
 
 The coding technique is very similar to that of my tutorial on deques. The only difference is for queues, we have to keep track of three variables, the front, the size, and the array. The front keeps track of where the front of the queue is, the size keeps track of the size, and the array acts as our underlying data structure. The queue just has two main functions, enqueue and dequeue. The other functions are arbitrary when it comes to functionality and implementation.
 

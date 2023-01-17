@@ -19,21 +19,22 @@ more efficient by seeing patterns, but we will explore ways to do that in future
 
 So, in order to build this algorithm we will need two basic moves. Swap, and insert. In pseudocode it looks like this:
 
-{% highlight python %}
+```python
 Algorithm InsertionSort(A):
   Input: An array A, of n elements
   Output: The array A ordered in increasing order
   for i from 1 to n - 1
     insert A[i] in its proper place
   return A
-{% endhighlight %}
+
+```
 
 Now that we have a basic layout, let's start to put the actual code together. First off We will build a class in Java called InsertionSort.java. This class will contain two functions,
 sortMin(int[] array), and sortMax(int[] array). The sortMin returns the array in decreasing order, and sortMax returns the array in increasing order. We will add in two other functions
 strictly for testing purposes. We will add in a main function to run the program, and a printArray(int[] array) function which prints the array in the fashion, [A1, A2, A3...An], where
 it lists the elements from A1 to An where n is the number of elements.
 
-{% highlight java %}
+```java
 public class InsertionSort
 {
   public static void main(String[] args)
@@ -56,12 +57,12 @@ public class InsertionSort
     return;
   }
 }
-{% endhighlight %}
+```
 
 Now that we have each of our functions in place, let's fill them in. Since printing the array will be the simplest part of this program I'll start with that. To print the array we will
 code this:
 
-{% highlight java %}
+```java
 public static void printArray(int[] array)
 {
   String printString = "";
@@ -74,11 +75,12 @@ public static void printArray(int[] array)
   printString += array[array.length - 1] + "]";
   System.out.println(printString);
 }
-{% endhighlight %}
+
+```
 
 Now this code is pretty self-explanatory. It simply loops through the list and prints out each element in the array. It starts by building a string starting with a left bracket, [, then adds each element of the array until it reaches the end where it then places the right bracket, ]. Next we will begin coding the sort algorithm. We will start with sortMax. Here is the code:
 
-{% highlight java %}
+```java
 public static int[] sortMax(int[] array)
 {
   for(int i=0; i < array.length; i++)
@@ -94,12 +96,13 @@ public static int[] sortMax(int[] array)
   }
   return array;
 }
-{% endhighlight %}
+```
+
 This function first loops through the array. It then stores the current variable as currentInteger. Then it sets up the inner loop by setting a new integer j, equal to i. J is set to i because i is the current index of the integer we are on. Then we begin to loop through the array, starting from the number we are at, backwards. We check if j is greater than 0, it is not the end of the array, and we check if the previous integer is greater than the current integer. If it is, we move the previous integer to the slot we are at. We continue this until we reach the beginning of the data structure. After it moves all the appropriate elements, it inserts the current element in the empty slot then continues with the sorting until the end of the algorithm.
 
 Now if you know some about data structures you know there is much more efficient ways to do this which we will get to in due time. As a challenge, I would like you to code sortMin by yourself. It is the exact same premise as the code above, and you actually only need to change one symbol for it to work. Here is the complete code, minus sortMin, so you can run it and test it.
 
-{% highlight java %}
+```java
 public class InsertionSort
 {
   public static void main(String[] args)
@@ -145,6 +148,7 @@ public class InsertionSort
     System.out.println(printString);
   }
 }
-{% endhighlight %}
+
+```
 
 You will see that in the code I have filled in the main method. All I've done is set it up to create a random array of length 50 with radnom integers ranging from 0 to 99, then it prints the array, sorts it, then prints it again. This is for testing purposes so you can see that it works. I hope this helped some, thanks for reading! If you have questions or comments leave them below!

@@ -23,13 +23,13 @@ Now, to get a camera set up for your game, there are two things that you will ne
 The first step that you would want to do to set up your Camera class in OpenGL, is define your projection matrix. Once again, this is simply setting up a mathematical function that will make your objects either have depth, or not have depth. The example I will show uses JOML, but this will translate very similarly to other Math libraries such as GLM.
 
 ```java
-    Matrix4f perspectiveProjection = new Matrix4f().identity();
-    Matrix4f orthoProjection = new Matrix4f().identity();
+Matrix4f perspectiveProjection = new Matrix4f().identity();
+Matrix4f orthoProjection = new Matrix4f().identity();
 
-    perspectiveProjection = perspectiveProjection.perspective(fov,
-        aspectRatio, 0.1f, 100000.0f);
+perspectiveProjection = perspectiveProjection.perspective(fov,
+    aspectRatio, 0.1f, 100000.0f);
 
-    orthoProjection.ortho(0, 1920, 0, 1080.0f, 0.5f, 100.0f);
+orthoProjection.ortho(0, 1920, 0, 1080.0f, 0.5f, 100.0f);
 ```
 
 This bit of code sets up two matrices that will define this camera's projection matrix. I have listed an example that shows how you would set up a perspective matrix, and an orthographic matrix so you can see the differences.
@@ -51,17 +51,17 @@ This function takes 6 floats, they are documented as `left`, `right`, `bottom`, 
 The next thing we need, is a view matrix. The view matrix is literally just the position of the camera in world space, and the direction it is pointing. This is important, because we need both to be able to find out what objects we need to render. Let's look at some code that is typically used to set this up.
 
 ```java
-    Vector3f cameraForward = new Vector3f(1, 0, 0);
-    Vector3f cameraRight = new Vector3f(0, 0, 1);
-    Vector3f cameraUp = new Vector3f(0, 1, 0);
+Vector3f cameraForward = new Vector3f(1, 0, 0);
+Vector3f cameraRight = new Vector3f(0, 0, 1);
+Vector3f cameraUp = new Vector3f(0, 1, 0);
 
-    // Position would be defined somewhere else, it is simply
-    // the position of the camera in world space
-    Vector3f center = new Vector3f(position.x, position.y, position.z);
-    center.add(cameraForward);
+// Position would be defined somewhere else, it is simply
+// the position of the camera in world space
+Vector3f center = new Vector3f(position.x, position.y, position.z);
+center.add(cameraForward);
 
-    this.viewMatrix.identity();
-    this.viewMatrix = viewMatrix.lookAt(transform.position, center, cameraUp);
+this.viewMatrix.identity();
+this.viewMatrix = viewMatrix.lookAt(transform.position, center, cameraUp);
 ```
 
 As you can see in the code, I define three vectors for the `cameraForward`, `cameraRight`, and `cameraUp`. These are all unit vectors, meaning they all have a length of 1. This will help us to define the direction the camera is pointing in. Then, we have the center variable. This is a point in world space that the camera is looking towards. These are all required for JOML's `lookAt` function that we use to create the view matrix. The documentation is listed [here](https://joml-ci.github.io/JOML/apidocs/org/joml/Matrix4f.html#lookAt-org.joml.Vector3fc-org.joml.Vector3fc-org.joml.Vector3fc-).

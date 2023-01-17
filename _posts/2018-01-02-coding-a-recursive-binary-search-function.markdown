@@ -18,18 +18,19 @@ The Code
 
 Now, the way I start any function is by looking at what goes in, and what comes out. We want our function to return a boolean, whether the item is in the array or not, and we want to give it the lowest index, the highest index, the item we are looking for, and the array. Now, with all this in mind we can draw out the bones of our function. Here is what we have so far:
 
-{% highlight java %}
+```java
 public static boolean recursiveSearch(int target, int[] array, int low, int high)
 {
   return false;
 }
-{% endhighlight %}
+
+```
 
 I made my function static because it is being called from a static function, and the way Java works is that it only allows you to call a static function in the same class from another static function. Anyways, we have our function return a boolean, and it's input is the low and the high index, the array, and the target. Great! Now we want to think about how to code this.
 
 Since this is a recursive function we want to know what our base case is. The base case is what our function will ultimately end up at and cause the recursion to stop. Since we are splitting the array down the middle, and either low or high will be changing, we can say: when low is greater than high, return false. This means we have searched the entire array and not found what we are looking for, so it is OK to exit the search with a false value. Here's the code:
 
-{% highlight java %}
+```java
 public static boolean recursiveSearch(int target, int[] array, int low, int high)
 {
   if(low > high)
@@ -37,7 +38,7 @@ public static boolean recursiveSearch(int target, int[] array, int low, int high
 
   return false;
 }
-{% endhighlight %}
+```
 
 The return false on the bottom is for the Java syntax which requires a value to be returned no matter what. Now that we have this in we can get the real coding done. We want our function to first split the array down the middle, so we can simply say the middle is equal to low plus high divided by two. This will split our search area in two halves with the center as close to the center as possible.
 
@@ -47,7 +48,7 @@ After we find the middle index we have three cases, either the middle is the num
 
 As you can see the black is the search area, if the element is greater the search area splits to the right half, if it is less it splits to the left half. We are simply doing this in code. Now let's program what this would look like:
 
-{% highlight java %}
+```java
 public static boolean recursiveSearch(int target, int[] array, int low, int high)
 {
   if(low > high)
@@ -65,11 +66,12 @@ public static boolean recursiveSearch(int target, int[] array, int low, int high
 
   return false;
 }
-{% endhighlight %}
+
+```
 
 So right there we have programmed it to say if the target is equal to the middle element, return true because we have found it. If the target is less than the element do something, and if it is greater than the element do something else. Now since this is a recursive function we want to call it in both of those else if statements. The way we want to call it is by calling it and modifying either low or high. When we modify the low index or the high index we are changing the bounds of the search area. So we will simply call the same function with a modified search area, it will look like this:
 
-{% highlight java %}
+```java
 public static boolean recursiveSearch(int target, int[] array, int low, int high)
 {
   if(low > high)
@@ -87,16 +89,17 @@ public static boolean recursiveSearch(int target, int[] array, int low, int high
 
   return false;
 }
-{% endhighlight %}
+```
 
 Now that should all make sense, the only thing you may be wondering is why the -1 and +1. Well, if you were to search for the element on the very left, you would never reach it if you simply passed in mid. The reason is because the middle would never reach that left point because it would constantly be picking the element right next to it! If you don't believe me remove the -1 and the +1 and watch what happens.
 
 The way to call the function above would look like this, and you would place this inside the main function of your program:
 
-{% highlight java %}
+```java
 ...
 recursiveSearch(450, arrayOfNumbers, 0, arrayOfNumbers.length - 1)
 ...
-{% endhighlight %}
+
+```
 
 So I hope this helps shed some light on how to program a recursive function that searches an array using a binary split. Good luck programming, and if you have questions or comments submit them below!

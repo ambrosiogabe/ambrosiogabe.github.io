@@ -13,7 +13,7 @@ Before we can start coding it is important to understand what exactly a singly l
 
 In order to start building this we are going to need two different data structures. First, the node, which is each individual element in the list. Secondly, the linked list, which is the structure that contains all the nodes. Let's start with the node structure. So, here is a class that builds a node in Java. It will need two things, an element, and a pointer to the next node.
 
-{% highlight java %}
+```java
 public class Node<Type> {
   Type element;
   Node<Type> pointer;
@@ -27,7 +27,7 @@ public class Node<Type> {
   public void setNext(Node<Type> next) {pointer = next;}
   public Node<Type> getNext() {return pointer;}
 }
-{% endhighlight %}
+```
 
 So in this code we start off defining our class as a general class that accepts any type of element. Then we specify that when a node is created, we want to pass it the element, and the pointer to the next node. We then set a few basic functions to retrieve different parts of the node. We have a getElement() function which returns the element, a setNext() function which sets the pointer, and a getNext() function which returns the next node.
 
@@ -35,7 +35,7 @@ This should all be saved in a file called <b>Node.java</b>
 
 Next is the linked list structure.
 
-{% highlight java %}
+```java
 public class SinglyLinkedList<Type> {
   public Node<Type> head;
   Node<Type> tail;
@@ -49,13 +49,14 @@ public class SinglyLinkedList<Type> {
   public Boolean isEmpty() { return size == 0; }
   public int size() {return size;}
 }
-{% endhighlight %}
+
+```
 
 So we start off with a few basic functions. First we add in a instantiating function that instantiates a new linked list. We pass this nothing and set the list's size equal to 0 because we will add functions that allow you to add a new element to the front or the end of the list. Then we have a few basic functions, getHead returns the head node, isEmpty returns whether the size is equal to 0 or not, and size simply returns the size variable.
 
 Next we will add a function that adds an element to the head of the list.
 
-{% highlight java %}
+```java
   public void addFirst(Type element) {
     Node<Type> newFirst = new Node<Type>(element, head);
 
@@ -65,13 +66,13 @@ Next we will add a function that adds an element to the head of the list.
     head = newFirst
     size++;
 }
-{% endhighlight %}
+```
 
 This function takes an element as its input and returns nothing. It first creates a newNode and sets that equal to the element, and has it point to the current head. Then we assign the head node to this new node. In essence, making this new node the new head so that it adds an element to the list. If the list is empty though, we also assign the tail to this new node. The tail is assigned to newFirst because the head is the tail, which means that the list is of size one. Lastly we increment the size by one.
 
 Right now would be a good time to add a function that prints out our list so that we can see what it looks like. So, we will create a print function now. Here is the code below.
 
-{% highlight java %}
+```java
 public void print() {
   String linkedList = "[";
   Node<Type> currentNode = head;
@@ -92,7 +93,8 @@ public void print() {
   }
   System.out.println(linkedList);
 }
-{% endhighlight %}
+
+```
 
 I personally like how Python prints out the output of a list. It looks like "[element1, element2 ... lastElement]". So this is the way I've decided to display our linked list in Java. In order to do this I declared a variable linkedList, and this is what will store our list in the format mentioned above. We set its value to "[", which is the first character in the string. Next we define a node called current node so that we can loop through our list. Now we can start looping.
 
@@ -100,7 +102,7 @@ First the code checks to see if the list is empty, if it is it closes the bracke
 
 Now we can implement a Main class to see if our code is working. All the code above should be saved into SinglyLinkedList.java. And now we will create a new class called Main.java. This will simply execute our linked list to see if it works.
 
-{% highlight java %}
+```java
 public class Main {
   public static void main(String[] args) {
     SinglyLinkedList<Character> list = new SinglyLinkedList<Character>();
@@ -112,11 +114,11 @@ public class Main {
     list.print();
   }
 }
-{% endhighlight %}
+```
 
 The main function simply creates a new list of characters, then adds the individual characters to our list, then prints it out. Next we can add an add last function, that adds an element to the end of our list. Inside our SinglyLinkedList.java file we will add the function below.
 
-{% highlight java %}
+```java
 public void addLast(Type element) {
   Node<Type> newest = new Node<Type>(element, null);
 
@@ -128,7 +130,8 @@ public void addLast(Type element) {
   tail = newest;
   size++;
 }
-{% endhighlight %}
+
+```
 
 This function once again creates a new node, this time though, it takes an element as its input, then creates the node and has it pointing to null since it will be at the end of our list. After this, we simply check if the list is empty, and if it is we make the head the new node. We do this because if we have a list of one element, the head will simply point to null and that is the end of the story.
 

@@ -45,14 +45,15 @@ Size()
 
 To start this off, we would like to declare an abstract class called List and initialize the array and everything. If you have a foreknowledge of Java this should all be fairly straightforward, in code it would look like this:
 
-{% highlight java %}
+```java
 public class List<Type>
 {
   private int size = 0;
   private int totalSize = 1;
   private Type[] array = (Type[])new Object[totalSize];
 }
-{% endhighlight %}
+
+```
 
 All we have done here is created an abstract class called List. Inside this class we have initialized three private variables called size, totalSize, and array. The size simply contains the size of the list, the total size is how big our list is allowed to be, an the array is the data structure we will use to build our list upon.
 
@@ -60,11 +61,11 @@ Now you may be wondering, what the heck is total size? Since our list needs to e
 
 Next we will actually code the size() method, this method is very simple. We will add to the code above:
 
-{% highlight java %}
+```java
   ...
   public int size() { return size; }
   ...
-{% endhighlight %}
+```
 
 This is just one line of code that returns our private variable size.
 
@@ -73,11 +74,12 @@ IsEmpty()
 
 This next method is also very simple, we simply want to return a boolean of whether the list is empty or not. We can do this by just checking whether or not size = 0. Or, in other words:
 
-{% highlight java %}
+```java
   ...
   public boolean isEmpty() { return size == 0; }
   ...
-{% endhighlight %}
+
+```
 
 This just returns whether size is equal to 0 or not. Moving on...
 
@@ -86,17 +88,18 @@ Get(i)
 
 Next up is the get method. This method is seemingly simple, but there is an added complexity which we will get to. Since our list structure is being made with an array we will simply access the element of the array at index i and return it! It really is that simple. Now, we can't add elements yet, but we will get there. In theory, our method should work like so:
 
-{% highlight java %}
+```java
 ...
 public Type get(int index)
 {
   return array[index]
 }
 ...
-{% endhighlight %}
+```
+
 Well that was easy! But wait, let's think about this. What if our dumb user (as most programmers are ;) ), decides to try and access the element at index 25, but the list is only full of 10 elements! Now we have a problem. In Java, we can program in something to "catch" these exceptions. Instead of using one of Javas exceptions, we will build our own. An appropriate name for this exception would be OutOfBoundsException. So, we will create a new class within the same file as this program, and we will call this class OutOfBoundsException, and it will extend RuntimeException which is Java's way of letting us build our own exception. In code it looks like this:
 
-{% highlight java %}
+```java
 public class OutOfBoundsException extends RuntimeException
 {
   String str1;
@@ -111,12 +114,14 @@ public class OutOfBoundsException extends RuntimeException
     return ("MyException Occurred: "+str1) ;
   }
 }
-{% endhighlight %}
+
+```
+
 Now, since we are extending a class here we have to implement all the unused methods. That so happens to be toString(). So what we are simply doing is saying, whenever this exception gets called, initialize it with the string we pass it, and then output to the console "MyException Occured: String that we passed to the exception". So don't be afraid by the method and class declaration in there.
 
 OK, now that we have an OutOfBoundsException we can throw it. Let's modify our get method to throw an error if somebody tries to access an element that doesn't exist:
 
-{% highlight java %}
+```java
 ...
 public Type get(int index) throws OutOfBoundsException
 {
@@ -130,7 +135,7 @@ public Type get(int index) throws OutOfBoundsException
   }
 }
 ...
-{% endhighlight %}
+```
 
 All we did is add in an if statement that says, if the user tries to get an element within our size, return it because it exists. Otherwise, throw a new out of bound exception that tells the programmer the index they tried to add in, and the size of the list. Also, note that we had to change our method and tell Java that it throws an out of bounds exception. This is just a syntactical requirement of the language. Let's move on.
 
@@ -141,7 +146,7 @@ Next up we will go over how to add an element at index i. Now as you may have gu
 
 The most efficient way to do this would be to loop through the array structure backwards starting from the end of our list, and stopping at the index. Then we can shift each element inside the loop. Let's program this:
 
-{% highlight java %}
+```java
 ...
 public void add(int index, Type element) throws OutOfBoundsException
 {
@@ -158,11 +163,12 @@ public void add(int index, Type element) throws OutOfBoundsException
   }
 }
 ...
-{% endhighlight %}
+
+```
 
 So first we check if the element is in bounds or not. Once we know that they can add the element in we begin our loop. This loop starts at size, which is the end of our list, then it continues until i is no longer greater than index, which means we have reached our stopping point, and it decrements by one each turn of our loop. Inside our loop we would like to shift the elements right one. So we will do that as follows:
 
-{% highlight java %}
+```java
 public void add(int index, Type element) throws OutOfBoundsException
 {
   if(index < size)
@@ -178,7 +184,7 @@ public void add(int index, Type element) throws OutOfBoundsException
     throw new OutOfBoundsException("List index " + index + " exceeds size " + size + " of list.");
   }
 }
-{% endhighlight %}
+```
 
 So inside the loop we shift the array right one by the line seen above. We simply set the array[i], which is our current element, too array[i - 1] which is the previous element. And since we are starting one past the final index of our array, we do not have to worry about overwriting any elements. After the loop is complete we set the array[index] to the element and increment our size variable.
 
@@ -187,7 +193,7 @@ Add(e)
 
 The add function is very similar to adding an element at an index. It's actually a little bit simpler so I will spend very short time on it. Here is the code:
 
-{% highlight java %}
+```java
 ...
 public void add(Type element)
 {
@@ -199,11 +205,12 @@ public void add(Type element)
   array[size - 1] = element;
 }
 ...
-{% endhighlight %}
+
+```
 
 So it looks just how you would expect it. Except there's one difference, we increment the size first, then if the size is greater than the total size we increaseArraySize(). All that we are saying is that if the size of the list is now bigger than the size we have allotted for our array, we will have to increase our array size. The function for increasing the array size is pretty simple. All we have to do is copy our current array into a new array that is twice as big. Here is the code:
 
-{% highlight java %}
+```java
 ...
 private Type[] increaseArraySize()
 {
@@ -216,11 +223,11 @@ private Type[] increaseArraySize()
   return newArray;
 }
 ...
-{% endhighlight %}
+```
 
 All we do above is declare a new array in the same way we declared our first array. We multiply the total size by two so that the new array will be big enough. Then we loop through the <i>original</i> array and copy each element to the new array. Finally we return the new array and set the original array equal to that new array. While we're at it let's do a couple more things. Let's include this functionality to our add(i, e) method, and let's create a decreaseSize() method that decreases the arrays size by half. So, modifying the first method would look like this:
 
-{% highlight java %}
+```java
 ...
 public void add(int index, Type element) throws OutOfBoundsException
 {
@@ -245,11 +252,12 @@ public void add(int index, Type element) throws OutOfBoundsException
   }
 }
 ...
-{% endhighlight %}
+
+```
 
 There we go, we have simply modified our method to mimic the other add method we created. Now let's create decreaseSize().
 
-{% highlight java %}
+```java
 ...
 private Type[] decreaseSize()
 {
@@ -262,7 +270,7 @@ private Type[] decreaseSize()
   return newArray;
 }
 ...
-{% endhighlight %}
+```
 
 The decreaseSize() method works in almost the exact same way as our other method! The only difference is that we decrease total size by a factor of 2 and then copy the elements and then return the array. We have finally finished this method.
 
@@ -271,7 +279,7 @@ Remove(i)
 
 The last function we would like to add to our list ADT is a remove method. This remove method simply removes the element at index i, then shifts the rest of the elements left one. We will implement this in close to the same we we implemented add(i, e). Here is the code:
 
-{% highlight java %}
+```java
 ...
 public void remove(int index) {
   for(int i=index; i < size; i++)
@@ -286,12 +294,14 @@ public void remove(int index) {
   }
 }
 ...
-{% endhighlight %}
+
+```
 
 So, this method simply loops through the array from the index to the end of the array and sets each element on the left to the element immediately to the right of it. This overwrites the element we wish to remove. Then, we decrement the size, and shrink our array structure if it needs it.
 
 One way we could improve this is add an exception for an empty list. What if our user tries to remove an element from an empty list? We could also add an out of bounds exception. Let's do this real quick.
-{% highlight java %}
+
+```java
 ...
 public void remove(int index) throws OutOfBoundsException, EmptyListException {
   if(index > size)
@@ -317,7 +327,7 @@ public void remove(int index) throws OutOfBoundsException, EmptyListException {
   }
 }
 ...
-{% endhighlight %}
+```
 
 Right here we have simply added in two if statements that check to make sure the index is not out of bounds, and that our list is not empty. In both cases we throw an exception. Now, I will include the code for the EmptyListException at the bottom of this article, but I would like to challenge you to create it yourself.
 
@@ -327,7 +337,8 @@ Code
 ====
 
 List.java
-{% highlight java %}
+
+```java
 public class List<Type> {
   int size = 0;
   int totalSize = 1;
@@ -406,10 +417,12 @@ public class List<Type> {
   public boolean isEmpty() {return size == 0;}
   public int size() { return size; }
 }
-{% endhighlight %}
+
+```
 
 OutOfBoundsException.java
-{% highlight java %}
+
+```java
 public class OutOfBoundsException extends RuntimeException {
   String str1;
 
@@ -421,10 +434,11 @@ public class OutOfBoundsException extends RuntimeException {
     return ("MyException Occurred: "+str1) ;
   }
 }
-{% endhighlight %}
+```
 
 EmptyListException.java
-{% highlight java %}
+
+```java
 public class EmptyListException extends RuntimeException {
   String str1;
 
@@ -436,4 +450,4 @@ public class EmptyListException extends RuntimeException {
     return ("MyException Occurred: "+str1) ;
   }
 }
-{% endhighlight %}
+```
