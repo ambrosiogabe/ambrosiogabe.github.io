@@ -4,7 +4,7 @@ title:  "Download Tetris"
 date:   2017-10-04 18:00:32 -0500
 categories: [Games]
 tags: [programming, java, game]
-cover: /public/assets/images/tetris.png
+cover: /public/images/articleHeaders/downloadTetris.png
 ---
 
 Download
@@ -21,4 +21,4 @@ Now Tetris was a big leap for me. Never before had I attempted to build somethin
 
 Another very cool feature that I added to this game was the fullscreen capabilities. Now I know that on Windows and possibly Mac it doesn't look quite fullscreen. But this capability was entirely new and foreign to me. What I did to make it happen was get the total screen width and total screen height, and then scale every single component and object accordingly. It turned out better than I could have imagined. I hope you enjoy it! If you want me to go more in depth into the creation process leave some comments below and let me know and I'll write a follow up.
 
-[1]: {{site.url}}/public/downloads/tetris/Tetris.zip
+[1]: https://github.com/ambrosiogabe/ambrosiogabe.github.io/releases/download/Tetris/Tetris.zip

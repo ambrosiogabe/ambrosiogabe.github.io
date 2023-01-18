@@ -4,12 +4,12 @@ title:  "How to Code Insertion Sort in Java"
 date:   2017-12-20 1:57:32 -0500
 categories: [Data-Structures]
 tags: [programming, java, sort]
-cover: /public/assets/images/insertionSort.png
+cover: /public/images/articleHeaders/codeInsertionSortInJava.png
 ---
 I haven't written in awhile. I decided that I'm going to continue my tutorials on data structures, so next up is learning how to code an insertion-sort algorithm in Java.
 I have a graphic pictured below that shows how this insertion-sort algorithm works.
 
-![insertionSortPicture](/public/assets/images/insertionSort.png)
+![insertionSortPicture](/public/images/articleHeaders/codeInsertionSortInJava.png)
 
 What you see pictured above is the execution of the insertion-sort algorithm. This algorithm basically loops through a list of items, it could be any comparable data type.
 As it is looping through it pulls out the current item and compares it to the next item in the array. If it is more, or less depending on if it is a maximum sort or minimum sort,

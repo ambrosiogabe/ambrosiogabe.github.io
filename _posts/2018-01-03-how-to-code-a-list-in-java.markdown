@@ -4,7 +4,7 @@ title:  "How to Code a List in Java"
 date:   2018-01-03 1:57:32 -0500
 categories: [Data-Structures]
 tags: [programming, java, lists, data-structures]
-cover: /public/assets/images/list.jpeg
+cover: /public/images/articleHeaders/codeAListInJava.jpeg
 ---
 Intro
 =====

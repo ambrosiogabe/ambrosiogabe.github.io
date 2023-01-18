@@ -1,0 +1,292 @@
+<!DOCTYPE html> <html lang="en-us"> <head> <link href="https://gmpg.org/xfn/11" rel="profile"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta http-equiv="content-type" content="text/html; charset=utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"> <title> How to Code a List in Java &middot; Gabe's Blog </title> <link rel="stylesheet" href="/public/css/poole.css"> <link rel="stylesheet" href="/public/css/syntax.css"> <link rel="stylesheet" href="/public/css/hyde.css"> <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface"> <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous"> <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png"> <link rel="shortcut icon" href="/public/favicon.ico"> <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml"> </head> <body class="theme-base-0d"> <div class="sidebar"> <div class="container sidebar-sticky"> <div class="sidebar-about"> <h1> <a href="/"> Gabe's Blog </a> </h1> <p class="lead">A site for programmers by a programmer</p> </div> <nav class="sidebar-nav"> <a class="sidebar-nav-item" href="/">Home</a> <a class="sidebar-nav-item" href="/about/">About</a> <a class="sidebar-nav-item" href="/projects/">Projects</a> <div class="sidebar-hz-navs"> <a class="sidebar-nav-item" href="https://www.youtube.com/gameswithgabe" target="_blank"><i class="fab fa-youtube"></i></a> <a class="sidebar-nav-item" href="https://github.com/ambrosiogabe" target="_blank"><i class="fab fa-github"></i></a> </div> </nav> <p>&copy; 2022-2023. All rights reserved.</p> </div> </div> <div class="content container"> <div class="post"> <div> <img src="/public/images/articleHeaders/codeAListInJava.jpeg"></img> </div> <h1 class="post-title">How to Code a List in Java</h1> <span class="post-date">03 Jan 2018</span> <h1 id="intro">Intro</h1> <p>This article is going to be a very in depth example of how to code a list in Java. A list is a data structure that holds a number of items that you can access in constant time. The advantage of a list in comparison to an array is that a list expands or shrinks as needed, so there is no need to know the number of elements in advance. This is helpful for programs in which you need a collection of items, but you are not sure how many there are going to be.</p> <p>Now if you have programmed in Python than you know exactly what lists are. We will implement the same type of technique now in Java and it will function very similarly to the way the Java.util.List works.</p> <h1 id="methods">Methods</h1> <p>Before we begin programming our list it would be very nice to have a list of the methods that we will need. Now, we would like our list to do the following:</p> <ul> <li>Size(): Return the size of our list</li> <li>isEmpty(): Return a boolean of whether our list is empty or not</li> <li>get(i): Return whatever element is at the index, i</li> <li>add(i, e): Add an element e to the index i while maintaining all the other elements in the list and throws an out of bounds exception if needed</li> <li>add(e): Add an element e to the end of the list</li> <li>remove(i): Remove the element at index i</li> </ul> <p>These are the main functions we would like our list ADT (Abstract Data Type) to do. I will add a bonus section at the end of this article that adds in a few functions that the Python version of lists have. In this bonus section I will include how to program methods that do the following:</p> <ul> <li>reverse(): Reverse the list's ordering</li> <li>extend(l): Append the list l to the current list</li> <li>indexOf(e): Return the index of element e and throw an empty list exception if the list is empty</li> <li>pop(): Returns and removes the element at the end of the list and throws an empty list exception if the list is empty</li> <li>pop(i): Returns and removes the element at index i and throws out of bounds exception or empty list exception</li> <li>print(): Prints out the array in the format [e1, e2, e3]</li> </ul> <p>So follow along if you want and I hope you enjoy learning how to create a list in Java!</p> <h1 id="size">Size()</h1> <p>To start this off, we would like to declare an abstract class called List and initialize the array and everything. If you have a foreknowledge of Java this should all be fairly straightforward, in code it would look like this:</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Type</span><span class="o">&gt;</span>
+<span class="o">{</span>
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">totalSize</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">Type</span><span class="o">[]</span> <span class="n">array</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Type</span><span class="o">[])</span><span class="k">new</span> <span class="nc">Object</span><span class="o">[</span><span class="n">totalSize</span><span class="o">];</span>
+<span class="o">}</span>
+
+</code></pre></div></div> <p>All we have done here is created an abstract class called List. Inside this class we have initialized three private variables called size, totalSize, and array. The size simply contains the size of the list, the total size is how big our list is allowed to be, an the array is the data structure we will use to build our list upon.</p> <p>Now you may be wondering, what the heck is total size? Since our list needs to expand, and contract, with the amount of elements in the list, we need to keep track of the maximum size available at any given moment. Then, when we try to add an element that exceeds the size of the list, we will call a function increaseArraySize() which expands the array by a factor of 2, and when the size is less than one fourth of the total size, we will shrink the list by a factor of 2 by calling a function decreaseSize(). We will get to all this in a very short amount of time here.</p> <p>Next we will actually code the size() method, this method is very simple. We will add to the code above:</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="o">...</span>
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">size</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">size</span><span class="o">;</span> <span class="o">}</span>
+  <span class="o">...</span>
+</code></pre></div></div> <p>This is just one line of code that returns our private variable size.</p> <h1 id="isempty">IsEmpty()</h1> <p>This next method is also very simple, we simply want to return a boolean of whether the list is empty or not. We can do this by just checking whether or not size = 0. Or, in other words:</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="o">...</span>
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="o">;</span> <span class="o">}</span>
+  <span class="o">...</span>
+
+</code></pre></div></div> <p>This just returns whether size is equal to 0 or not. Moving on…</p> <h1 id="geti">Get(i)</h1> <p>Next up is the get method. This method is seemingly simple, but there is an added complexity which we will get to. Since our list structure is being made with an array we will simply access the element of the array at index i and return it! It really is that simple. Now, we can’t add elements yet, but we will get there. In theory, our method should work like so:</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">...</span>
+<span class="kd">public</span> <span class="nc">Type</span> <span class="nf">get</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span>
+<span class="o">{</span>
+  <span class="k">return</span> <span class="n">array</span><span class="o">[</span><span class="n">index</span><span class="o">]</span>
+<span class="o">}</span>
+<span class="o">...</span>
+</code></pre></div></div> <p>Well that was easy! But wait, let’s think about this. What if our dumb user (as most programmers are ;) ), decides to try and access the element at index 25, but the list is only full of 10 elements! Now we have a problem. In Java, we can program in something to “catch” these exceptions. Instead of using one of Javas exceptions, we will build our own. An appropriate name for this exception would be OutOfBoundsException. So, we will create a new class within the same file as this program, and we will call this class OutOfBoundsException, and it will extend RuntimeException which is Java’s way of letting us build our own exception. In code it looks like this:</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">OutOfBoundsException</span> <span class="kd">extends</span> <span class="nc">RuntimeException</span>
+<span class="o">{</span>
+  <span class="nc">String</span> <span class="n">str1</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="nf">OutOfBoundsException</span><span class="o">(</span><span class="nc">String</span> <span class="n">str2</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="n">str1</span><span class="o">=</span><span class="n">str2</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span>
+  <span class="o">{</span>
+    <span class="k">return</span> <span class="o">(</span><span class="s">"MyException Occurred: "</span><span class="o">+</span><span class="n">str1</span><span class="o">)</span> <span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div> <p>Now, since we are extending a class here we have to implement all the unused methods. That so happens to be toString(). So what we are simply doing is saying, whenever this exception gets called, initialize it with the string we pass it, and then output to the console “MyException Occured: String that we passed to the exception”. So don’t be afraid by the method and class declaration in there.</p> <p>OK, now that we have an OutOfBoundsException we can throw it. Let’s modify our get method to throw an error if somebody tries to access an element that doesn’t exist:</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">...</span>
+<span class="kd">public</span> <span class="nc">Type</span> <span class="nf">get</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">OutOfBoundsException</span>
+<span class="o">{</span>
+  <span class="k">if</span><span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="k">return</span> <span class="n">array</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
+  <span class="o">}</span>
+  <span class="k">else</span>
+  <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nf">OutOfBoundsException</span><span class="o">(</span><span class="s">"List index "</span> <span class="o">+</span> <span class="n">index</span> <span class="o">+</span> <span class="s">" exceeds size "</span> <span class="o">+</span> <span class="n">size</span> <span class="o">+</span> <span class="s">" of list."</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+<span class="o">...</span>
+</code></pre></div></div> <p>All we did is add in an if statement that says, if the user tries to get an element within our size, return it because it exists. Otherwise, throw a new out of bound exception that tells the programmer the index they tried to add in, and the size of the list. Also, note that we had to change our method and tell Java that it throws an out of bounds exception. This is just a syntactical requirement of the language. Let’s move on.</p> <h1 id="addi-e">Add(i, e)</h1> <p>Next up we will go over how to add an element at index i. Now as you may have guessed this method is also going to throw an out of bounds exception for the same reason. Before we go coding this let’s think about the most efficient way to do this. First of all, we are going to have to shift all the elements at the index one right, that way we have an empty spot where we can add our element. After that we can add the element.</p> <p>The most efficient way to do this would be to loop through the array structure backwards starting from the end of our list, and stopping at the index. Then we can shift each element inside the loop. Let’s program this:</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">...</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="nc">Type</span> <span class="n">element</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">OutOfBoundsException</span>
+<span class="o">{</span>
+  <span class="k">if</span><span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">size</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">index</span><span class="o">;</span> <span class="n">i</span><span class="o">--)</span>
+    <span class="o">{</span>
+
+    <span class="o">}</span>
+
+  <span class="o">}</span> <span class="k">else</span>
+  <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nf">OutOfBoundsException</span><span class="o">(</span><span class="s">"List index "</span> <span class="o">+</span> <span class="n">index</span> <span class="o">+</span> <span class="s">" exceeds size "</span> <span class="o">+</span> <span class="n">size</span> <span class="o">+</span> <span class="s">" of list."</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+<span class="o">...</span>
+
+</code></pre></div></div> <p>So first we check if the element is in bounds or not. Once we know that they can add the element in we begin our loop. This loop starts at size, which is the end of our list, then it continues until i is no longer greater than index, which means we have reached our stopping point, and it decrements by one each turn of our loop. Inside our loop we would like to shift the elements right one. So we will do that as follows:</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="nc">Type</span> <span class="n">element</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">OutOfBoundsException</span>
+<span class="o">{</span>
+  <span class="k">if</span><span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">size</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">index</span><span class="o">;</span> <span class="n">i</span><span class="o">--)</span>
+    <span class="o">{</span>
+      <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span>
+    <span class="o">}</span>
+    <span class="n">array</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">element</span><span class="o">;</span>
+    <span class="n">size</span><span class="o">++;</span>
+  <span class="o">}</span> <span class="k">else</span>
+  <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nf">OutOfBoundsException</span><span class="o">(</span><span class="s">"List index "</span> <span class="o">+</span> <span class="n">index</span> <span class="o">+</span> <span class="s">" exceeds size "</span> <span class="o">+</span> <span class="n">size</span> <span class="o">+</span> <span class="s">" of list."</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div> <p>So inside the loop we shift the array right one by the line seen above. We simply set the array[i], which is our current element, too array[i - 1] which is the previous element. And since we are starting one past the final index of our array, we do not have to worry about overwriting any elements. After the loop is complete we set the array[index] to the element and increment our size variable.</p> <h1 id="adde">Add(e)</h1> <p>The add function is very similar to adding an element at an index. It’s actually a little bit simpler so I will spend very short time on it. Here is the code:</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">...</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="nc">Type</span> <span class="n">element</span><span class="o">)</span>
+<span class="o">{</span>
+  <span class="n">size</span><span class="o">++;</span>
+  <span class="k">if</span><span class="o">(</span><span class="n">size</span> <span class="o">&gt;</span> <span class="n">totalSize</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="n">array</span> <span class="o">=</span> <span class="n">increaseArraySize</span><span class="o">();</span>
+  <span class="o">}</span>
+  <span class="n">array</span><span class="o">[</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">element</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="o">...</span>
+
+</code></pre></div></div> <p>So it looks just how you would expect it. Except there’s one difference, we increment the size first, then if the size is greater than the total size we increaseArraySize(). All that we are saying is that if the size of the list is now bigger than the size we have allotted for our array, we will have to increase our array size. The function for increasing the array size is pretty simple. All we have to do is copy our current array into a new array that is twice as big. Here is the code:</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">...</span>
+<span class="kd">private</span> <span class="nc">Type</span><span class="o">[]</span> <span class="nf">increaseArraySize</span><span class="o">()</span>
+<span class="o">{</span>
+  <span class="n">totalSize</span> <span class="o">*=</span> <span class="mi">2</span><span class="o">;</span>
+  <span class="nc">Type</span><span class="o">[]</span> <span class="n">newArray</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Type</span><span class="o">[])</span><span class="k">new</span> <span class="nc">Object</span><span class="o">[</span><span class="n">totalSize</span><span class="o">];</span>
+  <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+  <span class="o">{</span>
+    <span class="n">newArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="n">newArray</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="o">...</span>
+</code></pre></div></div> <p>All we do above is declare a new array in the same way we declared our first array. We multiply the total size by two so that the new array will be big enough. Then we loop through the <i>original</i> array and copy each element to the new array. Finally we return the new array and set the original array equal to that new array. While we’re at it let’s do a couple more things. Let’s include this functionality to our add(i, e) method, and let’s create a decreaseSize() method that decreases the arrays size by half. So, modifying the first method would look like this:</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">...</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="nc">Type</span> <span class="n">element</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">OutOfBoundsException</span>
+<span class="o">{</span>
+  <span class="n">size</span><span class="o">++;</span>
+  <span class="k">if</span><span class="o">(</span><span class="n">size</span> <span class="o">&gt;</span> <span class="n">totalSize</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="n">array</span> <span class="o">=</span> <span class="n">increaseArraySize</span><span class="o">();</span>
+  <span class="o">}</span>
+  <span class="k">else</span>
+  <span class="o">{</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">)</span>
+    <span class="o">{</span>
+      <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">size</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">index</span><span class="o">;</span> <span class="n">i</span><span class="o">--)</span>
+      <span class="o">{</span>
+        <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span>
+      <span class="o">}</span>
+      <span class="n">array</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">element</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span>
+    <span class="o">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nf">OutOfBoundsException</span><span class="o">(</span><span class="s">"List index "</span> <span class="o">+</span> <span class="n">index</span> <span class="o">+</span> <span class="s">" exceeds size "</span> <span class="o">+</span> <span class="n">size</span> <span class="o">+</span> <span class="s">" of list."</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+<span class="o">...</span>
+
+</code></pre></div></div> <p>There we go, we have simply modified our method to mimic the other add method we created. Now let’s create decreaseSize().</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">...</span>
+<span class="kd">private</span> <span class="nc">Type</span><span class="o">[]</span> <span class="nf">decreaseSize</span><span class="o">()</span>
+<span class="o">{</span>
+  <span class="n">totalSize</span> <span class="o">/=</span> <span class="mi">2</span><span class="o">;</span>
+  <span class="nc">Type</span><span class="o">[]</span> <span class="n">newArray</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Type</span><span class="o">[])</span><span class="k">new</span> <span class="nc">Object</span><span class="o">[</span><span class="n">totalSize</span><span class="o">];</span>
+  <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+  <span class="o">{</span>
+    <span class="n">newArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="n">newArray</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="o">...</span>
+</code></pre></div></div> <p>The decreaseSize() method works in almost the exact same way as our other method! The only difference is that we decrease total size by a factor of 2 and then copy the elements and then return the array. We have finally finished this method.</p> <h1 id="removei">Remove(i)</h1> <p>The last function we would like to add to our list ADT is a remove method. This remove method simply removes the element at index i, then shifts the rest of the elements left one. We will implement this in close to the same we we implemented add(i, e). Here is the code:</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">...</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">remove</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">index</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+  <span class="o">{</span>
+    <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
+  <span class="o">}</span>
+  <span class="n">size</span><span class="o">--;</span>
+
+  <span class="k">if</span><span class="o">(</span><span class="n">size</span> <span class="o">&lt;</span> <span class="o">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">4</span><span class="o">)</span> <span class="o">*</span> <span class="n">totalSize</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="n">array</span> <span class="o">=</span> <span class="n">decreaseSize</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+<span class="o">...</span>
+
+</code></pre></div></div> <p>So, this method simply loops through the array from the index to the end of the array and sets each element on the left to the element immediately to the right of it. This overwrites the element we wish to remove. Then, we decrement the size, and shrink our array structure if it needs it.</p> <p>One way we could improve this is add an exception for an empty list. What if our user tries to remove an element from an empty list? We could also add an out of bounds exception. Let’s do this real quick.</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">...</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">remove</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">OutOfBoundsException</span><span class="o">,</span> <span class="nc">EmptyListException</span> <span class="o">{</span>
+  <span class="k">if</span><span class="o">(</span><span class="n">index</span> <span class="o">&gt;</span> <span class="n">size</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nf">OutOfBoundsException</span><span class="o">(</span><span class="s">"Index "</span> <span class="o">+</span> <span class="n">index</span> <span class="o">+</span> <span class="s">" exceeds the size "</span> <span class="o">+</span> <span class="n">size</span> <span class="o">+</span> <span class="s">" of the list."</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">isEmpty</span><span class="o">())</span>
+  <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nf">EmptyListException</span><span class="o">(</span><span class="s">"You cannot return element "</span> <span class="o">+</span> <span class="n">index</span> <span class="o">+</span> <span class="s">" of an empty list."</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="k">else</span>
+  <span class="o">{</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">index</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+    <span class="o">{</span>
+      <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
+    <span class="o">}</span>
+    <span class="n">size</span><span class="o">--;</span>
+
+    <span class="k">if</span><span class="o">(</span><span class="n">size</span> <span class="o">&lt;</span> <span class="o">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">4</span><span class="o">)</span> <span class="o">*</span> <span class="n">totalSize</span><span class="o">)</span>
+    <span class="o">{</span>
+      <span class="n">array</span> <span class="o">=</span> <span class="n">decreaseSize</span><span class="o">();</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+<span class="o">...</span>
+</code></pre></div></div> <p>Right here we have simply added in two if statements that check to make sure the index is not out of bounds, and that our list is not empty. In both cases we throw an exception. Now, I will include the code for the EmptyListException at the bottom of this article, but I would like to challenge you to create it yourself.</p> <p>And that’s it! We have created our list ADT. I do not have time to continue the bonus section in this article, so I will write another article that you can find <a href="/data-structures/2018/01/05/list-bonus-material/">here</a> which will take you to the bonus material. I hope you have enjoyed learning how to create a list ADT!</p> <h1 id="code">Code</h1> <p>List.java</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Type</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">totalSize</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+  <span class="nc">Type</span><span class="o">[]</span> <span class="n">array</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Type</span><span class="o">[])</span><span class="k">new</span> <span class="nc">Object</span><span class="o">[</span><span class="n">totalSize</span><span class="o">];</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">remove</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">OutOfBoundsException</span><span class="o">,</span> <span class="nc">EmptyListException</span> <span class="o">{</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">index</span> <span class="o">&gt;</span> <span class="n">size</span><span class="o">)</span>
+    <span class="o">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nf">OutOfBoundsException</span><span class="o">(</span><span class="s">"Index "</span> <span class="o">+</span> <span class="n">index</span> <span class="o">+</span> <span class="s">" exceeds the size "</span> <span class="o">+</span> <span class="n">size</span> <span class="o">+</span> <span class="s">" of the list."</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">isEmpty</span><span class="o">())</span>
+    <span class="o">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nf">EmptyListException</span><span class="o">(</span><span class="s">"You cannot return element "</span> <span class="o">+</span> <span class="n">index</span> <span class="o">+</span> <span class="s">" of an empty list."</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">else</span>
+    <span class="o">{</span>
+      <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">index</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+      <span class="o">{</span>
+        <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
+      <span class="o">}</span>
+      <span class="n">size</span><span class="o">--;</span>
+
+      <span class="k">if</span><span class="o">(</span><span class="n">size</span> <span class="o">&lt;</span> <span class="o">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">4</span><span class="o">)</span> <span class="o">*</span> <span class="n">totalSize</span><span class="o">)</span>
+      <span class="o">{</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="n">decreaseSize</span><span class="o">();</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="nc">Type</span> <span class="n">element</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">size</span><span class="o">++;</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">size</span> <span class="o">&gt;</span> <span class="n">totalSize</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">array</span> <span class="o">=</span> <span class="n">increaseArraySize</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="n">array</span><span class="o">[</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">element</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="nc">Type</span> <span class="n">element</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">OutOfBoundsException</span> <span class="o">{</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">size</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">index</span><span class="o">;</span> <span class="n">i</span><span class="o">--)</span> <span class="o">{</span>
+        <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span>
+      <span class="o">}</span>
+      <span class="n">array</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">element</span><span class="o">;</span>
+      <span class="n">size</span><span class="o">++;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nf">OutOfBoundsException</span><span class="o">(</span><span class="s">"List index "</span> <span class="o">+</span> <span class="n">index</span> <span class="o">+</span> <span class="s">" exceeds size "</span> <span class="o">+</span> <span class="n">size</span> <span class="o">+</span> <span class="s">" of list."</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="nc">Type</span> <span class="nf">get</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">OutOfBoundsException</span> <span class="o">{</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">array</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nf">OutOfBoundsException</span><span class="o">(</span><span class="s">"List index "</span> <span class="o">+</span> <span class="n">index</span> <span class="o">+</span> <span class="s">" exceeds size "</span> <span class="o">+</span> <span class="n">size</span> <span class="o">+</span> <span class="s">" of list."</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="nc">Type</span><span class="o">[]</span> <span class="nf">increaseArraySize</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">totalSize</span> <span class="o">*=</span> <span class="mi">2</span><span class="o">;</span>
+    <span class="nc">Type</span><span class="o">[]</span> <span class="n">newArray</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Type</span><span class="o">[])</span><span class="k">new</span> <span class="nc">Object</span><span class="o">[</span><span class="n">totalSize</span><span class="o">];</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+      <span class="n">newArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">newArray</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="nc">Type</span><span class="o">[]</span> <span class="nf">decreaseSize</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">totalSize</span> <span class="o">/=</span> <span class="mi">2</span><span class="o">;</span>
+    <span class="nc">Type</span><span class="o">[]</span> <span class="n">newArray</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Type</span><span class="o">[])</span><span class="k">new</span> <span class="nc">Object</span><span class="o">[</span><span class="n">totalSize</span><span class="o">];</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+      <span class="n">newArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">newArray</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="o">()</span> <span class="o">{</span><span class="k">return</span> <span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="o">;}</span>
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">size</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">size</span><span class="o">;</span> <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div> <p>OutOfBoundsException.java</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">OutOfBoundsException</span> <span class="kd">extends</span> <span class="nc">RuntimeException</span> <span class="o">{</span>
+  <span class="nc">String</span> <span class="n">str1</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="nf">OutOfBoundsException</span><span class="o">(</span><span class="nc">String</span> <span class="n">str2</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">str1</span><span class="o">=</span><span class="n">str2</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">(){</span>
+    <span class="k">return</span> <span class="o">(</span><span class="s">"MyException Occurred: "</span><span class="o">+</span><span class="n">str1</span><span class="o">)</span> <span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div> <p>EmptyListException.java</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EmptyListException</span> <span class="kd">extends</span> <span class="nc">RuntimeException</span> <span class="o">{</span>
+  <span class="nc">String</span> <span class="n">str1</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="nf">EmptyListException</span><span class="o">(</span><span class="nc">String</span> <span class="n">str2</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">str1</span><span class="o">=</span><span class="n">str2</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">(){</span>
+    <span class="k">return</span> <span class="o">(</span><span class="s">"MyException Occurred: "</span><span class="o">+</span><span class="n">str1</span><span class="o">)</span> <span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div> </div> <div class="related"> <h2>Related Posts</h2> <ul class="related-posts"> <li> <h3> <a href="/games/2021/10/07/the-math-behind-font-rasterization/"> The Math Behind Font Rasterization <small>07 Oct 2021</small> </a> </h3> </li> <li> <h3> <a href="/games/2020/04/16/on-cameras-in-opengl/"> Cameras in OpenGL <small>16 Apr 2020</small> </a> </h3> </li> <li> <h3> <a href="/games/2019/12/01/setting-up-dedicated-terraria-server/"> How to Make a Dedicated Terraria Server on Windows 10 <small>01 Dec 2019</small> </a> </h3> </li> </ul> </div> </div> </body> <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      SVG: { linebreaks: { automatic: true } }
+    });
+  </script> <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> </html>

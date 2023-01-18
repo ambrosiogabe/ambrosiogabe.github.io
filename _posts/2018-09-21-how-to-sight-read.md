@@ -4,7 +4,7 @@ title:  "5 Steps to Learn How to Sight-Read Music"
 date:   2018-09-21 1:57:32 -0500
 categories: [Music]
 tags: [music, tutorial, sight-reading]
-cover: /public/assets/images/sight-reading.jpg
+cover: /public/images/articleHeaders/sightReadMusic.jpg
 ---
 Have you ever taught yourself how to do something? If you have, then you know how hard it is to continue to motivate yourself. When you are in school, you
 have teachers that take up homework and give you a bad grade if you don't finish on time. When you are working, you have a boss that gives you a deadline

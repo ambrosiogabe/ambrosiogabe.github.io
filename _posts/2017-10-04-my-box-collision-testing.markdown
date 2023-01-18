@@ -4,7 +4,7 @@ title:  "Install My First Box Collision Test"
 date:   2017-10-04 17:57:32 -0500
 categories: [Games]
 tags: [programming, java, game]
-cover: /public/assets/boxCollision/gameplay.png
+cover: /public/images/boxCollisionTestArticle/gameplay.png
 ---
 
 Download
@@ -21,7 +21,7 @@ Here's my first attempt at box collision in Java. I was inspired to create a sim
 
 Now this game is very simple, it's just a one level scene where you get the coin then touch the door and win. It could have potentially grown into something much more complex, but I never got to that point (although I am working on something much better, keep looking it should be here soon). The way I do my box collision detection is actually using some vector calculus. Now the concepts are somewhat complicated, and I mostly used algorithms already available, although the concept is quite simple. What the program does is it first draws a vector from the character to the nearest "collider" as shown below.
 
-![box-collision-vectors](/public/assets/boxCollision/vectors1.png)
+![box-collision-vectors](/public/images/boxCollisionTestArticle/vectors1.png)
 
 And the way I coded my game, it actually draws a vector between each and every object and the player, I did not draw it for simplicities sake. But if you can imagine a vector drawn between each and every object and the character. What the code then does is it calculates the vectors for the characters every move. Once one of the vectors is length negative, or less than zero, i.e the character is colliding, it "pushes" the character back so that it is no longer inside whatever object it has collided with. This all happens so fast that it gives the illusion of the character being "blocked" by the "solid" objects. All of this is of course, just manipulation of numbers.
 
@@ -110,4 +110,4 @@ public class MyRectangle {
 
 You can use this code as some simple box collision detection, just use two objects of type MyRectangle, and the function blockRectangle, and it will ensure that the two objects do not collide. Hope you enjoy! Questions or comment? Leave them below and I will get to them as soon as possible!
 
-[1]: {{site.url}}/public/downloads/boxCollision/Minigame.jar
+[1]: https://github.com/ambrosiogabe/ambrosiogabe.github.io/releases/download/BoxCollisionMinigame/Minigame.jar

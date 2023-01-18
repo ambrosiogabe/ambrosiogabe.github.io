@@ -4,7 +4,7 @@ title:  "How to Program a Queue in Java"
 date:   2017-09-18 16:37:32 -0500
 categories: [Data-Structures]
 tags: [programming, java, queue, array]
-cover: /public/assets/images/queue.png
+cover: /public/images/articleHeaders/codeQueueInJava.png
 ---
 Queues are very similar to deques. The only difference is they follow the First in First Out (FIFO) principle. This means that they add the newest elements to the back of the list, and the oldest elements get returned first. It's kind of like waiting in line at a fast food restaurant. If you pull in and their is a long line, you are the newest person there, but you are added to the end of the line (or list if we're thinking queues). The person at the front of the line has been waiting the longest, and they get their food first. Once they get their food they are "dequeued" and the next person gets to be at the front. If someone comes in behind you, they are "enqueued" and are added to the back of the list.
 

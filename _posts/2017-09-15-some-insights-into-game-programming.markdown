@@ -4,7 +4,7 @@ title:  "Some Insights into Game Programming"
 date:   2017-09-15 14:02:32 -0500
 categories: [Game-Programming]
 tags: [programming, python, java]
-cover: /public/assets/images/pong.png
+cover: /public/images/articleHeaders/downloadPong.png
 ---
 
 What game to start with? What programming language do I use? Do I build my own game engine? These are all questions that we ask and more, I wish to address some of these if I can. First, let me start off by saying that I am a self-taught game programmer, as the title of my website implies, so all the things I will teach you are things that I learned myself and you can too if you need to. I say this as hope to all you out there who want to get started, but don't think they can. I'm here to tell you that you can do it. It may be difficult and there may be times of trouble, but you can accomplish it.
@@ -60,11 +60,11 @@ Listed below is a game I created with some instructions on how to download it. J
 
 Here are a couple of screenshots of gameplay.
 
-![impossible-game-image](/public/assets/impossibleGame/gameplay.png)
+![impossible-game-image](/public/images/impossibleGameDownload/gameplay.png)
 
 This is the title menu, and the one below is actual gameplay.
 
-![impossible-game-image](/public/assets/impossibleGame/gameplay.png)
+![impossible-game-image](/public/images/impossibleGameDownload/gameplay2.png)
 
 The game may look familiar, and that's because it is. I based it off of The World's Hardest Game, so all credit to the idea goes to the creators of The World's Hardest Game, but the artwork and the program that runs the game are all coded from scratch by me. You can download the game in the link right below, I hope you do and I hope you enjoy it!<br><br>
 [Download Here]({% post_url 2017-09-21-install-the-impossible-game %})

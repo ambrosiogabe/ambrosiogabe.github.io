@@ -4,7 +4,7 @@ title:  "Cameras in OpenGL"
 date:   2020-04-16 1:57:32 -0500
 categories: [Games]
 tags: [opengl, cameras, games]
-cover: /public/assets/images/opengl_cameras/titleImage.jpg
+cover: /public/images/openGlCameras/titleImage.jpg
 ---
 A feature that almost every game has and uses is a camera. But how is a camera represented in game code? In this blog post I will explain how cameras work in OpenGL, and provide a simple explanation with some visuals of how you can set up a camera.
 
@@ -12,7 +12,7 @@ A feature that almost every game has and uses is a camera. But how is a camera r
 
 Once again, cameras are commonly used in game development to let the player "view" the scene. There are two main types of cameras that you can use, perspective and orthographic, and they are used for 3D games and 2D games respectively. The main difference in these cameras is the way that the player percieves the game world. In a perspective projection, objects that are further away from the camera appear smaller in size, just like in real life. Whereas, in an orthographic projection, objects appear the same no matter the distance from the camera. The image below demonstrates the difference between these projections.
 
-![Ortho vs. Projection](/public/assets/images/opengl_cameras/visual1.png)
+![Ortho vs. Projection](/public/images/openGlCameras/visual1.png)
 
 As you can see, there is no perception of depth in the orthographic projection. This makes it ideal for 2D games, where you want a layered approach to drawing things. Since there is no distortion as objects are placed further away from the camera, you can draw 2D sprites that you want behind other sprites, further back. Think of this the same way layers work in Photoshop.
 
@@ -68,11 +68,11 @@ As you can see in the code, I define three vectors for the `cameraForward`, `cam
 
 The function takes three variables, the `eye`, `center` and `up`. These three vectors are used to create the view matrix. The `eye` is the camera's position, the `center` is a point that the camera is looking towards, and `up` is what direction the top of the camera is facing. Let's see what these look like visually.
 
-![Camera Visualization 1](/public/assets/images/opengl_cameras/visual2.png)
+![Camera Visualization 1](/public/images/openGlCameras/visual2.png)
 
 In the image, we can clearly see that the center is just some point that is directly in front of the camera, and the eye is the position, and so on and so forth. This means that if we change any of the vectors, we will change the entire direction of the camera. Lets try an example, if we change the camera's up vector from the current vector to: `cameraUp = new Vector3f(1, 0, 0);` the resulting configuration of our camera will look like this:
 
-![Camera Visualization 2](/public/assets/images/opengl_cameras/visual3.png)
+![Camera Visualization 2](/public/images/openGlCameras/visual3.png)
 
 Now we have our camera facing an entirely different direction, all by changing one simple vector! In reality, you would also have to change your eye vector, and center vector to match the new configuration of the camera. By the way, this view matrix will work for 2D orthographic projections as well. Typically, in a 2D scenario, you would want a fixed view matrix for your camera, where the camera is pointed towards the xy plane as the first picture shows. Then, you can draw all your sprites on the xy plane, and the camera will always be pointing towards the correct direction.
 

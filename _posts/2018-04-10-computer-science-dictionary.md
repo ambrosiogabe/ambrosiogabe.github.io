@@ -4,7 +4,7 @@ title:  "Computer Science To English"
 date:   2018-04-10 1:57:32 -0500
 categories: [Computer-Science]
 tags: [programming, dictionary]
-cover: /public/assets/images/dictionary.jpg
+cover: /public/images/computerScienceDictionaryArticle/dictionary.jpg
 ---
 
 # Intro
@@ -39,7 +39,7 @@ I will prefix each word with the **T for the traditional meaning and CS for the 
 * **T Bug<sup>3</sup>:** (Loosely) any insect or insectlike invertebrate.
 * **CS Bug:** A problem with a program. In other words, a program misbehaves and does not do what it was created to do. The term was coined when diagnosing a problem with one of the first computers. This particular computer was the size of an entire room and was misbehaving. When they finally found out what was causing the problem, it was because an actual insect had gotten caught in the computer.
 
-![Old-Computer](/public/assets/images/old-computer.jpg)
+![Old-Computer](/public/images/computerScienceDictionaryArticle/old-computer.jpg)
 *You can see how a bug could get stuck in this.*
 
 * **T Bite:** To cut, wound, or tear with the teeth
@@ -48,7 +48,7 @@ I will prefix each word with the **T for the traditional meaning and CS for the 
 * **T Character:** The aggregate of features and traits that form the individual nature of some person or thing.
 * **CS Character:** A symbol that is represented using a hexadecimal number. Examples include: * $ d 1 . )<br>So a character in computer science is any symbol used in languages.
 
-![Characters](/public/assets/images/characters.jpg)
+![Characters](/public/images/computerScienceDictionaryArticle/characters.jpg)
 *Characters*
 
 * **T Class:** A number of persons or things regarded as forming a group by reason of common attributes, characteristics, qualities, or traits; kind; sort.
@@ -60,7 +60,7 @@ I will prefix each word with the **T for the traditional meaning and CS for the 
 * **T Editor:** A person having managerial and sometimes policy-making responsibility related to the writing, compilation, and revision of content for a publishing firm or for a newspaper, magazine, or other publication.
 * **CS Editor:** A program that highlights key words according to the programming language being written on it. It also can give auto-complete statements, and help streamline the programming process.
 
-![Text-editor](/public/assets/images/text-editor.jpg)
+![Text-editor](/public/images/computerScienceDictionaryArticle/text-editor.jpg)
 *A programming text editor*
 
 * **T FAT:** Having too much flabby tissue; corpulent; obese.
@@ -78,7 +78,7 @@ I will prefix each word with the **T for the traditional meaning and CS for the 
 * **T Java<sup>4</sup>:** (Usually lowercase) Slang. coffee.
 * **CS Java:** A computer programming language. This language in particular is useful because it runs mostly the same across all platforms.
 
-![Java](/public/assets/images/coffee.jpg)
+![Java](/public/images/computerScienceDictionaryArticle/coffee.jpg)
 *Java*
 
 * **T Kernel:** The softer, usually edible part contained in the shell of a nut or the stone of a fruit.
@@ -99,7 +99,7 @@ I will prefix each word with the **T for the traditional meaning and CS for the 
 * **T Ruby:** A red variety of corundum, used as a gem.
 * **CS Ruby:** Yet another programming language. This one is much like Python in its simplistic style.
 
-![Ruby](/public/assets/images/ruby.jpg)
+![Ruby](/public/images/computerScienceDictionaryArticle/ruby.jpg)
 *A gem, similar to a Ruby*
 
 * **T Stack:** A more or less orderly pile or heap.

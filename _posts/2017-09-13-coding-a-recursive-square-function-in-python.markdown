@@ -4,7 +4,7 @@ title:  "How to Build a Recursive Factorial Function in Python/Java"
 date:   2017-09-13 17:20:32 -0500
 categories: [Programming]
 tags: [programming, python, java, recursion]
-cover: /public/assets/images/python.png
+cover: /public/images/articleHeaders/codeRecursiveFactorialPython.png
 ---
 Have you ever wondered how to implement a recursive function that does th factorial of a number for you? Well maybe you haven't, and maybe you just need to crank something out for class. Anyway you came here looking for some information on how to do it, so I'll show you how it's done and try and give you some insight on what's happening behind the scenes.
 

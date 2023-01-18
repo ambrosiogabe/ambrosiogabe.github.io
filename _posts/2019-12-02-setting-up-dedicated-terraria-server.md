@@ -4,7 +4,7 @@ title:  "How to Make a Dedicated Terraria Server on Windows 10"
 date:   2019-12-01 1:57:32 -0500
 categories: [Games]
 tags: [terraria, server, windows]
-cover: /public/assets/images/terraria-server.png
+cover: /public/images/terrariaServerArticle/terraria-server.png
 ---
 I wanted to set up a dedicated Terraria server to run in the background of my Windows 10 PC, but there were no good tutorials out there. I stumbled my way through several different bits and pieces I found on the Internet, til I achieved this. Here is how I did it.
 
@@ -31,7 +31,7 @@ Once you have it installed, right click the file that was downloaded and press e
 
 To install NSSM, go to this [link](https://nssm.cc/download) and click on the link under latest release. Save this file to your downloads folder.
 
-![installNSSM](/public/assets/images/installNSSM.png)
+![installNSSM](/public/images/terrariaServerArticle/installNSSM.png)
 
 Next, create a new folder under `C:\Program Files\` and name it nssm-2.0. You can replcae the 2.0 with whichever version you are using. After that, go back to where you downloaded the zip file, right-click it and press extract all, then extract the contents to the new folder you just created.
 
@@ -43,7 +43,7 @@ Terraria saves all the worlds in the default location on Windows 10. To find the
 
 Go up one directory back into the Terraria folder. Copy and paste the extracted TShock folder into this location, then create a new folder called Servers. Your directory should look similar to this:
 
-![Directory contents](/public/assets/images/terrariaServersFolder.png)
+![Directory contents](/public/images/terrariaServerArticle/terrariaServersFolder.png)
 
 Navigate into the Servers folder that you just created. Create a new file called `myServerName.txt`, where `myServerName` is your server name. Open the file and copy and paste the following contents into the file.
 
@@ -69,7 +69,7 @@ Make sure the first file path is where goes to where you installed your TShock f
 
 To test and make sure that it works properly, if you double click the `myServer.bat` file it should open a command prompt window and display something that looks like this:
 
-![Terraria Cmd](/public/assets/images/terrariaServerCmd.png)
+![Terraria Cmd](/public/images/terrariaServerArticle/terrariaServerCmd.png)
 
 To exit this command prompt, just type exit into it and press enter. It will save your world and exit.
 
@@ -79,7 +79,7 @@ This step will make the server run in the background so that you don't have to h
 
 First go the folder where you installed nssm. Click into the win64 folder and then press shift and right-click the empty directory and click `Open Powershell Window Here`. This should open a new Powershell Window in the directory. Make sure it looks like this picture, where the top line says the directory that nssm is located in:
 
-![Nssm Powershell](/public/assets/images/nssmPowershell.png)
+![Nssm Powershell](/public/images/terrariaServerArticle/nssmPowershell.png)
 
 Type in the following and hit enter:
 
@@ -89,7 +89,7 @@ Type in the following and hit enter:
 
 This should pop up a window labeled NSSM Service installer. You will see 3 text boxes with labels and buttons to the right of them. For the Path label, hit the button to the right of the textbox, then look for the `myServer.bat` file that we created in step 3. Click the file then press open. Your window should look like this:
 
-![NSSM Installer](/public/assets/images/terrariaNssmInstaller.png)
+![NSSM Installer](/public/images/terrariaServerArticle/terrariaNssmInstaller.png)
 
 Next use the right arrow at the top, and arrow over until you see a tab titled I/O, click into this tab.
 
@@ -97,7 +97,7 @@ For the Output(stdout): label, click the button on the right and naviagte to the
 
 For the Error(stderr): label, click on the button on the right and navigate to the same folder that you  have your `myServer.bat` file located in. Then type in `myServer.err.log` for filename, and press enter. Your window should look something like this now:
 
-![NSSM Installer](/public/assets/images/terrariaNssmInstaller2.png)
+![NSSM Installer](/public/images/terrariaServerArticle/terrariaNssmInstaller2.png)
 
 Finally, press install service.
 
@@ -107,7 +107,7 @@ If all went well, then you should now be able to start and stop your service.
 
 Open up a task manager, then click more details in the bottom lefthand corner, then press the services tab at the top right corner. You should see a list of services, look for your server name in that list of services. You should see it and it will look like the following picture:
 
-![terraria task manager](/public/assets/images/terrariaTaskManager.png)
+![terraria task manager](/public/images/terrariaServerArticle/terrariaTaskManager.png)
 
 Right-click your service then press start to start it. If everything was set up correctly, you should see the status switch from Stopped, to Starting, to Running.
 
@@ -123,7 +123,7 @@ ipconfig
 
 This will display your Ip Address so that your friends can connect locally. This Ip will change from time to time, so make sure to check it frequently so your friends can know if it changed. The address they will use to connect is the one located here:
 
-![terrariaCmdWindow](/public/assets/images/terrariaCmdWindow.png)
+![terrariaCmdWindow](/public/images/terrariaServerArticle/terrariaCmdWindow.png)
 
 It should look something like `10.0.0.12`. This will allow you and your friends to connect locally. Simply start Terraria, and then press Multiplayer, then click connect via IP Address. Then type in that address.
 

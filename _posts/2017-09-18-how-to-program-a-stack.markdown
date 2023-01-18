@@ -4,7 +4,7 @@ title:  "How to Program a Stack in Java"
 date:   2017-09-18 16:32:32 -0500
 categories: [Data-Structures]
 tags: [programming, java, stack, array]
-cover: /public/assets/images/stack.jpg
+cover: /public/images/articleHeaders/codeAStackInJava.jpg
 ---
 
 Stacks are a fundamental structure that we use everyday. Have you ever pressed the undo button? How about this website your reading? These and more all use stacks to help build their structures. The stacks are used to help parse code, or just hold the most recent value. In this post I would like to go over what a stack is and how to code it in Java. I am going to implement it using an array based stack with a fixed size. I may add in a linked list based stack in the future.

@@ -4,7 +4,7 @@ title:  "How to Code a Recursive Binary Search Function in Java"
 date:   2018-01-02 1:57:32 -0500
 categories: [Programming]
 tags: [programming, java, recursion, search]
-cover: /public/assets/images/binarySearch.png
+cover: /public/images/articleHeaders/binarySearchInJava.png
 ---
 Intro
 =====
@@ -44,7 +44,7 @@ The return false on the bottom is for the Java syntax which requires a value to 
 
 After we find the middle index we have three cases, either the middle is the number we are looking for, it is greater than the number we are looking for, or it is less than the number we are looking for. If it is greater than the number we are looking for we want to search the left half of the search area for our number, if it is greater than the number, we want to search the right half, etc. Here's a diagram showing what's going on:
 
-![binarySearch](/public/assets/images/binarySearch.png)
+![binarySearch](/public/images/articleHeaders/binarySearchInJava.png)
 
 As you can see the black is the search area, if the element is greater the search area splits to the right half, if it is less it splits to the left half. We are simply doing this in code. Now let's program what this would look like:
 

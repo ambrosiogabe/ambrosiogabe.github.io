@@ -4,7 +4,7 @@ title:  "Install Flipping Gravity!"
 date:   2017-10-31 12:57:32 -0500
 categories: [Games]
 tags: [programming, unity, game]
-cover: /public/downloads/flippingGravity/mainImage.png
+cover: /public/images/flippingGravityDownload/mainImage.png
 ---
 Download
 ========
@@ -14,29 +14,13 @@ My first app! It's been awhile, and I just finished a big course in Unity and de
 Windows
 =======
 
-To download simply right click the link below and save it onto you computer. Make sure you have Java installed, and then click the downloaded file to play!
-[Flipping Gravity](https://gamesbygabe.itch.io/flipping-gravity)
-
-Mac
-===
-
-To download simply right click the link below and save it onto you computer. Make sure you have Java installed, and then click the downloaded file to play!
-[Flipping Gravity.app (281.8MB)][2]
-
-Linux
-===
-
-To download simply right click the link below and save it onto you computer. Make sure you have Java installed, and then click the downloaded file to play!
-[Flipping Gravity.x86 (32.8MB)][3]
+You can download the game here at [itch.io](https://gamesbygabe.itch.io/flipping-gravity).
 
 Screenshots
 ============
 
 Here are some screenshots to see a little bit of what the gameplay is like.
 
-![flipping-gravity-1](/public/downloads/flippingGravity/imageOne.png)
-![flipping-gravity-2](/public/downloads/flippingGravity/imageTwo.png)
-![flipping-gravity-3](/public/downloads/flippingGravity/imageThree.png)
-
-[2]: {{site.url}}/public/downloads/flippingGravity/flippingGravity.app/Contents
-[3]: {{site.url}}/public/downloads/flippingGravity/flippingGravity.x86
+![flipping-gravity-1](/public/images/flippingGravityDownload/imageOne.png)
+![flipping-gravity-2](/public/images/flippingGravityDownload/imageTwo.png)
+![flipping-gravity-3](/public/images/flippingGravityDownload/imageThree.png)
