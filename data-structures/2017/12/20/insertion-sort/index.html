@@ -1,0 +1,113 @@
+<!DOCTYPE html> <html lang="en-us"> <head> <link href="https://gmpg.org/xfn/11" rel="profile"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta http-equiv="content-type" content="text/html; charset=utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"> <title> How to Code Insertion Sort in Java &middot; Gabe's Blog </title> <link rel="stylesheet" href="/public/css/poole.css"> <link rel="stylesheet" href="/public/css/syntax.css"> <link rel="stylesheet" href="/public/css/hyde.css"> <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface"> <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous"> <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png"> <link rel="shortcut icon" href="/public/favicon.ico"> <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml"> </head> <body class="theme-base-0d"> <div class="sidebar"> <div class="container sidebar-sticky"> <div class="sidebar-about"> <h1> <a href="/"> Gabe's Blog </a> </h1> <p class="lead">A site for programmers by a programmer</p> </div> <nav class="sidebar-nav"> <a class="sidebar-nav-item" href="/">Home</a> <a class="sidebar-nav-item" href="/about/">About</a> <a class="sidebar-nav-item" href="/projects/">Projects</a> <div class="sidebar-hz-navs"> <a class="sidebar-nav-item" href="https://www.youtube.com/gameswithgabe" target="_blank"><i class="fab fa-youtube"></i></a> <a class="sidebar-nav-item" href="https://github.com/ambrosiogabe" target="_blank"><i class="fab fa-github"></i></a> </div> </nav> <p>&copy; 2022-2023. All rights reserved.</p> </div> </div> <div class="content container"> <div class="post"> <div> <img src="/public/images/articleHeaders/codeInsertionSortInJava.png"></img> </div> <h1 class="post-title">How to Code Insertion Sort in Java</h1> <span class="post-date">20 Dec 2017</span> <p>I haven’t written in awhile. I decided that I’m going to continue my tutorials on data structures, so next up is learning how to code an insertion-sort algorithm in Java. I have a graphic pictured below that shows how this insertion-sort algorithm works.</p> <img src="/public/images/articleHeaders/codeInsertionSortInJava.png" alt="insertionSortPicture"/> <p>What you see pictured above is the execution of the insertion-sort algorithm. This algorithm basically loops through a list of items, it could be any comparable data type. As it is looping through it pulls out the current item and compares it to the next item in the array. If it is more, or less depending on if it is a maximum sort or minimum sort, it moves the element back one. It continues to do this comparison until it reaches the end, or finds an element that is less than the element held in current. Once it hits that point it inserts the current element into that slot, then it moves onto the next element. So it basically sorts a list of data the same way that a human would sort it. The human may be slightly more efficient by seeing patterns, but we will explore ways to do that in future tutorials.</p> <p>So, in order to build this algorithm we will need two basic moves. Swap, and insert. In pseudocode it looks like this:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Algorithm</span> <span class="n">InsertionSort</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+  <span class="n">Input</span><span class="p">:</span> <span class="n">An</span> <span class="n">array</span> <span class="n">A</span><span class="p">,</span> <span class="n">of</span> <span class="n">n</span> <span class="n">elements</span>
+  <span class="n">Output</span><span class="p">:</span> <span class="n">The</span> <span class="n">array</span> <span class="n">A</span> <span class="n">ordered</span> <span class="ow">in</span> <span class="n">increasing</span> <span class="n">order</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="k">from</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">insert</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">its</span> <span class="n">proper</span> <span class="n">place</span>
+  <span class="k">return</span> <span class="n">A</span>
+
+</code></pre></div></div> <p>Now that we have a basic layout, let’s start to put the actual code together. First off We will build a class in Java called InsertionSort.java. This class will contain two functions, sortMin(int[] array), and sortMax(int[] array). The sortMin returns the array in decreasing order, and sortMax returns the array in increasing order. We will add in two other functions strictly for testing purposes. We will add in a main function to run the program, and a printArray(int[] array) function which prints the array in the fashion, [A1, A2, A3…An], where it lists the elements from A1 to An where n is the number of elements.</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">InsertionSort</span>
+<span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span>
+  <span class="o">{</span>
+
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">sortMin</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">array</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="k">return</span> <span class="n">array</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">sortMax</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">array</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="k">return</span> <span class="n">array</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">array</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="k">return</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div> <p>Now that we have each of our functions in place, let’s fill them in. Since printing the array will be the simplest part of this program I’ll start with that. To print the array we will code this:</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">array</span><span class="o">)</span>
+<span class="o">{</span>
+  <span class="nc">String</span> <span class="n">printString</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
+  <span class="n">printString</span> <span class="o">+=</span> <span class="s">"["</span><span class="o">;</span>
+  <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+  <span class="o">{</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">i</span> <span class="o">!=</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span>
+      <span class="n">printString</span> <span class="o">+=</span> <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="s">", "</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="n">printString</span> <span class="o">+=</span> <span class="n">array</span><span class="o">[</span><span class="n">array</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">+</span> <span class="s">"]"</span><span class="o">;</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">printString</span><span class="o">);</span>
+<span class="o">}</span>
+
+</code></pre></div></div> <p>Now this code is pretty self-explanatory. It simply loops through the list and prints out each element in the array. It starts by building a string starting with a left bracket, [, then adds each element of the array until it reaches the end where it then places the right bracket, ]. Next we will begin coding the sort algorithm. We will start with sortMax. Here is the code:</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">sortMax</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">array</span><span class="o">)</span>
+<span class="o">{</span>
+  <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+  <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">currentInteger</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+    <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
+    <span class="k">while</span><span class="o">(</span><span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">array</span><span class="o">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">currentInteger</span><span class="o">)</span>
+    <span class="o">{</span>
+      <span class="n">array</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span>
+      <span class="n">j</span><span class="o">--;</span>
+    <span class="o">}</span>
+    <span class="n">array</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">currentInteger</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="n">array</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div> <p>This function first loops through the array. It then stores the current variable as currentInteger. Then it sets up the inner loop by setting a new integer j, equal to i. J is set to i because i is the current index of the integer we are on. Then we begin to loop through the array, starting from the number we are at, backwards. We check if j is greater than 0, it is not the end of the array, and we check if the previous integer is greater than the current integer. If it is, we move the previous integer to the slot we are at. We continue this until we reach the beginning of the data structure. After it moves all the appropriate elements, it inserts the current element in the empty slot then continues with the sorting until the end of the algorithm.</p> <p>Now if you know some about data structures you know there is much more efficient ways to do this which we will get to in due time. As a challenge, I would like you to code sortMin by yourself. It is the exact same premise as the code above, and you actually only need to change one symbol for it to work. Here is the complete code, minus sortMin, so you can run it and test it.</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">InsertionSort</span>
+<span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">array</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">50</span><span class="o">];</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+    <span class="o">{</span>
+      <span class="kt">int</span> <span class="n">rand</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)(</span><span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">*</span> <span class="mi">100</span><span class="o">);</span>
+      <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">rand</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="n">printArray</span><span class="o">(</span><span class="n">array</span><span class="o">);</span>
+    <span class="n">array</span> <span class="o">=</span> <span class="n">sortMax</span><span class="o">(</span><span class="n">array</span><span class="o">);</span>
+    <span class="n">printArray</span><span class="o">(</span><span class="n">array</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">sortMax</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">array</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+    <span class="o">{</span>
+      <span class="kt">int</span> <span class="n">currentInteger</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+      <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
+      <span class="k">while</span><span class="o">(</span><span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">array</span><span class="o">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">currentInteger</span><span class="o">)</span>
+      <span class="o">{</span>
+        <span class="n">array</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span>
+        <span class="n">j</span><span class="o">--;</span>
+      <span class="o">}</span>
+      <span class="n">array</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">currentInteger</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">array</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">array</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">printString</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
+    <span class="n">printString</span> <span class="o">+=</span> <span class="s">"["</span><span class="o">;</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+    <span class="o">{</span>
+      <span class="k">if</span><span class="o">(</span><span class="n">i</span> <span class="o">!=</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span>
+        <span class="n">printString</span> <span class="o">+=</span> <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="s">", "</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="n">printString</span> <span class="o">+=</span> <span class="n">array</span><span class="o">[</span><span class="n">array</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">+</span> <span class="s">"]"</span><span class="o">;</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">printString</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div> <p>You will see that in the code I have filled in the main method. All I’ve done is set it up to create a random array of length 50 with radnom integers ranging from 0 to 99, then it prints the array, sorts it, then prints it again. This is for testing purposes so you can see that it works. I hope this helped some, thanks for reading! If you have questions or comments leave them below!</p> </div> <div class="related"> <h2>Related Posts</h2> <ul class="related-posts"> <li> <h3> <a href="/games/2021/10/07/the-math-behind-font-rasterization/"> The Math Behind Font Rasterization <small>07 Oct 2021</small> </a> </h3> </li> <li> <h3> <a href="/games/2020/04/16/on-cameras-in-opengl/"> Cameras in OpenGL <small>16 Apr 2020</small> </a> </h3> </li> <li> <h3> <a href="/games/2019/12/01/setting-up-dedicated-terraria-server/"> How to Make a Dedicated Terraria Server on Windows 10 <small>01 Dec 2019</small> </a> </h3> </li> </ul> </div> </div> </body> <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      SVG: { linebreaks: { automatic: true } }
+    });
+  </script> <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> </html>
