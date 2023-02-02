@@ -17,7 +17,7 @@ jekyll serve
 
 mkdir ..\tmp
 xcopy _site ..\tmp /s /e /y /q
-git checkout gh-pages
+git checkout -u origin gh-pages
 xcopy ..\tmp .\ /s /e /y /q
 git add .
 git commit -m "Update built site"
