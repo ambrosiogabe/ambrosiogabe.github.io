@@ -19,19 +19,11 @@ mkdir ..\tmp > $null
 xcopy _site ..\tmp /s /e /y /q
 git stash
 git checkout gh-pages
-
-# Make sure your on the correct branch then 
-# Copy/paste next bit
-
 xcopy ..\tmp .\ /s /e /y /q
 git add .
-git commit -m "Update built site"
+git commit -m "Update built site."
 git push -u origin gh-pages
 git checkout master
-
-# Make sure your on the correct branch then 
-# Copy/paste next bit
-
 git pull origin master
 rm -r -fo ..\tmp
 ```
