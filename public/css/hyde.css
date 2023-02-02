@@ -127,6 +127,13 @@ a.sidebar-nav-item:focus {
   background-color: #273b6b;
 }
 .theme-base-0d .content a,
+.theme-base-0d .related-posts li a {
+  color: #2b66cb;
+}
+.post-title a {
+  color: #313131 !important;
+}
+.theme-base-0d .content a:hover,
 .theme-base-0d .related-posts li a:hover {
-  color: #26282c;
+  text-decoration: underline;
 }
