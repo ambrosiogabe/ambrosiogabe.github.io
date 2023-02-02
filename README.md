@@ -17,6 +17,7 @@ jekyll serve
 
 mkdir ..\tmp
 xcopy _site ..\tmp /s /e /y /q
+git stash
 git checkout gh-pages
 
 # Make sure your on the correct branch then 
