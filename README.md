@@ -15,7 +15,7 @@ jekyll serve
 # You can just copy the bit and run
 # them at the same time
 
-mkdir ..\tmp
+mkdir ..\tmp > $null
 xcopy _site ..\tmp /s /e /y /q
 git stash
 git checkout gh-pages
