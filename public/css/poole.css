@@ -258,9 +258,8 @@ pre code {
 /* Quotes */
 blockquote {
   padding: .5rem 1rem;
-  margin: .8rem 0;
-  /*color: #7a7a7a;*/
-  /*border-left: .25rem solid #e5e5e5;*/
+  margin: 0rem 0.8rem;
+  border-left: .25rem solid #9f9f9f;
 }
 blockquote p:last-child {
   margin-bottom: 0;
@@ -401,10 +400,6 @@ tbody tr:nth-child(odd) th {
 
 .post-date, blockquote {
   color: #5c5c5c;
-}
-
-blockquote {
-  border-left: .25rem solid #9f9f9f;
 }
 
 /* Related posts */
@@ -571,4 +566,50 @@ span.shake-me {
 iframe {
   display: block;
   margin: 1rem auto;
+  width: 280px;
+  height: 158px;
+  resize: both;
+  overflow: auto;
+}
+
+@media (min-width: 335px) {
+  iframe {
+    width: 315px;
+    height: 177px;
+  }
+}
+
+@media (min-width: 380px) {
+  iframe {
+    width: 370px;
+    height: 208px;
+  }
+}
+
+@media (min-width: 450px) {
+  iframe {
+    width: 4350px;
+    height: 247px;
+  }
+}
+
+@media (min-width: 516px) {
+  iframe {
+    width: 400px;
+    height: 225px;
+  }
+}
+
+@media (min-width: 720px) {
+  iframe {
+    width: 516px;
+    height: 290px;
+  }
+}
+
+@media (min-width: 1000px) {
+  iframe {
+    width: 516px;
+    height: 315px;
+  }
 }
