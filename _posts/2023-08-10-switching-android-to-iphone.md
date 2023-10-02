@@ -281,7 +281,7 @@ Let me illustrate with one game that I played on both Android and then iPhone: D
 
 > Try to guess which one you think is slower in the first 15 seconds before I label the devices:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Sk_VeNjjRHU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+<iframe src="https://www.youtube.com/embed/Sk_VeNjjRHU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
 </iframe>
 
 Now, it's very subtle, but there's a big difference when you're playing the game (and hopefully YT compression didn't ruin my point haha). The iPhone very visibly lags as I'm playing the game and this really messes with me.
