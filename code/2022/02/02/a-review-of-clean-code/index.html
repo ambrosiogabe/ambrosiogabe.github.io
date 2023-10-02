@@ -1,142 +1,5 @@
-<!DOCTYPE html>
-<html lang="en-us">
-
-  <head>
-  <link href="https://gmpg.org/xfn/11" rel="profile">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  
-  <script>
-    function resizeIframe(obj) {
-      obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
-    }
-  </script>
-
-  <!-- Enable responsiveness on mobile devices-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-
-  <title>
-    
-      Why are people still recommending this book? &middot; Gabe's Blog
-    
-  </title>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="/public/css/poole.css">
-  <link rel="stylesheet" href="/public/css/syntax.css">
-  <link rel="stylesheet" href="/public/css/hyde.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
-
-  <!-- Icons -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
-                                 <link rel="shortcut icon" href="/public/favicon.ico">
-
-  <!-- RSS -->
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
-</head>
-
-
-  <body class="theme-base-0d">
-
-    <div class="sidebar">
-  <div class="container sidebar-sticky">
-    <div class="sidebar-about">
-      <h1>
-        <a href="/">
-          Gabe's Blog
-        </a>
-      </h1>
-      <p class="lead">A site for programmers by a programmer</p>
-    </div>
-
-    <nav class="sidebar-nav">
-      <a class="sidebar-nav-item" href="/">Home</a>
-
-      
-
-      
-      
-        
-          
-        
-      
-        
-          
-            <a class="sidebar-nav-item" href="/about/">About</a>
-          
-        
-      
-        
-      
-        
-          
-        
-      
-        
-          
-            <a class="sidebar-nav-item" href="/projects/">Projects</a>
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-
-      <div class="sidebar-hz-navs">
-        <a class="sidebar-nav-item" href="https://www.youtube.com/gameswithgabe" target="_blank"><i class="fab fa-youtube"></i></a>
-        <a class="sidebar-nav-item" href="https://github.com/ambrosiogabe" target="_blank"><i class="fab fa-github"></i></a>
-      </div>
-    </nav>
-
-    <p>&copy; 2022-2023. All rights reserved.</p>
-  </div>
-</div>
-
-
-    <div class="content container">
-      <div class="post">
-  <div>
-    <img src="/public/images/cleanCodeReview/bookCover.png"></img>
-  </div>
-
-  <h1 class="post-title">Why are people still recommending this book?</h1>
-  <span class="post-date">02 Feb 2022</span>
-  <p>I decided to *ahem* dive into the ancient holy relic (among corporate programmers) that is called “Clean Code”. Below is an unfiltered recounting of my dangerous opinions on the matter. Proceed with caution.</p>
-
-<h2 id="intro">Intro</h2>
-
-<p>Bob Martin starts off with a lengthy discussion about what “clean code” <em>is</em>. In this lengthy discussion he doesn’t discuss any verifiable metrics that can determine whether a piece of code is “cleaner” than another piece of code. Instead he lists off a bunch of pithy quotes from other “thought leaders” at the time explaining “pie in the sky” notions of what “clean code” is.</p>
-
-<p>For example, clean code is “when each routine you read turns out to be pretty much what you expected”. This is clearly measurable and verifiable. Or how about “I could list all the qualities that I notice..but there is no overarching quality that leads to all of them. Clean code always looks like it was written by somebody who cares”. These quotes all boil down to, “clean code is what <em>looks</em> and <em>feels</em> good to <em>me</em>”. In other words, clean code is entirely subjective and has no bearing on the realities that matter like: code performance, code complexity, and code correctness.</p>
-
-<p>He ends this chapter talking about how Jiu Jitsu has many divergent schools. No school is the correct Jiu Jitsu, instead they all have their own flavor. Likewise, he pontificates, there is no correct school of thought for Clean Code, but he’s going to school us anyways.</p>
-
-<p>In fact, the only observable metric he gives about clean code in this introduction is the comic on the first page which gives a visualization of “WTFs per minute”. I guess we can tell how clean your code is by how much your co-workers say WTF while reading your code. As you can see, this is a foolproof objective metric with which to guide your coding decisions, and it’s very easy to measure, and it’s always going to be the same regardless of who’s WTFing behind the closed door.</p>
-
-<img src="/public/images/cleanCodeReview/wtfsPerMinute.png" alt="WTFs Per Minute" /><p class="image-subtitle">WTFs per Minute</p>
-
-<h2 id="chapter-2-variable-names">Chapter 2: Variable Names</h2>
-
-<p>After explaining the Zen of “clean code”, Bob launches into the meat of the book. Of course, all programs start with names. How to name your files, how to name your functions, how to name your variables, and on and on. So it’s a natural place to begin talking about code “cleanliness”.</p>
-
-<p>I mostly agree with everything Bob says in the second chapter. Names should be expressive and you should allow the type system to add additional clarity to the intent of your variables. Hungarian notation is outdated. If your language allows custom postfix operators like C++, use those to express your intentions for things like numbers with units or complex types, for example:</p>
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Color</span> <span class="n">color</span> <span class="o">=</span> <span class="s">"#FF2311"</span><span class="n">_hexColor</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>His examples seem to exude a couple of behaviors that I find questionable though. He does no sort of error checking. I get it, this is a book and he wants to keep it succinct, however the first chapter is <em>a lot</em> of unnecessary fluff with no substance, so I don’t feel like he was trying hard to keep the book succinct.</p>
-
-<p>In recent days I’ve taken to very assertive programming. If there’s an assertion that should hold true I embed it directly in the code. This allows readers to see what assertions should hold true, and it crashes the program quickly when it encounters undefined behavior.</p>
-
-<p>Here’s an example of the lack of error checking in the book:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// P. 23 Uncle Bob's cleaned version, comments mine</span>
+<!DOCTYPE html> <html lang="en-us"> <head> <link href="https://gmpg.org/xfn/11" rel="profile"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta http-equiv="content-type" content="text/html; charset=utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"> <title> Why are people still recommending this book? &middot; Gabe's Blog </title> <link rel="stylesheet" href="/public/css/poole.css"> <link rel="stylesheet" href="/public/css/syntax.css"> <link rel="stylesheet" href="/public/css/hyde.css"> <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface"> <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous"> <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png"> <link rel="shortcut icon" href="/public/favicon.ico"> <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml"> </head> <body class="theme-base-0d"> <div class="sidebar"> <div class="container sidebar-sticky"> <div class="sidebar-about"> <h1> <a href="/"> Gabe's Blog </a> </h1> <p class="lead">A site for programmers by a programmer</p> </div> <nav class="sidebar-nav"> <a class="sidebar-nav-item" href="/">Home</a> <a class="sidebar-nav-item" href="/about/">About</a> <a class="sidebar-nav-item" href="/projects/">Projects</a> <div class="sidebar-hz-navs"> <a class="sidebar-nav-item" href="https://www.youtube.com/gameswithgabe" target="_blank"><i class="fab fa-youtube"></i></a> <a class="sidebar-nav-item" href="https://github.com/ambrosiogabe" target="_blank"><i class="fab fa-github"></i></a> </div> </nav> <p>&copy; 2022-2023. All rights reserved.</p> </div> </div> <div class="content container"> <div class="post"> <div> <img src="/public/images/cleanCodeReview/bookCover.png"></img> </div> <h1 class="post-title">Why are people still recommending this book?</h1> <span class="post-date">02 Feb 2022</span> <p>I decided to *ahem* dive into the ancient holy relic (among corporate programmers) that is called “Clean Code”. Below is an unfiltered recounting of my dangerous opinions on the matter. Proceed with caution.</p> <h2 id="intro">Intro</h2> <p>Bob Martin starts off with a lengthy discussion about what “clean code” <em>is</em>. In this lengthy discussion he doesn’t discuss any verifiable metrics that can determine whether a piece of code is “cleaner” than another piece of code. Instead he lists off a bunch of pithy quotes from other “thought leaders” at the time explaining “pie in the sky” notions of what “clean code” is.</p> <p>For example, clean code is “when each routine you read turns out to be pretty much what you expected”. This is clearly measurable and verifiable. Or how about “I could list all the qualities that I notice..but there is no overarching quality that leads to all of them. Clean code always looks like it was written by somebody who cares”. These quotes all boil down to, “clean code is what <em>looks</em> and <em>feels</em> good to <em>me</em>”. In other words, clean code is entirely subjective and has no bearing on the realities that matter like: code performance, code complexity, and code correctness.</p> <p>He ends this chapter talking about how Jiu Jitsu has many divergent schools. No school is the correct Jiu Jitsu, instead they all have their own flavor. Likewise, he pontificates, there is no correct school of thought for Clean Code, but he’s going to school us anyways.</p> <p>In fact, the only observable metric he gives about clean code in this introduction is the comic on the first page which gives a visualization of “WTFs per minute”. I guess we can tell how clean your code is by how much your co-workers say WTF while reading your code. As you can see, this is a foolproof objective metric with which to guide your coding decisions, and it’s very easy to measure, and it’s always going to be the same regardless of who’s WTFing behind the closed door.</p> <img src="/public/images/cleanCodeReview/wtfsPerMinute.png" alt="WTFs Per Minute"/><p class="image-subtitle">WTFs per Minute</p> <h2 id="chapter-2-variable-names">Chapter 2: Variable Names</h2> <p>After explaining the Zen of “clean code”, Bob launches into the meat of the book. Of course, all programs start with names. How to name your files, how to name your functions, how to name your variables, and on and on. So it’s a natural place to begin talking about code “cleanliness”.</p> <p>I mostly agree with everything Bob says in the second chapter. Names should be expressive and you should allow the type system to add additional clarity to the intent of your variables. Hungarian notation is outdated. If your language allows custom postfix operators like C++, use those to express your intentions for things like numbers with units or complex types, for example:</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Color</span> <span class="n">color</span> <span class="o">=</span> <span class="s">"#FF2311"</span><span class="n">_hexColor</span><span class="p">;</span>
+</code></pre></div></div> <p>His examples seem to exude a couple of behaviors that I find questionable though. He does no sort of error checking. I get it, this is a book and he wants to keep it succinct, however the first chapter is <em>a lot</em> of unnecessary fluff with no substance, so I don’t feel like he was trying hard to keep the book succinct.</p> <p>In recent days I’ve taken to very assertive programming. If there’s an assertion that should hold true I embed it directly in the code. This allows readers to see what assertions should hold true, and it crashes the program quickly when it encounters undefined behavior.</p> <p>Here’s an example of the lack of error checking in the book:</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// P. 23 Uncle Bob's cleaned version, comments mine</span>
 <span class="c1">// What does this mean? The whole chapter was about clear variable names</span>
 <span class="c1">// and we're left with this?</span>
 <span class="kt">int</span> <span class="n">realDaysPerIdealDay</span> <span class="o">=</span> <span class="mi">4</span><span class="o">;</span>
@@ -151,11 +14,7 @@
     <span class="kt">int</span> <span class="n">realTaskWeeks</span> <span class="o">=</span> <span class="o">(</span><span class="n">realDays</span> <span class="o">/</span> <span class="no">WORK_DAYS_PER_WEEK</span><span class="o">);</span>
     <span class="n">sum</span> <span class="o">+=</span> <span class="n">realTaskWeeks</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre></div></div>
-
-<p>There’s no bounds checking, and it’s entirely unclear what he’s trying to do here. Further, with a functional paradigm all this boilerplate can be removed and you can express this snippet much more succinctly:</p>
-
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">realDaysPerIdealDay</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+</code></pre></div></div> <p>There’s no bounds checking, and it’s entirely unclear what he’s trying to do here. Further, with a functional paradigm all this boilerplate can be removed and you can express this snippet much more succinctly:</p> <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">realDaysPerIdealDay</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
 <span class="kd">const</span> <span class="nx">WORK_DAYS_PER_WEEK</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
 <span class="kd">const</span> <span class="nx">sum</span> <span class="o">=</span> <span class="nx">taskEstimate</span>
     <span class="p">.</span><span class="nf">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">NUMBER_OF_TASKS</span><span class="p">)</span> <span class="c1">// Implicit bounds check here</span>
@@ -163,11 +22,7 @@
         <span class="kd">const</span> <span class="nx">realTaskDays</span> <span class="o">=</span> <span class="nx">currentEstimate</span> <span class="o">*</span> <span class="nx">realDaysPerIdealDay</span><span class="p">;</span>
         <span class="k">return</span> <span class="nx">sum</span> <span class="o">+</span> <span class="p">(</span><span class="nx">realTaskDays</span> <span class="o">/</span> <span class="nx">WORK_DAYS_PER_WEEK</span><span class="p">);</span>
     <span class="p">});</span>
-</code></pre></div></div>
-
-<p>Finally, the end of this chapter gives us a very questionable example of how to “clean up” a piece of “dirty” code:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// P.28 Clean Code</span>
+</code></pre></div></div> <p>Finally, the end of this chapter gives us a very questionable example of how to “clean up” a piece of “dirty” code:</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// P.28 Clean Code</span>
 <span class="kd">private</span> <span class="kt">void</span> <span class="nf">printGuessStatistics</span><span class="o">(</span><span class="kt">char</span> <span class="n">candidate</span><span class="o">,</span> <span class="kt">int</span> <span class="n">count</span><span class="o">)</span> <span class="o">{</span>
     <span class="nc">String</span> <span class="n">number</span><span class="o">;</span>
     <span class="nc">String</span> <span class="n">verb</span><span class="o">;</span>
@@ -190,11 +45,7 @@
     <span class="o">);</span>
     <span class="n">print</span><span class="o">(</span><span class="n">guessMessage</span><span class="o">);</span>
 <span class="o">}</span>
-</code></pre></div></div>
-
-<p>Now aside, from being a bit verbose, this function is very readable and I would argue it’s already clean. If I were to change this, I would just remove some of the duplication here by setting sensible defaults for the <code class="language-plaintext highlighter-rouge">String</code>s.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">printGuessStatistics</span><span class="o">(</span><span class="kt">char</span> <span class="n">candidate</span><span class="o">,</span> <span class="kt">int</span> <span class="n">count</span><span class="o">)</span> <span class="o">{</span>
+</code></pre></div></div> <p>Now aside, from being a bit verbose, this function is very readable and I would argue it’s already clean. If I were to change this, I would just remove some of the duplication here by setting sensible defaults for the <code class="language-plaintext highlighter-rouge">String</code>s.</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">printGuessStatistics</span><span class="o">(</span><span class="kt">char</span> <span class="n">candidate</span><span class="o">,</span> <span class="kt">int</span> <span class="n">count</span><span class="o">)</span> <span class="o">{</span>
     <span class="nc">String</span> <span class="n">number</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">count</span><span class="o">);</span>
     <span class="nc">String</span> <span class="n">verb</span> <span class="o">=</span> <span class="s">"are"</span><span class="o">;</span>
     <span class="nc">String</span> <span class="n">pluralModifier</span> <span class="o">=</span> <span class="s">"s"</span><span class="o">;</span>
@@ -211,13 +62,7 @@
     <span class="o">);</span>
     <span class="n">print</span><span class="o">(</span><span class="n">guessMessage</span><span class="o">);</span>
 <span class="o">}</span>
-</code></pre></div></div>
-
-<p>This seems reasonable to me, and if you don’t care about printing <code class="language-plaintext highlighter-rouge">"no"</code> instead of <code class="language-plaintext highlighter-rouge">0</code> when there are 0 elements, then you can remove that first if statement and reduce this function even more.</p>
-
-<p>Bob thinks otherwise, his “clean” version looks like this:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// P.29 Clean Code, Comments are mine</span>
+</code></pre></div></div> <p>This seems reasonable to me, and if you don’t care about printing <code class="language-plaintext highlighter-rouge">"no"</code> instead of <code class="language-plaintext highlighter-rouge">0</code> when there are 0 elements, then you can remove that first if statement and reduce this function even more.</p> <p>Bob thinks otherwise, his “clean” version looks like this:</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// P.29 Clean Code, Comments are mine</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">GuessStatisticsMessage</span> <span class="o">{</span>
     <span class="kd">private</span> <span class="nc">String</span> <span class="n">number</span><span class="o">;</span>
     <span class="kd">private</span> <span class="nc">String</span> <span class="n">verb</span><span class="o">;</span>
@@ -269,30 +114,12 @@
         <span class="n">pluralModifier</span> <span class="o">=</span> <span class="s">"s"</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div></div>
-
-<p>I’m sorry, but what is this mess? He’s taken a piece of code that was trivial in complexity, had 0 side-effects (aside from printing to IO) and was very easy to comprehend, and he’s broken it up into a giant stateful object with heavy use of unintuitive mutable functions.</p>
-
-<p>Before, if a user wanted to understand what was happening, they simply had to look at the single function for a few moments and trace the control flow.</p>
-
-<p>Now, you have to jump through 5 different functions and several divergent paths of control flow. Each time you have to jump into a new function, your brain is forced to rebuild a mental “stack” of what the state of the class is. This compounds exponentially with every new function call added.</p>
-
-<p>Additionally, the proficient use of side effects means that you cannot intuitively look at any individual piece of this code and safely assume that it won’t modify random state.</p>
-
-<p>Finally, the API is worse! Now, instead of simply calling a function, your forced to create an unnecessary object, and then call a function on the object. Why is this logic stored in a <code class="language-plaintext highlighter-rouge">make</code> function? Why is it not in the constructor, at least obviating the need for these random function calls from the end-user? This piece of code looks anything but clean to me.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// What's nicer to use? This:</span>
+</code></pre></div></div> <p>I’m sorry, but what is this mess? He’s taken a piece of code that was trivial in complexity, had 0 side-effects (aside from printing to IO) and was very easy to comprehend, and he’s broken it up into a giant stateful object with heavy use of unintuitive mutable functions.</p> <p>Before, if a user wanted to understand what was happening, they simply had to look at the single function for a few moments and trace the control flow.</p> <p>Now, you have to jump through 5 different functions and several divergent paths of control flow. Each time you have to jump into a new function, your brain is forced to rebuild a mental “stack” of what the state of the class is. This compounds exponentially with every new function call added.</p> <p>Additionally, the proficient use of side effects means that you cannot intuitively look at any individual piece of this code and safely assume that it won’t modify random state.</p> <p>Finally, the API is worse! Now, instead of simply calling a function, your forced to create an unnecessary object, and then call a function on the object. Why is this logic stored in a <code class="language-plaintext highlighter-rouge">make</code> function? Why is it not in the constructor, at least obviating the need for these random function calls from the end-user? This piece of code looks anything but clean to me.</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// What's nicer to use? This:</span>
 <span class="nc">String</span> <span class="n">formattedString</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GuessStatisticMessage</span><span class="o">().</span><span class="na">make</span><span class="o">(</span><span class="sc">'a'</span><span class="o">,</span> <span class="mi">5</span><span class="o">);</span>
 <span class="n">print</span><span class="o">(</span><span class="n">formattedString</span><span class="o">);</span>
 <span class="c1">// Or this?</span>
 <span class="n">printGuessStatistic</span><span class="o">(</span><span class="sc">'a'</span><span class="o">,</span> <span class="mi">5</span><span class="o">);</span>
-</code></pre></div></div>
-
-<h2 id="chapter-3-functions">Chapter 3: Functions</h2>
-
-<p>This chapter begins with a function that Bob found in some codebase called FitNesse. This function looks like the following, and Bob asks the reader to analyze the function and try to understand what it does in less than 3 minutes:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">testableHtml</span><span class="o">(</span>
+</code></pre></div></div> <h2 id="chapter-3-functions">Chapter 3: Functions</h2> <p>This chapter begins with a function that Bob found in some codebase called FitNesse. This function looks like the following, and Bob asks the reader to analyze the function and try to understand what it does in less than 3 minutes:</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">testableHtml</span><span class="o">(</span>
     <span class="nc">PageData</span> <span class="n">pageData</span><span class="o">,</span> 
     <span class="kt">boolean</span> <span class="n">includeSuiteSetup</span>
 <span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
@@ -343,11 +170,7 @@
     <span class="n">pageData</span><span class="o">.</span><span class="na">setContent</span><span class="o">(</span><span class="n">buffer</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
     <span class="k">return</span> <span class="n">pageData</span><span class="o">.</span><span class="na">getHtml</span><span class="o">();</span>
 <span class="o">}</span>
-</code></pre></div></div>
-
-<p>Now, I agree with Bob that this is a very poorly written function, but I disagree with the proposed fixes that Bob presents. Bob proposes to fix this method by shortening it to this (I say shortening, but you can see the <em>actual</em> entirety of this monstrosity at the end of this section):</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">renderPageWithSEtupAndTeardown</span><span class="o">(</span>
+</code></pre></div></div> <p>Now, I agree with Bob that this is a very poorly written function, but I disagree with the proposed fixes that Bob presents. Bob proposes to fix this method by shortening it to this (I say shortening, but you can see the <em>actual</em> entirety of this monstrosity at the end of this section):</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">renderPageWithSEtupAndTeardown</span><span class="o">(</span>
     <span class="nc">PageData</span> <span class="n">pageData</span><span class="o">,</span> 
     <span class="kt">boolean</span> <span class="n">isTestSuite</span><span class="o">)</span> 
 <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
@@ -363,13 +186,7 @@
 
     <span class="k">return</span> <span class="n">pageData</span><span class="o">.</span><span class="na">getHtml</span><span class="o">();</span>
 <span class="o">}</span>
-</code></pre></div></div>
-
-<p>Now Bob correctly says that you may still not have a clear understanding of what this function does, but he assumes that the intent is at least clearer. I would argue that the intent is just as muddy and my understanding is even less than before. All he’s done here is removed the implementation details, and while this can be good when you’re exposing a public API to consumers, this is not good when you’re trying to improve the readability for active maintainers of your code.</p>
-
-<p>As a maintainer, I want to know what this function is doing, and I don’t want to hunt all over the codebase for functions that are used exactly once by this function to “improve” readability. Once again, each function call in this small function requires a context switch from the reader, and the reader additionally has to build a mental stack to keep track of what’s happening as they trace the code. I would propose to “clean up” the function more like this:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">getPageData</span><span class="o">(</span><span class="nc">String</span> <span class="n">pageName</span><span class="o">,</span> <span class="nc">WikiPage</span> <span class="n">wikiPage</span><span class="o">)</span> <span class="o">{</span>
+</code></pre></div></div> <p>Now Bob correctly says that you may still not have a clear understanding of what this function does, but he assumes that the intent is at least clearer. I would argue that the intent is just as muddy and my understanding is even less than before. All he’s done here is removed the implementation details, and while this can be good when you’re exposing a public API to consumers, this is not good when you’re trying to improve the readability for active maintainers of your code.</p> <p>As a maintainer, I want to know what this function is doing, and I don’t want to hunt all over the codebase for functions that are used exactly once by this function to “improve” readability. Once again, each function call in this small function requires a context switch from the reader, and the reader additionally has to build a mental stack to keep track of what’s happening as they trace the code. I would propose to “clean up” the function more like this:</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">getPageData</span><span class="o">(</span><span class="nc">String</span> <span class="n">pageName</span><span class="o">,</span> <span class="nc">WikiPage</span> <span class="n">wikiPage</span><span class="o">)</span> <span class="o">{</span>
     <span class="nc">StringBuffer</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuffer</span><span class="o">();</span>
     <span class="nc">WikiPage</span> <span class="n">setup</span> <span class="o">=</span> <span class="nc">PageCrawlerImpl</span><span class="o">.</span><span class="na">getInheritedPage</span><span class="o">(</span><span class="n">pageName</span><span class="o">,</span> <span class="n">wikiPage</span><span class="o">);</span>
 
@@ -417,105 +234,7 @@
     <span class="n">pageData</span><span class="o">.</span><span class="na">setContent</span><span class="o">(</span><span class="n">buffer</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
     <span class="k">return</span> <span class="n">pageData</span><span class="o">.</span><span class="na">getHtml</span><span class="o">();</span>
 <span class="o">}</span>
-</code></pre></div></div>
-
-<p>The first thing I did was remove the unnecessary getters. They add density to the code that hurts the readability. If your language has proper support for mutable vs non-mutable data, you can mark the variables as mutable/immutable to be more explicit with your intentions. This also obviates the need for getters/setters since you no longer have to “control” how the data is accessed.</p>
-
-<p>The second thing I did, which I believe Bob also did, is I noticed the duplication and abstracted that out into a function. The whole purpose of a function is to get rid of duplicated logic. This helps reduce the code density and fat-finger copy/paste errors. I will say, I’m glad the original authors duplicated the code first, because it makes it <em>very</em> easy to see the duplicated logic and refactor the code. It’s much better to duplicate your code first and then abstract later, than it is to abstract in advance and end up with functions that only have one reference everywhere for the sake of “readability”.</p>
-
-<blockquote>
-  <p>“Duplication is far cheaper than the wrong abstraction” - <a href="https://sandimetz.com/blog/2016/1/20/the-wrong-abstraction">Sandi Metz</a></p>
-</blockquote>
-
-<p>Once I abstracted the duplicated code, the intent of the function became much clearer.</p>
-
-<p>The last step I took was inlining the if-statements to reduce the level of nested logic. I agree with Bob here as well, it’s much easier to follow the control flow of a function if there is less nesting. However, this is just a preference, and leaving the if-statements nested is perfectly valid. I also cached the <code class="language-plaintext highlighter-rouge">isTestPage</code> variable so that it’s clear what that line of code is doing and it makes it easier to change this code in the future (I just have to modify the single line instead of copying the change in several places).</p>
-
-<p>Notice, the one thing I did <em>not</em> do is remove the logical flow of this function and add unnecessary side effects. I left all the core logic in the function and the reader can still follow the control flow. Additionally, the function that I added does not mutate the data (any more than it already was) but returns a new String with the result. This allows me to re-use that function with certainty that it won’t add side-effects that the reader now has to look for.</p>
-
-<p>Bob’s code on the other hand relies on side-effects and removes the core flow of logic. This requires the reader of the function to either implicitly be aware of that fact, or to risk modifying code and then cursing at themselves later when they find out changing that function accidentally changed 500 unrelated pieces of state unintentionally.</p>
-
-<p>After this, Bob goes through the qualities of a good function. I actually agree with a lot of what he says, but some of it is nonsense, and he doesn’t appear to follow his own advice (except for the biggest piece of nonsense which is functions should be small).</p>
-
-<h3 id="small">Small!</h3>
-
-<p>His first piece of advice is functions should be small, and then they should be <em>smaller</em>. This is nonsense. Balderdash. Hogwash. Rubbish. And any other way you can think of saying, “it makes no sense”.</p>
-
-<p>Functions should be concise, and they should reduce duplication. Sometimes, a piece of logic is complex and large, and it doesn’t matter if you break up the logic into a bunch of tiny pieces of “beautiful” steaming piles of garbage, the logic is still there, it’s just hidden now between a million jumps!</p>
-
-<p>John Carmack has an old article on this that I think summarizes why the idea of forcing functions to be small is drivel better than I ever could, you can read that <a href="http://number-none.com/blow/blog/programming/2014/09/26/carmack-on-inlined-code.html">article here</a> (and I highly recommend it).</p>
-
-<p>So, my piece of advice would be to ignore this. Instead, functions should reduce duplication, period. If you have a function that is only ever called in one other place, then you should inline it so the logic is all in one cohesive place. This helps the reader, since they no longer have to jump around the code unnecessarily, and it helps the maintainer, since they can more easily see the logic and reduce it, simplify it, or fix it.</p>
-
-<h3 id="do-one-thing">Do One Thing</h3>
-
-<p>Next, Bob says a function should only do one thing. This is great, however it’s not feasible. For example, most functions have an entry point called <code class="language-plaintext highlighter-rouge">main</code>. Does that function do one thing? Technically yes, it runs the program. But is it really one thing? Most people would say, no it’s doing a whole lot of things.</p>
-
-<p>Bob kind of covers this as well by mentioning that it’s really hard to determine what <em>one thing</em> is. He says you can tell if a function is doing more than one thing if you can abstract another function out of it. This is more bologna. The purpose of a function is to <em>reduce duplication</em> and abstract <em>repeated logic</em> into a cohesive unit. Don’t abstract random lines of code for no reason, abstract them because they’re used in multiple places!</p>
-
-<p>He ends this section by saying that if you have sections within your functions, then it’s doing more than one thing. So what? Modern IDEs can collapse sections and have been able to collapse sections for a <em>long time</em> (<a href="https://stackoverflow.com/questions/2828065/how-do-i-expand-all-collapsed-code-regions-in-vs2005">this</a> stack overflow question shows that even VS2005 supported code collapsing, so this feature has been around for at least 18 years at the time of this writing, and <em>Clean Code</em> was released in 2008, so it was clearly available then too!).</p>
-
-<p>Further, his next rule says that code should read like a narrative. Well, narratives contain sections do they not? If we’re following his logic about the no “sections” rule and “keep it small” rule, then if you were writing a book, it should only contain the main heading and paragraph. Then you can have footnotes on separate pages that you have to flip to in order to read all the subheadings with their paragraphs.</p>
-
-<p>Books (well-written ones at least) are not written this way. Why? Because no reader is going to waste time flipping back and forth a million times to read your dumb <em>narrative</em>. His own book even belies this fact! He has heading, and subheadings. These sections help improve the readability of his book, and they help improve the readability of your code.</p>
-
-<p>So, sections in your code is a good thing. It helps simplify your functions and makes sure all the logic pertaining to that function lives in one place.</p>
-
-<h3 id="one-level-of-abstraction-per-function">One Level of Abstraction per Function</h3>
-
-<p>He then says that one piece of code shouldn’t handle multiple levels of abstraction. I can’t get behind this. Once upon a time, for-loops and if-statements did not exist. They were coded by a certain pattern of jump/goto instructions in assembly. Nowadays, we use structured programming which embeds these concepts as abstract parts of the programming language itself. Whenever you use a loop or an if statement, you are mixing a higher level of abstraction with whatever your code is doing, and it’s a <em>good thing</em>.</p>
-
-<p>Mixing levels of abstraction is how we simplify programs. There’s nothing wrong with it and I have trouble thinking of a reason where mixing levels of abstraction actively makes your code worse. You can’t add assembly into your C++ code without mixing those levels of abstraction <em>somewhere</em>. I’d rather have the mixing be very obvious and in plain sight, rather then hidden away under multiple layers of cruft that do nothing but obfuscate that fact.</p>
-
-<h3 id="switch-statements">Switch Statements</h3>
-
-<p>Honestly, I have no words. This whole section explains that switch statements are bad and should be hidden behind polymorphism or <code class="language-plaintext highlighter-rouge">ABSTRACT FACTORY</code>s or something. He literally says, and I quote “The solution to this problem is to bury the <code class="language-plaintext highlighter-rouge">switch</code> statement in the basement of an <code class="language-plaintext highlighter-rouge">ABSTRACT FACTORY</code> and never let anyone see it” (Clean Code, P.38). Wow… The purpose of writing a readable program is to make your intentions clear.</p>
-
-<p>Bob is actively promoting the idea that you should <em>obfuscate your intentions</em> from future readers of the program. This statement alone is probably one of the worst statements I’ve seen so far in the book.</p>
-
-<p>My suggestion, use a switch statement if it makes sense, and preferably make sure your compiler emits warnings for unhandled switch cases.</p>
-
-<h3 id="use-descriptive-names">Use Descriptive Names</h3>
-
-<p>I <em>almost</em> agree with this whole section. The one thing I disagree with is when he says “Don’t be afraid to make a name long”. Actually, be afraid of making overly verbose names. Overly verbose naming schemes only increase the noise-to-signal ratio in your code.</p>
-
-<p>Ideally, the name should be descriptive and short. Sometimes the name has to be a bit longer, and that’s ok. If they’re too long, as I’m reading your program my mind will silently truncate the long and verbose names and skip over pieces of code that are potentially important. In the same way, if I make an overly long sentence as part of an overly long paragraph, your mind will begin to wander and lose focus. Also, you may lose track of where you are in this paragraph because it becomes too much information density for your brain to easily parse. I bet at this point, you are probably scrolling faster to get past this monstrous paragraph because it is unnecessary and adds mental “noise” which is very obtrusive to trying to read this article. In addition, you are probably getting annoyed from the mental burden I am placing on you. You feel like this paragraph may contain some useful insight, but at this point, it absolutely contains no other insight than to show you how painful it is when things are described in an overly verbose manner.</p>
-
-<p>Sorry about that, I guess… a thousand words is worth a thousand words?</p>
-
-<p>This is one of the recurring themes in the book I think Bob is confused about. He seems to correctly see the problem, dense blocks of code that have very low signal-to-noise ratios, and then misunderstands what he’s seeing and proposes splitting up that information density in a horrible way.</p>
-
-<p>For example, he thinks functions should be small because it reduces the density of information. While this is true, sometimes logic is dense and that density should be visible. In those cases, you should use liberal whitespace and comments explaining <em>why</em> the code is doing what it’s doing.</p>
-
-<p>Java is particularly bad for increasing information density by promoting styles like brackets on the same line of function declarations. This probably makes a lot of Java code seem more dense than it really is and further adds to this confusion.</p>
-
-<h3 id="function-arguments">Function Arguments</h3>
-
-<p>I’m going to kind of skip over most of the nonsense in this bit. Bob argues that functions should have few arguments, and ideally none. Then he argues that functions should have no side-effects. It’s impossible to have a function with 0 arguments that does not have any side-effects, so his two pieces of advice are in conflict with each other.</p>
-
-<p>Think about it, if your function has 0 arguments, it can only be operating on data that is defined externally. This, by definition, is a function with side-effects. (Yes, I guess if you have a function with 0 arguments that returns a reference to an immutable data structure, it’s technically side effect free. However this sounds eerily like a getter, and if you’re already marking data as mutable/immutable properly, getters are unnecessary!)</p>
-
-<p>The reason Bob gives this advice is probably because he seems to mistakenly believe that if you mutate the object that the method lives in, then this is not <em>really</em> a side effect. He writes later in the next section “If your function must change the state of something, have it change the state of the owning object” (<em>Clean Code</em> P. 45).</p>
-
-<p>I agree that functions shouldn’t have too many arguments, but sometimes it’s unavoidable and that’s ok. If you do have to add several arguments, don’t create a <em>Data Transfer Object</em> or some similar nonsense (unless that object is actually being used for additional processing and represents something more than an object for the sole purpose of reducing parameters. Or, you have profiled and found out that too many parameters is causing increased latency and using a DTO fixes that).</p>
-
-<p>Instead, write clear documentation about the purpose of all the arguments. I think the Win32 documentation is actually a great example of this. For example, <a href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-createwindowa">this function</a> <code class="language-plaintext highlighter-rouge">CreateWindowA</code> takes 7 arguments. Every single one of those arguments is useful in certain scenarios, and every single one of those arguments is well explained in the documentation.</p>
-
-<p>You could reduce some of those arguments by doing something like having a <code class="language-plaintext highlighter-rouge">Vec2{x, y}</code> structure instead of separating those. However, that isn’t necessary and this code is just as readable as code that wraps the parameters in structures like that.</p>
-
-<p>Another important note that Bob has in here is flag arguments. I agree with this. You should not pass Boolean’s as flags to a function. It makes reading the code very difficult (for example <code class="language-plaintext highlighter-rouge">createWindow(true)</code> vs <code class="language-plaintext highlighter-rouge">createWindow(WindowFlag::Maximized)</code>). I disagree with his solution though, which is to split the function. Sometimes that’s the right call, but other times it’s fine to create an enum and strongly type the flag. This makes it clearer for the reader, and easier to extend if that flag ever needs to have more than 2 possible values (true, false).</p>
-
-<h3 id="have-no-side-effects">Have no Side Effects</h3>
-
-<p>I agree with this section. Your functions should have as few side effects as possible. Additionally, if your language supports marking arguments/data as mutable/immutable, use it. Mark your stuff as <code class="language-plaintext highlighter-rouge">const</code> to make it clear to future readers/users/maintainers what that function expects of the data being passed to it.</p>
-
-<h3 id="prefer-exceptions-to-returning-error-codes">Prefer Exceptions to Returning Error Codes</h3>
-
-<p>I think this was a novel idea and that it had some merit in 2008. However it’s 2023 now, and the results of the <code class="language-plaintext highlighter-rouge">try {} catch {}</code> pattern are in, and it doesn’t look good. From experience, and reading several other codebases, the most common use case of try/catch blocks is to ignore error handling altogether. Additionally, try/catch blocks promote goto statements in the form of jumping out of deeply nested call stacks to some random place in the code. Both of these reasons are reasons I <em>prefer</em> error codes to try/catch blocks.</p>
-
-<p>If you use error codes, you force the developer to handle the error as soon as it occurs. Further, Bob’s example of why this is bad is just silly. He says error codes are bad because then you end up with something like this:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">deletePage</span><span class="o">(</span><span class="n">page</span><span class="o">)</span> <span class="o">==</span> <span class="no">E_OK</span><span class="o">)</span> <span class="o">{</span>
+</code></pre></div></div> <p>The first thing I did was remove the unnecessary getters. They add density to the code that hurts the readability. If your language has proper support for mutable vs non-mutable data, you can mark the variables as mutable/immutable to be more explicit with your intentions. This also obviates the need for getters/setters since you no longer have to “control” how the data is accessed.</p> <p>The second thing I did, which I believe Bob also did, is I noticed the duplication and abstracted that out into a function. The whole purpose of a function is to get rid of duplicated logic. This helps reduce the code density and fat-finger copy/paste errors. I will say, I’m glad the original authors duplicated the code first, because it makes it <em>very</em> easy to see the duplicated logic and refactor the code. It’s much better to duplicate your code first and then abstract later, than it is to abstract in advance and end up with functions that only have one reference everywhere for the sake of “readability”.</p> <blockquote> <p>“Duplication is far cheaper than the wrong abstraction” - <a href="https://sandimetz.com/blog/2016/1/20/the-wrong-abstraction">Sandi Metz</a></p> </blockquote> <p>Once I abstracted the duplicated code, the intent of the function became much clearer.</p> <p>The last step I took was inlining the if-statements to reduce the level of nested logic. I agree with Bob here as well, it’s much easier to follow the control flow of a function if there is less nesting. However, this is just a preference, and leaving the if-statements nested is perfectly valid. I also cached the <code class="language-plaintext highlighter-rouge">isTestPage</code> variable so that it’s clear what that line of code is doing and it makes it easier to change this code in the future (I just have to modify the single line instead of copying the change in several places).</p> <p>Notice, the one thing I did <em>not</em> do is remove the logical flow of this function and add unnecessary side effects. I left all the core logic in the function and the reader can still follow the control flow. Additionally, the function that I added does not mutate the data (any more than it already was) but returns a new String with the result. This allows me to re-use that function with certainty that it won’t add side-effects that the reader now has to look for.</p> <p>Bob’s code on the other hand relies on side-effects and removes the core flow of logic. This requires the reader of the function to either implicitly be aware of that fact, or to risk modifying code and then cursing at themselves later when they find out changing that function accidentally changed 500 unrelated pieces of state unintentionally.</p> <p>After this, Bob goes through the qualities of a good function. I actually agree with a lot of what he says, but some of it is nonsense, and he doesn’t appear to follow his own advice (except for the biggest piece of nonsense which is functions should be small).</p> <h3 id="small">Small!</h3> <p>His first piece of advice is functions should be small, and then they should be <em>smaller</em>. This is nonsense. Balderdash. Hogwash. Rubbish. And any other way you can think of saying, “it makes no sense”.</p> <p>Functions should be concise, and they should reduce duplication. Sometimes, a piece of logic is complex and large, and it doesn’t matter if you break up the logic into a bunch of tiny pieces of “beautiful” steaming piles of garbage, the logic is still there, it’s just hidden now between a million jumps!</p> <p>John Carmack has an old article on this that I think summarizes why the idea of forcing functions to be small is drivel better than I ever could, you can read that <a href="http://number-none.com/blow/blog/programming/2014/09/26/carmack-on-inlined-code.html">article here</a> (and I highly recommend it).</p> <p>So, my piece of advice would be to ignore this. Instead, functions should reduce duplication, period. If you have a function that is only ever called in one other place, then you should inline it so the logic is all in one cohesive place. This helps the reader, since they no longer have to jump around the code unnecessarily, and it helps the maintainer, since they can more easily see the logic and reduce it, simplify it, or fix it.</p> <h3 id="do-one-thing">Do One Thing</h3> <p>Next, Bob says a function should only do one thing. This is great, however it’s not feasible. For example, most functions have an entry point called <code class="language-plaintext highlighter-rouge">main</code>. Does that function do one thing? Technically yes, it runs the program. But is it really one thing? Most people would say, no it’s doing a whole lot of things.</p> <p>Bob kind of covers this as well by mentioning that it’s really hard to determine what <em>one thing</em> is. He says you can tell if a function is doing more than one thing if you can abstract another function out of it. This is more bologna. The purpose of a function is to <em>reduce duplication</em> and abstract <em>repeated logic</em> into a cohesive unit. Don’t abstract random lines of code for no reason, abstract them because they’re used in multiple places!</p> <p>He ends this section by saying that if you have sections within your functions, then it’s doing more than one thing. So what? Modern IDEs can collapse sections and have been able to collapse sections for a <em>long time</em> (<a href="https://stackoverflow.com/questions/2828065/how-do-i-expand-all-collapsed-code-regions-in-vs2005">this</a> stack overflow question shows that even VS2005 supported code collapsing, so this feature has been around for at least 18 years at the time of this writing, and <em>Clean Code</em> was released in 2008, so it was clearly available then too!).</p> <p>Further, his next rule says that code should read like a narrative. Well, narratives contain sections do they not? If we’re following his logic about the no “sections” rule and “keep it small” rule, then if you were writing a book, it should only contain the main heading and paragraph. Then you can have footnotes on separate pages that you have to flip to in order to read all the subheadings with their paragraphs.</p> <p>Books (well-written ones at least) are not written this way. Why? Because no reader is going to waste time flipping back and forth a million times to read your dumb <em>narrative</em>. His own book even belies this fact! He has heading, and subheadings. These sections help improve the readability of his book, and they help improve the readability of your code.</p> <p>So, sections in your code is a good thing. It helps simplify your functions and makes sure all the logic pertaining to that function lives in one place.</p> <h3 id="one-level-of-abstraction-per-function">One Level of Abstraction per Function</h3> <p>He then says that one piece of code shouldn’t handle multiple levels of abstraction. I can’t get behind this. Once upon a time, for-loops and if-statements did not exist. They were coded by a certain pattern of jump/goto instructions in assembly. Nowadays, we use structured programming which embeds these concepts as abstract parts of the programming language itself. Whenever you use a loop or an if statement, you are mixing a higher level of abstraction with whatever your code is doing, and it’s a <em>good thing</em>.</p> <p>Mixing levels of abstraction is how we simplify programs. There’s nothing wrong with it and I have trouble thinking of a reason where mixing levels of abstraction actively makes your code worse. You can’t add assembly into your C++ code without mixing those levels of abstraction <em>somewhere</em>. I’d rather have the mixing be very obvious and in plain sight, rather then hidden away under multiple layers of cruft that do nothing but obfuscate that fact.</p> <h3 id="switch-statements">Switch Statements</h3> <p>Honestly, I have no words. This whole section explains that switch statements are bad and should be hidden behind polymorphism or <code class="language-plaintext highlighter-rouge">ABSTRACT FACTORY</code>s or something. He literally says, and I quote “The solution to this problem is to bury the <code class="language-plaintext highlighter-rouge">switch</code> statement in the basement of an <code class="language-plaintext highlighter-rouge">ABSTRACT FACTORY</code> and never let anyone see it” (Clean Code, P.38). Wow… The purpose of writing a readable program is to make your intentions clear.</p> <p>Bob is actively promoting the idea that you should <em>obfuscate your intentions</em> from future readers of the program. This statement alone is probably one of the worst statements I’ve seen so far in the book.</p> <p>My suggestion, use a switch statement if it makes sense, and preferably make sure your compiler emits warnings for unhandled switch cases.</p> <h3 id="use-descriptive-names">Use Descriptive Names</h3> <p>I <em>almost</em> agree with this whole section. The one thing I disagree with is when he says “Don’t be afraid to make a name long”. Actually, be afraid of making overly verbose names. Overly verbose naming schemes only increase the noise-to-signal ratio in your code.</p> <p>Ideally, the name should be descriptive and short. Sometimes the name has to be a bit longer, and that’s ok. If they’re too long, as I’m reading your program my mind will silently truncate the long and verbose names and skip over pieces of code that are potentially important. In the same way, if I make an overly long sentence as part of an overly long paragraph, your mind will begin to wander and lose focus. Also, you may lose track of where you are in this paragraph because it becomes too much information density for your brain to easily parse. I bet at this point, you are probably scrolling faster to get past this monstrous paragraph because it is unnecessary and adds mental “noise” which is very obtrusive to trying to read this article. In addition, you are probably getting annoyed from the mental burden I am placing on you. You feel like this paragraph may contain some useful insight, but at this point, it absolutely contains no other insight than to show you how painful it is when things are described in an overly verbose manner.</p> <p>Sorry about that, I guess… a thousand words is worth a thousand words?</p> <p>This is one of the recurring themes in the book I think Bob is confused about. He seems to correctly see the problem, dense blocks of code that have very low signal-to-noise ratios, and then misunderstands what he’s seeing and proposes splitting up that information density in a horrible way.</p> <p>For example, he thinks functions should be small because it reduces the density of information. While this is true, sometimes logic is dense and that density should be visible. In those cases, you should use liberal whitespace and comments explaining <em>why</em> the code is doing what it’s doing.</p> <p>Java is particularly bad for increasing information density by promoting styles like brackets on the same line of function declarations. This probably makes a lot of Java code seem more dense than it really is and further adds to this confusion.</p> <h3 id="function-arguments">Function Arguments</h3> <p>I’m going to kind of skip over most of the nonsense in this bit. Bob argues that functions should have few arguments, and ideally none. Then he argues that functions should have no side-effects. It’s impossible to have a function with 0 arguments that does not have any side-effects, so his two pieces of advice are in conflict with each other.</p> <p>Think about it, if your function has 0 arguments, it can only be operating on data that is defined externally. This, by definition, is a function with side-effects. (Yes, I guess if you have a function with 0 arguments that returns a reference to an immutable data structure, it’s technically side effect free. However this sounds eerily like a getter, and if you’re already marking data as mutable/immutable properly, getters are unnecessary!)</p> <p>The reason Bob gives this advice is probably because he seems to mistakenly believe that if you mutate the object that the method lives in, then this is not <em>really</em> a side effect. He writes later in the next section “If your function must change the state of something, have it change the state of the owning object” (<em>Clean Code</em> P. 45).</p> <p>I agree that functions shouldn’t have too many arguments, but sometimes it’s unavoidable and that’s ok. If you do have to add several arguments, don’t create a <em>Data Transfer Object</em> or some similar nonsense (unless that object is actually being used for additional processing and represents something more than an object for the sole purpose of reducing parameters. Or, you have profiled and found out that too many parameters is causing increased latency and using a DTO fixes that).</p> <p>Instead, write clear documentation about the purpose of all the arguments. I think the Win32 documentation is actually a great example of this. For example, <a href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-createwindowa">this function</a> <code class="language-plaintext highlighter-rouge">CreateWindowA</code> takes 7 arguments. Every single one of those arguments is useful in certain scenarios, and every single one of those arguments is well explained in the documentation.</p> <p>You could reduce some of those arguments by doing something like having a <code class="language-plaintext highlighter-rouge">Vec2{x, y}</code> structure instead of separating those. However, that isn’t necessary and this code is just as readable as code that wraps the parameters in structures like that.</p> <p>Another important note that Bob has in here is flag arguments. I agree with this. You should not pass Boolean’s as flags to a function. It makes reading the code very difficult (for example <code class="language-plaintext highlighter-rouge">createWindow(true)</code> vs <code class="language-plaintext highlighter-rouge">createWindow(WindowFlag::Maximized)</code>). I disagree with his solution though, which is to split the function. Sometimes that’s the right call, but other times it’s fine to create an enum and strongly type the flag. This makes it clearer for the reader, and easier to extend if that flag ever needs to have more than 2 possible values (true, false).</p> <h3 id="have-no-side-effects">Have no Side Effects</h3> <p>I agree with this section. Your functions should have as few side effects as possible. Additionally, if your language supports marking arguments/data as mutable/immutable, use it. Mark your stuff as <code class="language-plaintext highlighter-rouge">const</code> to make it clear to future readers/users/maintainers what that function expects of the data being passed to it.</p> <h3 id="prefer-exceptions-to-returning-error-codes">Prefer Exceptions to Returning Error Codes</h3> <p>I think this was a novel idea and that it had some merit in 2008. However it’s 2023 now, and the results of the <code class="language-plaintext highlighter-rouge">try {} catch {}</code> pattern are in, and it doesn’t look good. From experience, and reading several other codebases, the most common use case of try/catch blocks is to ignore error handling altogether. Additionally, try/catch blocks promote goto statements in the form of jumping out of deeply nested call stacks to some random place in the code. Both of these reasons are reasons I <em>prefer</em> error codes to try/catch blocks.</p> <p>If you use error codes, you force the developer to handle the error as soon as it occurs. Further, Bob’s example of why this is bad is just silly. He says error codes are bad because then you end up with something like this:</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">deletePage</span><span class="o">(</span><span class="n">page</span><span class="o">)</span> <span class="o">==</span> <span class="no">E_OK</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">if</span> <span class="o">(</span><span class="n">registry</span><span class="o">.</span><span class="na">deleteReference</span><span class="o">(</span><span class="n">page</span><span class="o">.</span><span class="na">name</span><span class="o">)</span> <span class="o">==</span> <span class="no">E_OK</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">configKeys</span><span class="o">.</span><span class="na">deleteKey</span><span class="o">(</span><span class="n">page</span><span class="o">.</span><span class="na">name</span><span class="o">.</span><span class="na">makeKey</span><span class="o">())</span> <span class="o">==</span> <span class="no">E_OK</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">logger</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"page deleted."</span><span class="o">);</span>
@@ -529,30 +248,14 @@
     <span class="n">logger</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"delete failed."</span><span class="o">);</span>
     <span class="k">return</span> <span class="no">E_ERROR</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre></div></div>
-
-<p>Bob’s proposed fix is to do something like this:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span> <span class="o">{</span>
+</code></pre></div></div> <p>Bob’s proposed fix is to do something like this:</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span> <span class="o">{</span>
     <span class="n">deletePage</span><span class="o">(</span><span class="n">page</span><span class="o">);</span>
     <span class="n">registry</span><span class="o">.</span><span class="na">deleteReference</span><span class="o">(</span><span class="n">page</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
     <span class="n">configKeys</span><span class="o">.</span><span class="na">deleteKey</span><span class="o">(</span><span class="n">page</span><span class="o">.</span><span class="na">name</span><span class="o">.</span><span class="na">makeKey</span><span class="o">());</span>
 <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">logger</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
 <span class="o">}</span>
-</code></pre></div></div>
-
-<p>This proposed fix has a couple problems:</p>
-
-<ol>
-  <li>It’s unclear where this function can fail</li>
-  <li>It’s unclear what failure states may result from this function</li>
-  <li>It’s unclear what should happen if this function fails (the caller has no idea where the function failed and doesn’t know what to do because there’s no error returned)</li>
-</ol>
-
-<p>My proposed fix would be this:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">deletePage</span><span class="o">(</span><span class="n">page</span><span class="o">)</span> <span class="o">!=</span> <span class="no">E_OK</span><span class="o">)</span> <span class="o">{</span>
+</code></pre></div></div> <p>This proposed fix has a couple problems:</p> <ol> <li>It’s unclear where this function can fail</li> <li>It’s unclear what failure states may result from this function</li> <li>It’s unclear what should happen if this function fails (the caller has no idea where the function failed and doesn’t know what to do because there’s no error returned)</li> </ol> <p>My proposed fix would be this:</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">deletePage</span><span class="o">(</span><span class="n">page</span><span class="o">)</span> <span class="o">!=</span> <span class="no">E_OK</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">logger</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"delete failed."</span><span class="o">);</span>
     <span class="k">return</span> <span class="no">E_ERROR</span><span class="o">;</span>
 <span class="o">}</span>
@@ -568,23 +271,7 @@
 
 <span class="n">logger</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="s">"page deleted."</span><span class="o">);</span>
 <span class="k">return</span> <span class="no">E_SUCCESS</span><span class="o">;</span>
-</code></pre></div></div>
-
-<p>Wow, magical isn’t it? I would like to give Bob the benefit of the doubt and assume he doesn’t refactor the code like this because he’s abiding by the outdated notion that a function should only ever have one return statement…</p>
-
-<p>Except, later on, he mentions that “if you keep your functions small, then the occasional multiple <code class="language-plaintext highlighter-rouge">return</code>, <code class="language-plaintext highlighter-rouge">break</code>, or <code class="language-plaintext highlighter-rouge">continue</code> statement does no harm and can sometimes even be more expressive than the single-entry, single-exit rule” (<em>Clean Code</em> P.49). I agree with this statement, and we can apply it to this error handling.</p>
-
-<p>Now, this function is up front about the failure conditions. Each failure condition is listed first in the function. Now future readers/maintainers can clearly see the assumptions this function makes and where it can fail. Additionally, you can make each error code more explicit so that the caller can respond to and handle these errors themselves.</p>
-
-<p>Additionally, the errors are actually handled here, or the handling is forwarded up the call stack. In Bob’s version, the errors are hidden and suppressed and the caller can just ignore them.</p>
-
-<p>You could go one step further though, and if your language supports multiple return values you could follow a pattern of returning a value + an error code. <a href="https://www.gingerbill.org/article/2018/09/05/exceptions-and-why-odin-will-never-have-them/">Here’s an article</a> about the Odin language defending this use case if you’re curious.</p>
-
-<h3 id="functions-conclusion">Functions Conclusion</h3>
-
-<p>Bob ends this chapter by showing his final “cleaned” version of the original FitNesse function we started with following all the rules he created. The monstrosity looks like this (see how much you can understand about this in 3 minutes!):</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SetupTeardownIncluder</span> <span class="o">{</span>
+</code></pre></div></div> <p>Wow, magical isn’t it? I would like to give Bob the benefit of the doubt and assume he doesn’t refactor the code like this because he’s abiding by the outdated notion that a function should only ever have one return statement…</p> <p>Except, later on, he mentions that “if you keep your functions small, then the occasional multiple <code class="language-plaintext highlighter-rouge">return</code>, <code class="language-plaintext highlighter-rouge">break</code>, or <code class="language-plaintext highlighter-rouge">continue</code> statement does no harm and can sometimes even be more expressive than the single-entry, single-exit rule” (<em>Clean Code</em> P.49). I agree with this statement, and we can apply it to this error handling.</p> <p>Now, this function is up front about the failure conditions. Each failure condition is listed first in the function. Now future readers/maintainers can clearly see the assumptions this function makes and where it can fail. Additionally, you can make each error code more explicit so that the caller can respond to and handle these errors themselves.</p> <p>Additionally, the errors are actually handled here, or the handling is forwarded up the call stack. In Bob’s version, the errors are hidden and suppressed and the caller can just ignore them.</p> <p>You could go one step further though, and if your language supports multiple return values you could follow a pattern of returning a value + an error code. <a href="https://www.gingerbill.org/article/2018/09/05/exceptions-and-why-odin-will-never-have-them/">Here’s an article</a> about the Odin language defending this use case if you’re curious.</p> <h3 id="functions-conclusion">Functions Conclusion</h3> <p>Bob ends this chapter by showing his final “cleaned” version of the original FitNesse function we started with following all the rules he created. The monstrosity looks like this (see how much you can understand about this in 3 minutes!):</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SetupTeardownIncluder</span> <span class="o">{</span>
     <span class="kd">private</span> <span class="nc">PageData</span> <span class="n">pageData</span><span class="o">;</span>
     <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">isSuite</span><span class="o">;</span>
     <span class="kd">private</span> <span class="nc">WikiPage</span> <span class="n">testPage</span><span class="o">;</span>
@@ -687,17 +374,7 @@
             <span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"\n"</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div></div>
-
-<p>Please excuse me while I rest my hands after the arthritis induced from writing out that behemoth… My God, can anyone sit with a straight face and tell you that <em>this</em> is <em>more readable</em> than the original implementation?! This, more than anything, hammers down the fact that “clean code” is a bombastic, mythical ideology put forth by people living high above the clouds:</p>
-
-<blockquote>
-  <p>“…one sure tip-off to the fact that you’re being assaulted by an Architecture Astronaut: the incredible amount of bombast; the heroic, utopian grandiloquence; the boastfulness; the complete lack of reality. And people buy it! The business press goes wild!” - <a href="https://www.joelonsoftware.com/2001/04/21/dont-let-architecture-astronauts-scare-you/">Joel Spolsky</a></p>
-</blockquote>
-
-<p>And, just for comparison’s sake, here’s what I changed the code to. I guess you can decide for yourself which version is more readable:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">getPageData</span><span class="o">(</span><span class="nc">String</span> <span class="n">pageName</span><span class="o">,</span> <span class="nc">WikiPage</span> <span class="n">wikiPage</span><span class="o">)</span> <span class="o">{</span>
+</code></pre></div></div> <p>Please excuse me while I rest my hands after the arthritis induced from writing out that behemoth… My God, can anyone sit with a straight face and tell you that <em>this</em> is <em>more readable</em> than the original implementation?! This, more than anything, hammers down the fact that “clean code” is a bombastic, mythical ideology put forth by people living high above the clouds:</p> <blockquote> <p>“…one sure tip-off to the fact that you’re being assaulted by an Architecture Astronaut: the incredible amount of bombast; the heroic, utopian grandiloquence; the boastfulness; the complete lack of reality. And people buy it! The business press goes wild!” - <a href="https://www.joelonsoftware.com/2001/04/21/dont-let-architecture-astronauts-scare-you/">Joel Spolsky</a></p> </blockquote> <p>And, just for comparison’s sake, here’s what I changed the code to. I guess you can decide for yourself which version is more readable:</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">getPageData</span><span class="o">(</span><span class="nc">String</span> <span class="n">pageName</span><span class="o">,</span> <span class="nc">WikiPage</span> <span class="n">wikiPage</span><span class="o">)</span> <span class="o">{</span>
     <span class="nc">StringBuffer</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuffer</span><span class="o">();</span>
     <span class="nc">WikiPage</span> <span class="n">setup</span> <span class="o">=</span> <span class="nc">PageCrawlerImpl</span><span class="o">.</span><span class="na">getInheritedPage</span><span class="o">(</span><span class="n">pageName</span><span class="o">,</span> <span class="n">wikiPage</span><span class="o">);</span>
 
@@ -745,31 +422,7 @@
     <span class="n">pageData</span><span class="o">.</span><span class="na">setContent</span><span class="o">(</span><span class="n">buffer</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
     <span class="k">return</span> <span class="n">pageData</span><span class="o">.</span><span class="na">getHtml</span><span class="o">();</span>
 <span class="o">}</span>
-</code></pre></div></div>
-
-<h2 id="chapter-4-comments">Chapter 4: Comments</h2>
-
-<p>Most of what Bob covers in this chapter is pretty on point. The best rule of thumb I’ve found is a comment should explain <em>why</em> a piece of code is doing what it’s doing, not <em>what</em> the piece of code is doing. Following that rule of thumb pretty much covers all of Bob’s sub-sections.</p>
-
-<p>The only things I would update in this chapter are: the section about legal comments, position markers, and too much information.</p>
-
-<p>The legal comments section is outdated, you should have a license in your repository that covers all the code. Leaving a legal header at the top of each file is unnecessary and visual noise and I wouldn’t recommend it (unless you’re explicitly mandated by your company to do it).</p>
-
-<p>Comments that are position markers like: <code class="language-plaintext highlighter-rouge">// **** Private functions ****</code> are useful in my opinion. They can be helpful to grep through the codebase or file and look for a specific section.</p>
-
-<p>Lastly, Bob has a section explaining that some comments provide too much information by paraphrasing the spec it’s following etc. I agree with him to a point on this. Your code shouldn’t include the entire spec that it’s implementing, that’s verbose and redundant. However, I’ve been watching <a href="https://www.youtube.com/c/andreaskling">Andreas Kling</a> on YouTube lately, and he will often paste the steps of the spec that the piece of code is implementing with a link to the original URL. This is supremely helpful in clarifying the intent of the code and linking to the source and I think this is a perfectly valid use of comments.</p>
-
-<p>One additional thing I would add that Bob didn’t, is I believe comments that link back to the source material are great. For example, if you found an answer on Stack Overflow and adapted your code to match that, leave a link because it will be useful to future you!</p>
-
-<h2 id="chapter-5-formatting">Chapter 5: Formatting</h2>
-
-<p>I skimmed through this chapter very briefly. For all intents and purposes, this is irrelevant today. Use a code linter/formatter for code formatting. ‘nough said.</p>
-
-<h2 id="chapter-6-objects-and-data-structures">Chapter 6: Objects and Data Structures</h2>
-
-<p>This chapter starts off with a couple of code listings:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Listing 6-1</span>
+</code></pre></div></div> <h2 id="chapter-4-comments">Chapter 4: Comments</h2> <p>Most of what Bob covers in this chapter is pretty on point. The best rule of thumb I’ve found is a comment should explain <em>why</em> a piece of code is doing what it’s doing, not <em>what</em> the piece of code is doing. Following that rule of thumb pretty much covers all of Bob’s sub-sections.</p> <p>The only things I would update in this chapter are: the section about legal comments, position markers, and too much information.</p> <p>The legal comments section is outdated, you should have a license in your repository that covers all the code. Leaving a legal header at the top of each file is unnecessary and visual noise and I wouldn’t recommend it (unless you’re explicitly mandated by your company to do it).</p> <p>Comments that are position markers like: <code class="language-plaintext highlighter-rouge">// **** Private functions ****</code> are useful in my opinion. They can be helpful to grep through the codebase or file and look for a specific section.</p> <p>Lastly, Bob has a section explaining that some comments provide too much information by paraphrasing the spec it’s following etc. I agree with him to a point on this. Your code shouldn’t include the entire spec that it’s implementing, that’s verbose and redundant. However, I’ve been watching <a href="https://www.youtube.com/c/andreaskling">Andreas Kling</a> on YouTube lately, and he will often paste the steps of the spec that the piece of code is implementing with a link to the original URL. This is supremely helpful in clarifying the intent of the code and linking to the source and I think this is a perfectly valid use of comments.</p> <p>One additional thing I would add that Bob didn’t, is I believe comments that link back to the source material are great. For example, if you found an answer on Stack Overflow and adapted your code to match that, leave a link because it will be useful to future you!</p> <h2 id="chapter-5-formatting">Chapter 5: Formatting</h2> <p>I skimmed through this chapter very briefly. For all intents and purposes, this is irrelevant today. Use a code linter/formatter for code formatting. ‘nough said.</p> <h2 id="chapter-6-objects-and-data-structures">Chapter 6: Objects and Data Structures</h2> <p>This chapter starts off with a couple of code listings:</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Listing 6-1</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Point</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kt">double</span> <span class="n">x</span><span class="o">;</span>
     <span class="kd">public</span> <span class="kt">double</span> <span class="n">y</span><span class="o">;</span>
@@ -784,26 +437,14 @@
     <span class="kt">double</span> <span class="nf">getTheta</span><span class="o">();</span>
     <span class="kt">void</span> <span class="nf">setPolar</span><span class="o">(</span><span class="kt">double</span> <span class="n">r</span><span class="o">,</span> <span class="kt">double</span> <span class="n">theta</span><span class="o">);</span>
 <span class="o">}</span>
-</code></pre></div></div>
-
-<p>Bob immediately pontificates on how beautiful Listing 6-2 is and how it abstracts all the details away and the user never has to care. This, in essence, is the main problem with OOP. Have you ever tried to understand a codebase littered with interfaces hiding all the abstractions? I have. Usually you’ll encounter something like this:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">getOrders</span><span class="o">(</span><span class="nc">ILogger</span> <span class="n">logger</span><span class="o">,</span> <span class="kt">int</span> <span class="n">numOrders</span><span class="o">,</span> <span class="nc">IResponse</span> <span class="n">response</span><span class="o">)</span> <span class="o">{</span>
+</code></pre></div></div> <p>Bob immediately pontificates on how beautiful Listing 6-2 is and how it abstracts all the details away and the user never has to care. This, in essence, is the main problem with OOP. Have you ever tried to understand a codebase littered with interfaces hiding all the abstractions? I have. Usually you’ll encounter something like this:</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">getOrders</span><span class="o">(</span><span class="nc">ILogger</span> <span class="n">logger</span><span class="o">,</span> <span class="kt">int</span> <span class="n">numOrders</span><span class="o">,</span> <span class="nc">IResponse</span> <span class="n">response</span><span class="o">)</span> <span class="o">{</span>
     <span class="c1">// Do some stuff</span>
     <span class="n">response</span><span class="o">.</span><span class="na">setStatus</span><span class="o">(</span><span class="mi">404</span><span class="o">);</span>
     <span class="c1">// Let's Ctrl+Click (or Cmd+Click for you mac users) on </span>
     <span class="c1">// IResponse to go to the implementation to understand what's</span>
     <span class="c1">// happening</span>
 <span class="o">}</span>
-</code></pre></div></div>
-
-<p>And now the madness ensues. When you try to jump to the implementation of <code class="language-plaintext highlighter-rouge">IResponse</code> instead of being sent to the actual implementation being used at the moment, you are sent to the interface. Why is that? Because depending on where the function is called, <code class="language-plaintext highlighter-rouge">IResponse</code> could be an <code class="language-plaintext highlighter-rouge">HttpResponse</code>, or a <code class="language-plaintext highlighter-rouge">SoapResponse</code>, or a <code class="language-plaintext highlighter-rouge">JsonHttpResponse</code>, or who the heck knows. In reality, it’s most likely one of those things and only ever one of those things (at least more than 90% of the time when I’m debugging a corporate codebase, there’s only ever one implementation).</p>
-
-<p>What’s wrong with this? Well now, you as a maintainer have no freaking clue what’s actually happening or what’s being used or what to do about it. Interfaces are a tool. Ideally, they should be used when you’re trying to provide an interface to some library user. That library user can implement the interface, and their code will just work. The library maintainer doesn’t need to know the users code, and the user doesn’t need to know the maintainers code, they just need to know which functions to implement.</p>
-
-<p>Instead, what Bob is recommending here, and what usually plays out in reality, is <em>every single class is an interface</em> (to be fair, he doesn’t explicitly say that here, but a lot of his other writing and ideas suggest this). This makes debugging impossible, understandability impossible, and builds a massive web of ever increasing complexity. How would I restructure this? How about:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Listing 6-MyImplementation</span>
+</code></pre></div></div> <p>And now the madness ensues. When you try to jump to the implementation of <code class="language-plaintext highlighter-rouge">IResponse</code> instead of being sent to the actual implementation being used at the moment, you are sent to the interface. Why is that? Because depending on where the function is called, <code class="language-plaintext highlighter-rouge">IResponse</code> could be an <code class="language-plaintext highlighter-rouge">HttpResponse</code>, or a <code class="language-plaintext highlighter-rouge">SoapResponse</code>, or a <code class="language-plaintext highlighter-rouge">JsonHttpResponse</code>, or who the heck knows. In reality, it’s most likely one of those things and only ever one of those things (at least more than 90% of the time when I’m debugging a corporate codebase, there’s only ever one implementation).</p> <p>What’s wrong with this? Well now, you as a maintainer have no freaking clue what’s actually happening or what’s being used or what to do about it. Interfaces are a tool. Ideally, they should be used when you’re trying to provide an interface to some library user. That library user can implement the interface, and their code will just work. The library maintainer doesn’t need to know the users code, and the user doesn’t need to know the maintainers code, they just need to know which functions to implement.</p> <p>Instead, what Bob is recommending here, and what usually plays out in reality, is <em>every single class is an interface</em> (to be fair, he doesn’t explicitly say that here, but a lot of his other writing and ideas suggest this). This makes debugging impossible, understandability impossible, and builds a massive web of ever increasing complexity. How would I restructure this? How about:</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Listing 6-MyImplementation</span>
 
 <span class="c1">// The majority of my use cases are cartesian, so I'll default to </span>
 <span class="c1">// cartesian coordinates. If your codebase is different, then you</span>
@@ -817,27 +458,7 @@
     <span class="kd">public</span> <span class="kt">double</span> <span class="n">r</span><span class="o">;</span>
     <span class="kd">public</span> <span class="kt">double</span> <span class="n">theta</span><span class="o">;</span>
 <span class="o">}</span>
-</code></pre></div></div>
-
-<p>The beautiful thing about listing 6-MyImplementation is that now nobody is confused! The type declares very loudly exactly what you’re working with. There is no obfuscation through interface-ification. Everything is immediately visible and the user doesn’t have to worry what the hell they’re getting passed every time they see something like <code class="language-plaintext highlighter-rouge">public void foo(Point whoKnowsWhatThisIs)</code>.</p>
-
-<p>After this, Bob goes on to explain the difference between data structures and objects. He seems to be referring to data structures like POD (Plain Old Data) in C++: <code class="language-plaintext highlighter-rouge">struct</code>’s that have dumb data. As opposed to the typical definition programmers use data structures for: a common structure/container of generic data like <code class="language-plaintext highlighter-rouge">HashMap</code>s, <code class="language-plaintext highlighter-rouge">List</code>s, <code class="language-plaintext highlighter-rouge">Vector</code>s, etc.</p>
-
-<p>I think his explanation here is actually quite good, and he gives a good qualification at the end of this section:</p>
-
-<blockquote>
-  <p>Mature Programmers know that the idea that everything is an object <em>is a myth</em>. Sometimes you really <em>do</em> want simple data structures with procedures operating on them. (Clean Code P.97)</p>
-</blockquote>
-
-<p>This is good advice, and one that I don’t see a lot of the actual examples in this book following.</p>
-
-<p>This chapter ends with advice about using DTOs (Data Transfer Objects) to transform dumb data into an object. This is dumb advice, and it accomplishes nothing but adding bloat to your code. Think about it, why do we need dumb objects and smart objects in the first place? Well, according to most of the advice in this book, it’s so that functionality can be coupled with data. This leads to weird concepts like DTOs. Because now, instead of having standalone functions to operate on data, you have to somehow convert that data to a “Smart” object.</p>
-
-<p>What do you accomplish through this? Well… nothing really. Some people will argue that binding data to logic avoids leaking implementation details. Well, if you don’t want to leak implementation details, make sure the data structures are strictly defined internally to your library. And if you’re coding for yourself, then why the hell would you hide implementation details from yourself?</p>
-
-<p>You, as the maintainer of the code, need to know how it works! Why would you ever obfuscate that from yourself? All you’re doing is making it harder to maintain and shooting yourself in the foot for no reason! So, instead of transforming dumb data to “smart” data, how ‘bout you consider using some standalone functions instead?</p>
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="nc">SvgObject</span> <span class="p">{</span>
+</code></pre></div></div> <p>The beautiful thing about listing 6-MyImplementation is that now nobody is confused! The type declares very loudly exactly what you’re working with. There is no obfuscation through interface-ification. Everything is immediately visible and the user doesn’t have to worry what the hell they’re getting passed every time they see something like <code class="language-plaintext highlighter-rouge">public void foo(Point whoKnowsWhatThisIs)</code>.</p> <p>After this, Bob goes on to explain the difference between data structures and objects. He seems to be referring to data structures like POD (Plain Old Data) in C++: <code class="language-plaintext highlighter-rouge">struct</code>’s that have dumb data. As opposed to the typical definition programmers use data structures for: a common structure/container of generic data like <code class="language-plaintext highlighter-rouge">HashMap</code>s, <code class="language-plaintext highlighter-rouge">List</code>s, <code class="language-plaintext highlighter-rouge">Vector</code>s, etc.</p> <p>I think his explanation here is actually quite good, and he gives a good qualification at the end of this section:</p> <blockquote> <p>Mature Programmers know that the idea that everything is an object <em>is a myth</em>. Sometimes you really <em>do</em> want simple data structures with procedures operating on them. (Clean Code P.97)</p> </blockquote> <p>This is good advice, and one that I don’t see a lot of the actual examples in this book following.</p> <p>This chapter ends with advice about using DTOs (Data Transfer Objects) to transform dumb data into an object. This is dumb advice, and it accomplishes nothing but adding bloat to your code. Think about it, why do we need dumb objects and smart objects in the first place? Well, according to most of the advice in this book, it’s so that functionality can be coupled with data. This leads to weird concepts like DTOs. Because now, instead of having standalone functions to operate on data, you have to somehow convert that data to a “Smart” object.</p> <p>What do you accomplish through this? Well… nothing really. Some people will argue that binding data to logic avoids leaking implementation details. Well, if you don’t want to leak implementation details, make sure the data structures are strictly defined internally to your library. And if you’re coding for yourself, then why the hell would you hide implementation details from yourself?</p> <p>You, as the maintainer of the code, need to know how it works! Why would you ever obfuscate that from yourself? All you’re doing is making it harder to maintain and shooting yourself in the foot for no reason! So, instead of transforming dumb data to “smart” data, how ‘bout you consider using some standalone functions instead?</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="nc">SvgObject</span> <span class="p">{</span>
     <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Path</span><span class="o">&gt;</span> <span class="n">paths</span><span class="p">;</span>
     <span class="n">Vec4</span> <span class="n">fillColor</span><span class="p">;</span>
     <span class="n">PathFillRule</span> <span class="n">fillRule</span><span class="p">;</span>
@@ -851,56 +472,7 @@
     <span class="kt">void</span> <span class="n">moveTo</span><span class="p">(</span><span class="n">SvgObject</span><span class="o">&amp;</span> <span class="n">svg</span><span class="p">);</span>
     <span class="kt">void</span> <span class="n">close</span><span class="p">(</span><span class="n">SvgObject</span><span class="o">&amp;</span> <span class="n">svg</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre></div></div>
-
-<p>This little mock implementation of a hypothetical SVG object makes sure the data is dumb and easily accessible, but the programmer has free access to an API that allows them to do several things with it. No “smart” data here, but you still get all the benefits of the “smartness”!</p>
-
-<p>This blog post is already very long, so I’m going to cut it off here. If I decide to jump back into this holy relic among corporate programmers far and wide, I’ll write a second blog post with a review of what I read. Hopefully you enjoyed this, if you don’t agree with what I said, cool. Coding is very opinionated and most of the time there is no “right” answer, so you have every right to your opinion.</p>
-
-<p>Anyways, see ya.</p>
-
-</div>
-
-<div class="related">
-  <h2>Related Posts</h2>
-  <ul class="related-posts">
-    
-      <li>
-        <h3>
-          <a href="/iphone/android/2023/08/10/switching-android-to-iphone/">
-            Switching from Android to iPhone
-            <small>10 Aug 2023</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="/games/2021/10/07/the-math-behind-font-rasterization/">
-            The Math Behind Font Rasterization
-            <small>07 Oct 2021</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="/games/2020/04/16/on-cameras-in-opengl/">
-            Cameras in OpenGL
-            <small>16 Apr 2020</small>
-          </a>
-        </h3>
-      </li>
-    
-  </ul>
-</div>
-
-    </div>
-
-  </body>
-
-  <!-- Enable MathJax -->
-  <script type="text/x-mathjax-config">
+</code></pre></div></div> <p>This little mock implementation of a hypothetical SVG object makes sure the data is dumb and easily accessible, but the programmer has free access to an API that allows them to do several things with it. No “smart” data here, but you still get all the benefits of the “smartness”!</p> <p>This blog post is already very long, so I’m going to cut it off here. If I decide to jump back into this holy relic among corporate programmers far and wide, I’ll write a second blog post with a review of what I read. Hopefully you enjoyed this, if you don’t agree with what I said, cool. Coding is very opinionated and most of the time there is no “right” answer, so you have every right to your opinion.</p> <p>Anyways, see ya.</p> </div> <div class="related"> <h2>Related Posts</h2> <ul class="related-posts"> <li> <h3> <a href="/iphone/android/2023/08/10/switching-android-to-iphone/"> Switching from Android to iPhone <small>10 Aug 2023</small> </a> </h3> </li> <li> <h3> <a href="/games/2021/10/07/the-math-behind-font-rasterization/"> The Math Behind Font Rasterization <small>07 Oct 2021</small> </a> </h3> </li> <li> <h3> <a href="/games/2020/04/16/on-cameras-in-opengl/"> Cameras in OpenGL <small>16 Apr 2020</small> </a> </h3> </li> </ul> </div> </div> </body> <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -909,6 +481,4 @@
       "HTML-CSS": { linebreaks: { automatic: true } },
       SVG: { linebreaks: { automatic: true } }
     });
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-</html>
+  </script> <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> </html>
