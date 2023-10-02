@@ -4,7 +4,7 @@ title:  "Why are people still recommending this book?"
 date:   2022-02-02 12:00:00 -0500
 categories: [code]
 tags: [clean code, bob martin, code]
-cover: /public/images/cleanCodeReview/bookCover.jpg
+cover: /public/images/cleanCodeReview/bookCover.png
 ---
 
 I decided to \*ahem\* dive into the ancient holy relic (among corporate programmers) that is called "Clean Code". Below is an unfiltered recounting of my dangerous opinions on the matter. Proceed with caution.
@@ -26,7 +26,7 @@ In fact, the only observable metric he gives about clean code in this introducti
 
 After explaining the Zen of "clean code", Bob launches into the meat of the book. Of course, all programs start with names. How to name your files, how to name your functions, how to name your variables, and on and on. So it's a natural place to begin talking about code "cleanliness".
 
-I mostly agree with everything Bob says in the second chapter. Names should be expressive and you should allow the type system to add additonal clarity to the intent of your variables. Hungarian notation is outdated. If your language allows custom postfix operators like C++, use those to express your intentions for things like numbers with units or complex types, for example:
+I mostly agree with everything Bob says in the second chapter. Names should be expressive and you should allow the type system to add additional clarity to the intent of your variables. Hungarian notation is outdated. If your language allows custom postfix operators like C++, use those to express your intentions for things like numbers with units or complex types, for example:
 
 ```cpp
 Color color = "#FF2311"_hexColor;
@@ -184,7 +184,7 @@ Before, if a user wanted to understand what was happening, they simply had to lo
 
 Now, you have to jump through 5 different functions and several divergent paths of control flow. Each time you have to jump into a new function, your brain is forced to rebuild a mental "stack" of what the state of the class is. This compounds exponentially with every new function call added.
 
-Additionally, the proficient use of side effects means that you cannot intuititively look at any individual piece of this code and safely assume that it won't modify random state.
+Additionally, the proficient use of side effects means that you cannot intuitively look at any individual piece of this code and safely assume that it won't modify random state.
 
 Finally, the API is worse! Now, instead of simply calling a function, your forced to create an unnecessary object, and then call a function on the object. Why is this logic stored in a `make` function? Why is it not in the constructor, at least obviating the need for these random function calls from the end-user? This piece of code looks anything but clean to me.
 
@@ -254,7 +254,7 @@ public static String testableHtml(
 }
 ```
 
-Now, I agree with Bob that this is a very poorly written function, but I disagree with the propsed fixes that Bob presents. Bob proposes to fix this method by shortening it to this (I say shortening, but you can see the *actual* entirety of this monstrosity at the end of this section):
+Now, I agree with Bob that this is a very poorly written function, but I disagree with the proposed fixes that Bob presents. Bob proposes to fix this method by shortening it to this (I say shortening, but you can see the *actual* entirety of this monstrosity at the end of this section):
 
 ```java
 public static String renderPageWithSEtupAndTeardown(
@@ -342,7 +342,7 @@ The last step I took was inlining the if-statements to reduce the level of neste
 
 Notice, the one thing I did _not_ do is remove the logical flow of this function and add unnecessary side effects. I left all the core logic in the function and the reader can still follow the control flow. Additionally, the function that I added does not mutate the data (any more than it already was) but returns a new String with the result. This allows me to re-use that function with certainty that it won't add side-effects that the reader now has to look for.
 
-Bob's code on the other hand relies on side-effects and removes the core flow of logic. This requires the reader of the function to either implicitly be aware of that fact, or to risk modifying code and then cursing at themself later when they find out changing that function accidentally changed 500 unrelated pieces of state unintentionally.
+Bob's code on the other hand relies on side-effects and removes the core flow of logic. This requires the reader of the function to either implicitly be aware of that fact, or to risk modifying code and then cursing at themselves later when they find out changing that function accidentally changed 500 unrelated pieces of state unintentionally.
 
 After this, Bob goes through the qualities of a good function. I actually agree with a lot of what he says, but some of it is nonsense, and he doesn't appear to follow his own advice (except for the biggest piece of nonsense which is functions should be small).
 
@@ -382,7 +382,7 @@ Honestly, I have no words. This whole section explains that switch statements ar
 
 Bob is actively promoting the idea that you should _obfuscate your intentions_ from future readers of the program. This statement alone is probably one of the worst statements I've seen so far in the book.
 
-My suggestion, use a switch statement if it makes sense, and preferabbly make sure your compiler emits warnings for unhandled switch cases.
+My suggestion, use a switch statement if it makes sense, and preferably make sure your compiler emits warnings for unhandled switch cases.
 
 ### Use Descriptive Names
 
@@ -392,11 +392,11 @@ Ideally, the name should be descriptive and short. Sometimes the name has to be 
 
 Sorry about that, I guess... a thousand words is worth a thousand words?
 
-This is one of the reccurring themes in the book I think Bob is confused about. He seems to correctly see the problem, dense blocks of code that have very low signal-to-noise ratios, and then misunderstands what he's seeing and proposes splitting up that information density in a horrible way.
+This is one of the recurring themes in the book I think Bob is confused about. He seems to correctly see the problem, dense blocks of code that have very low signal-to-noise ratios, and then misunderstands what he's seeing and proposes splitting up that information density in a horrible way.
 
 For example, he thinks functions should be small because it reduces the density of information. While this is true, sometimes logic is dense and that density should be visible. In those cases, you should use liberal whitespace and comments explaining _why_ the code is doing what it's doing.
 
-Java is particularly bad for increasing information density by promting styles like brackets on the same line of function declarations. This probably makes a lot of Java code seem more dense than it really is and further adds to this confusion.
+Java is particularly bad for increasing information density by promoting styles like brackets on the same line of function declarations. This probably makes a lot of Java code seem more dense than it really is and further adds to this confusion.
 
 ### Function Arguments
 
@@ -412,7 +412,7 @@ Instead, write clear documentation about the purpose of all the arguments. I thi
 
 You could reduce some of those arguments by doing something like having a `Vec2{x, y}` structure instead of separating those. However, that isn't necessary and this code is just as readable as code that wraps the parameters in structures like that.
 
-Another important note that Bob has in here is flag arguments. I agree with this. You should not pass boolean's as flags to a function. It makes reading the code very difficult (for example `createWindow(true)` vs `createWindow(WindowFlag::Maximized)`). I disagree with his solution though, which is to split the function. Sometimes that's the right call, but other times it's fine to create an enum and strongly type the flag. This makes it clearer for the reader, and easier to extend if that flag ever needs to have more than 2 possible values (true, false).
+Another important note that Bob has in here is flag arguments. I agree with this. You should not pass Boolean's as flags to a function. It makes reading the code very difficult (for example `createWindow(true)` vs `createWindow(WindowFlag::Maximized)`). I disagree with his solution though, which is to split the function. Sometimes that's the right call, but other times it's fine to create an enum and strongly type the flag. This makes it clearer for the reader, and easier to extend if that flag ever needs to have more than 2 possible values (true, false).
 
 ### Have no Side Effects
 
@@ -422,7 +422,7 @@ I agree with this section. Your functions should have as few side effects as pos
 
 I think this was a novel idea and that it had some merit in 2008. However it's 2023 now, and the results of the `try {} catch {}` pattern are in, and it doesn't look good. From experience, and reading several other codebases, the most common use case of try/catch blocks is to ignore error handling altogether. Additionally, try/catch blocks promote goto statements in the form of jumping out of deeply nested call stacks to some random place in the code. Both of these reasons are reasons I _prefer_ error codes to try/catch blocks.
 
-If you use error codes, you force the developer to handle the error as soon as it occurrs. Further, Bob's example of why this is bad is just silly. He says error codes are bad because then you end up with something like this:
+If you use error codes, you force the developer to handle the error as soon as it occurs. Further, Bob's example of why this is bad is just silly. He says error codes are bad because then you end up with something like this:
 
 ```java
 if (deletePage(page) == E_OK) {
@@ -484,7 +484,7 @@ Wow, magical isn't it? I would like to give Bob the benefit of the doubt and ass
 
 Except, later on, he mentions that "if you keep your functions small, then the occasional multiple `return`, `break`, or `continue` statement does no harm and can sometimes even be more expressive than the single-entry, single-exit rule" (_Clean Code_ P.49). I agree with this statement, and we can apply it to this error handling.
 
-Now, this function is up front about the failure conditions. Each failure condition is listed first in the function. Now future readers/maintainers can clearly see the assumptions this function makes and where it can fail. Additionally, you can make each error code more explicit so that the caller can respond to and handle these errors themself.
+Now, this function is up front about the failure conditions. Each failure condition is listed first in the function. Now future readers/maintainers can clearly see the assumptions this function makes and where it can fail. Additionally, you can make each error code more explicit so that the caller can respond to and handle these errors themselves.
 
 Additionally, the errors are actually handled here, or the handling is forwarded up the call stack. In Bob's version, the errors are hidden and suppressed and the caller can just ignore them.
 
@@ -673,7 +673,7 @@ One additional thing I would add that Bob didn't, is I believe comments that lin
 
 ## Chapter 5: Formatting
 
-I skimmed through this chapter very briefly. For all intents and purposes, this is irrelvant today. Use a code linter/formatter for code formatting. 'nough said.
+I skimmed through this chapter very briefly. For all intents and purposes, this is irrelevant today. Use a code linter/formatter for code formatting. 'nough said.
 
 ## Chapter 6: Objects and Data Structures
 
@@ -726,13 +726,13 @@ public class Point {
     public double y;
 }
 
-public class CartesianPoint {
+public class PolarPoint {
     public double r;
     public double theta;
 }
 ```
 
-The beautiful thing about listing 6-MyImplementation is that now nobody is confused! The type declares very loudly exactly what you're working with. There is no obfuscation through interface-ification. Everything is immediately visible and the user doesn't have to worry what the hell they're getting passed everytime they see something like `public void foo(Point whoKnowsWhatThisIs)`.
+The beautiful thing about listing 6-MyImplementation is that now nobody is confused! The type declares very loudly exactly what you're working with. There is no obfuscation through interface-ification. Everything is immediately visible and the user doesn't have to worry what the hell they're getting passed every time they see something like `public void foo(Point whoKnowsWhatThisIs)`.
 
 After this, Bob goes on to explain the difference between data structures and objects. He seems to be referring to data structures like POD (Plain Old Data) in C++: `struct`'s that have dumb data. As opposed to the typical definition programmers use data structures for: a common structure/container of generic data like `HashMap`s, `List`s, `Vector`s, etc.
 

@@ -59,15 +59,18 @@ html {
 }
 
 body {
-  color: #515151;
-  background-color: #fff;
+  /*color: #515151;*/
+  color: #3f3f3f;
+  background-color: #F8F0E3;
   -webkit-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  background-image: url("/public/images/starryField.png");
 }
 
 /* No `:visited` state is required by default (browsers will use `a`) */
 a {
-  color: #268bd2;
+  /*color: #268bd2;*/
+  color: #6179b1;
   text-decoration: none;
 }
 a strong {
@@ -187,8 +190,10 @@ pre {
 code {
   padding: .25em .5em;
   font-size: 85%;
-  color: #bf616a;
-  background-color: #f9f9f9;
+  /*color: #bf616a;*/
+  /*background-color: #f9f9f9;*/
+  color: #f8f0e3;
+  background-color: #122b3b;
   border-radius: 3px;
 }
 pre {
@@ -254,8 +259,8 @@ pre code {
 blockquote {
   padding: .5rem 1rem;
   margin: .8rem 0;
-  color: #7a7a7a;
-  border-left: .25rem solid #e5e5e5;
+  /*color: #7a7a7a;*/
+  /*border-left: .25rem solid #e5e5e5;*/
 }
 blockquote p:last-child {
   margin-bottom: 0;
@@ -391,7 +396,15 @@ tbody tr:nth-child(odd) th {
   display: block;
   margin-top: -.5rem;
   margin-bottom: 1rem;
-  color: #9a9a9a;
+  /*color: #9a9a9a;*/
+}
+
+.post-date, blockquote {
+  color: #5c5c5c;
+}
+
+blockquote {
+  border-left: .25rem solid #9f9f9f;
 }
 
 /* Related posts */
@@ -476,4 +489,86 @@ a.pagination-item:hover {
 
 .sidebar-hz-navs a:hover {
   color: #f56969;
+}
+
+/*
+ Custom Animations!
+*/
+
+.svg-fingerprint::before {
+  content: url("/public/images/androidToiPhone/fingerprint.svg");
+  display: inline-block;
+  height: 1.1rem;
+  width: 1.1rem;
+  line-height: normal;
+  text-align: center;
+}
+
+span.em-dash::before {
+  content: '\2014';
+}
+
+span.extra-emphasis {
+  display: inline;
+  font-size: 1.05rem;
+  font-weight: bold;
+  line-height: normal;
+  text-align: center;
+}
+
+span.extra-emphasis-2 {
+  display: inline;
+  font-size: 1.1rem;
+  font-weight: bold;
+  line-height: normal;
+  text-align: center;
+}
+
+span.extra-emphasis-3 {
+  display: inline;
+  font-size: 1.15rem;
+  font-weight: bold;
+  line-height: normal;
+  text-align: center;
+}
+
+span.small-note {
+  display: inline;
+  font-size: 0.75rem;
+  font-weight: bold;
+  line-height: normal;
+}
+
+span.shake-me {
+  display: inline-block;
+  font-size: 1.05rem;
+  font-weight: bold;
+  line-height: normal;
+  text-align: center;
+
+  /* Start the shake animation and make the animation last for 0.5 seconds */
+  animation-name: shake;
+  animation-duration: 0.5s;
+
+  /* When the animation is finished, start again */
+  animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+iframe {
+  display: block;
+  margin: 1rem auto;
 }
