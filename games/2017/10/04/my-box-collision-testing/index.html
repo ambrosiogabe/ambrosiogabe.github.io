@@ -1,4 +1,132 @@
-<!DOCTYPE html> <html lang="en-us"> <head> <link href="https://gmpg.org/xfn/11" rel="profile"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta http-equiv="content-type" content="text/html; charset=utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"> <title> Install My First Box Collision Test &middot; Gabe's Blog </title> <link rel="stylesheet" href="/public/css/poole.css"> <link rel="stylesheet" href="/public/css/syntax.css"> <link rel="stylesheet" href="/public/css/hyde.css"> <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface"> <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous"> <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png"> <link rel="shortcut icon" href="/public/favicon.ico"> <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml"> </head> <body class="theme-base-0d"> <div class="sidebar"> <div class="container sidebar-sticky"> <div class="sidebar-about"> <h1> <a href="/"> Gabe's Blog </a> </h1> <p class="lead">A site for programmers by a programmer</p> </div> <nav class="sidebar-nav"> <a class="sidebar-nav-item" href="/">Home</a> <a class="sidebar-nav-item" href="/about/">About</a> <a class="sidebar-nav-item" href="/projects/">Projects</a> <div class="sidebar-hz-navs"> <a class="sidebar-nav-item" href="https://www.youtube.com/gameswithgabe" target="_blank"><i class="fab fa-youtube"></i></a> <a class="sidebar-nav-item" href="https://github.com/ambrosiogabe" target="_blank"><i class="fab fa-github"></i></a> </div> </nav> <p>&copy; 2022-2023. All rights reserved.</p> </div> </div> <div class="content container"> <div class="post"> <div> <img src="/public/images/boxCollisionTestArticle/gameplay.png"></img> </div> <h1 class="post-title">Install My First Box Collision Test</h1> <span class="post-date">04 Oct 2017</span> <h1 id="download">Download</h1> <p>To download simply right click the link below and save it onto you computer. Make sure you have Java installed, and then click the downloaded file to play!</p> <p><a href="https://github.com/ambrosiogabe/ambrosiogabe.github.io/releases/download/BoxCollisionMinigame/Minigame.jar">Minigame.jar (4.8kB)</a></p> <h1 id="how-it-works">How it Works</h1> <p>Here’s my first attempt at box collision in Java. I was inspired to create a simple 2D platformer with some very simple physics and this is what came of it. I hope you enjoy it. While you’re looking at this too, I may as well explain how this game came about.</p> <p>Now this game is very simple, it’s just a one level scene where you get the coin then touch the door and win. It could have potentially grown into something much more complex, but I never got to that point (although I am working on something much better, keep looking it should be here soon). The way I do my box collision detection is actually using some vector calculus. Now the concepts are somewhat complicated, and I mostly used algorithms already available, although the concept is quite simple. What the program does is it first draws a vector from the character to the nearest “collider” as shown below.</p> <img src="/public/images/boxCollisionTestArticle/vectors1.png" alt="box-collision-vectors"/> <p>And the way I coded my game, it actually draws a vector between each and every object and the player, I did not draw it for simplicities sake. But if you can imagine a vector drawn between each and every object and the character. What the code then does is it calculates the vectors for the characters every move. Once one of the vectors is length negative, or less than zero, i.e the character is colliding, it “pushes” the character back so that it is no longer inside whatever object it has collided with. This all happens so fast that it gives the illusion of the character being “blocked” by the “solid” objects. All of this is of course, just manipulation of numbers.</p> <h1 id="the-code">The Code</h1> <p>Here’s the code that actually runs it. It looks confusing and everything, but it’s just some vector calculus that keeps our character from falling through solid objects.</p> <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyRectangle</span> <span class="o">{</span>
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <script>
+    function resizeIframe(obj) {
+      obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+    }
+  </script>
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Install My First Box Collision Test &middot; Gabe's Blog
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class="theme-base-0d">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Gabe's Blog
+        </a>
+      </h1>
+      <p class="lead">A site for programmers by a programmer</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">About</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/projects/">Projects</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <div class="sidebar-hz-navs">
+        <a class="sidebar-nav-item" href="https://www.youtube.com/gameswithgabe" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a class="sidebar-nav-item" href="https://github.com/ambrosiogabe" target="_blank"><i class="fab fa-github"></i></a>
+      </div>
+    </nav>
+
+    <p>&copy; 2022-2023. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <div>
+    <img src="/public/images/boxCollisionTestArticle/gameplay.png"></img>
+  </div>
+
+  <h1 class="post-title">Install My First Box Collision Test</h1>
+  <span class="post-date">04 Oct 2017</span>
+  <h1 id="download">Download</h1>
+
+<p>To download simply right click the link below and save it onto you computer. Make sure you have Java installed, and then click the downloaded file to play!</p>
+
+<p><a href="https://github.com/ambrosiogabe/ambrosiogabe.github.io/releases/download/BoxCollisionMinigame/Minigame.jar">Minigame.jar (4.8kB)</a></p>
+
+<h1 id="how-it-works">How it Works</h1>
+
+<p>Here’s my first attempt at box collision in Java. I was inspired to create a simple 2D platformer with some very simple physics and this is what came of it. I hope you enjoy it. While you’re looking at this too, I may as well explain how this game came about.</p>
+
+<p>Now this game is very simple, it’s just a one level scene where you get the coin then touch the door and win. It could have potentially grown into something much more complex, but I never got to that point (although I am working on something much better, keep looking it should be here soon). The way I do my box collision detection is actually using some vector calculus. Now the concepts are somewhat complicated, and I mostly used algorithms already available, although the concept is quite simple. What the program does is it first draws a vector from the character to the nearest “collider” as shown below.</p>
+
+<img src="/public/images/boxCollisionTestArticle/vectors1.png" alt="box-collision-vectors" />
+<p>And the way I coded my game, it actually draws a vector between each and every object and the player, I did not draw it for simplicities sake. But if you can imagine a vector drawn between each and every object and the character. What the code then does is it calculates the vectors for the characters every move. Once one of the vectors is length negative, or less than zero, i.e the character is colliding, it “pushes” the character back so that it is no longer inside whatever object it has collided with. This all happens so fast that it gives the illusion of the character being “blocked” by the “solid” objects. All of this is of course, just manipulation of numbers.</p>
+
+<h1 id="the-code">The Code</h1>
+
+<p>Here’s the code that actually runs it. It looks confusing and everything, but it’s just some vector calculus that keeps our character from falling through solid objects.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyRectangle</span> <span class="o">{</span>
  <span class="kd">public</span> <span class="kt">int</span> <span class="n">width</span><span class="o">;</span>
  <span class="kd">public</span> <span class="kt">int</span> <span class="n">height</span><span class="o">;</span>
  <span class="kd">public</span> <span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">,</span> <span class="n">dx</span><span class="o">,</span> <span class="n">dy</span><span class="o">;</span>
@@ -73,7 +201,53 @@
  <span class="o">}</span>
 
 <span class="o">}</span>
-</code></pre></div></div> <p>You can use this code as some simple box collision detection, just use two objects of type MyRectangle, and the function blockRectangle, and it will ensure that the two objects do not collide. Hope you enjoy! Questions or comment? Leave them below and I will get to them as soon as possible!</p> </div> <div class="related"> <h2>Related Posts</h2> <ul class="related-posts"> <li> <h3> <a href="/iphone/android/2023/08/10/switching-android-to-iphone/"> Switching from Android to iPhone <small>10 Aug 2023</small> </a> </h3> </li> <li> <h3> <a href="/code/2022/02/02/a-review-of-clean-code/"> Why are people still recommending this book? <small>02 Feb 2022</small> </a> </h3> </li> <li> <h3> <a href="/games/2021/10/07/the-math-behind-font-rasterization/"> The Math Behind Font Rasterization <small>07 Oct 2021</small> </a> </h3> </li> </ul> </div> </div> </body> <script type="text/x-mathjax-config">
+</code></pre></div></div>
+
+<p>You can use this code as some simple box collision detection, just use two objects of type MyRectangle, and the function blockRectangle, and it will ensure that the two objects do not collide. Hope you enjoy! Questions or comment? Leave them below and I will get to them as soon as possible!</p>
+
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/iphone/android/2023/08/10/switching-android-to-iphone/">
+            Switching from Android to iPhone
+            <small>10 Aug 2023</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/code/2022/02/02/a-review-of-clean-code/">
+            Why are people still recommending this book?
+            <small>02 Feb 2022</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/games/2021/10/07/the-math-behind-font-rasterization/">
+            The Math Behind Font Rasterization
+            <small>07 Oct 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+
+  <!-- Enable MathJax -->
+  <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -82,4 +256,6 @@
       "HTML-CSS": { linebreaks: { automatic: true } },
       SVG: { linebreaks: { automatic: true } }
     });
-  </script> <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> </html>
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</html>

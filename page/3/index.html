@@ -1,4 +1,179 @@
-<!DOCTYPE html> <html lang="en-us"> <head> <link href="https://gmpg.org/xfn/11" rel="profile"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta http-equiv="content-type" content="text/html; charset=utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"> <title> Gabe's Blog &middot; A Jekyll theme </title> <link rel="stylesheet" href="/public/css/poole.css"> <link rel="stylesheet" href="/public/css/syntax.css"> <link rel="stylesheet" href="/public/css/hyde.css"> <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface"> <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous"> <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png"> <link rel="shortcut icon" href="/public/favicon.ico"> <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml"> </head> <body class="theme-base-0d"> <div class="sidebar"> <div class="container sidebar-sticky"> <div class="sidebar-about"> <h1> <a href="/"> Gabe's Blog </a> </h1> <p class="lead">A site for programmers by a programmer</p> </div> <nav class="sidebar-nav"> <a class="sidebar-nav-item" href="/">Home</a> <a class="sidebar-nav-item" href="/about/">About</a> <a class="sidebar-nav-item" href="/projects/">Projects</a> <div class="sidebar-hz-navs"> <a class="sidebar-nav-item" href="https://www.youtube.com/gameswithgabe" target="_blank"><i class="fab fa-youtube"></i></a> <a class="sidebar-nav-item" href="https://github.com/ambrosiogabe" target="_blank"><i class="fab fa-github"></i></a> </div> </nav> <p>&copy; 2022-2023. All rights reserved.</p> </div> </div> <div class="content container"> <div class="posts"> <div class="post"> <div> <a href="/game-programming/2017/09/15/some-insights-into-game-programming/"><img src="/public/images/articleHeaders/downloadPong.png"></img></a> </div> <h1 class="post-title"> <a href="/game-programming/2017/09/15/some-insights-into-game-programming/"> Some Insights into Game Programming </a> </h1> <span class="post-date">15 Sep 2017</span> <p>What game to start with? What programming language do I use? Do I build my own game engine? These are all questions that we ask and more, I wish to address some of these if I can. First, let me start off by saying that I am a self-taught game programmer, as the title of my website implies, so all the things I will teach you are things that I learned myself and you can... <hr/> </div> <div class="post"> <div> <a href="/data-structures/2017/09/15/singly-linked-lists-java/"><img src="/public/images/articleHeaders/codeSinglyLinkedListJava.png"></img></a> </div> <h1 class="post-title"> <a href="/data-structures/2017/09/15/singly-linked-lists-java/"> How to Program a Singly Linked List-Java </a> </h1> <span class="post-date">15 Sep 2017</span> <p>Perhaps you have seen lists in Python, or array lists in Java. A singly linked list is similar, but different in that you can use it to add elements indefinitely without worrying about size restriction, but it does not have a way to reach the element by index.</p> <p>Before we can start coding it is important to understand what exactly a singly linked list is, look at the picture above. A singly linked list is... <hr/> </div> <div class="post"> <div> <a href="/programming/2017/09/13/coding-a-recursive-square-function-in-python/"><img src="/public/images/articleHeaders/codeRecursiveFactorialPython.png"></img></a> </div> <h1 class="post-title"> <a href="/programming/2017/09/13/coding-a-recursive-square-function-in-python/"> How to Build a Recursive Factorial Function in Python/Java </a> </h1> <span class="post-date">13 Sep 2017</span> <p>Have you ever wondered how to implement a recursive function that does th factorial of a number for you? Well maybe you haven’t, and maybe you just need to crank something out for class. Anyway you came here looking for some information on how to do it, so I’ll show you how it’s done and try and give you some insight on what’s happening behind the scenes.</p> <h2 id="python-3"><u>Python 3</u></h2> <p>So in Python 3 you... <hr/> </div> </div> <div class="pagination"> <span class="pagination-item older">Older</span> <a class="pagination-item newer" href="/page/2">Newer</a> </div> </div> </body> <script type="text/x-mathjax-config">
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <script>
+    function resizeIframe(obj) {
+      obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+    }
+  </script>
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Gabe's Blog &middot; A Jekyll theme
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class="theme-base-0d">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Gabe's Blog
+        </a>
+      </h1>
+      <p class="lead">A site for programmers by a programmer</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">About</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/projects/">Projects</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <div class="sidebar-hz-navs">
+        <a class="sidebar-nav-item" href="https://www.youtube.com/gameswithgabe" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a class="sidebar-nav-item" href="https://github.com/ambrosiogabe" target="_blank"><i class="fab fa-github"></i></a>
+      </div>
+    </nav>
+
+    <p>&copy; 2022-2023. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="posts">
+  
+  <div class="post">
+    <div>
+      <a href="/game-programming/2017/09/15/some-insights-into-game-programming/"><img src="/public/images/articleHeaders/downloadPong.png"></img></a>
+    </div>
+
+    <h1 class="post-title">
+      <a href="/game-programming/2017/09/15/some-insights-into-game-programming/">
+        Some Insights into Game Programming
+      </a>
+    </h1>
+
+    <span class="post-date">15 Sep 2017</span>
+
+    <p>What game to start with? What programming language do I use? Do I build my own game engine? These are all questions that we ask and more, I wish to address some of these if I can. First, let me start off by saying that I am a self-taught game programmer, as the title of my website implies, so all the things I will teach you are things that I learned myself and you can...
+
+    <hr />
+  </div>
+  
+  <div class="post">
+    <div>
+      <a href="/data-structures/2017/09/15/singly-linked-lists-java/"><img src="/public/images/articleHeaders/codeSinglyLinkedListJava.png"></img></a>
+    </div>
+
+    <h1 class="post-title">
+      <a href="/data-structures/2017/09/15/singly-linked-lists-java/">
+        How to Program a Singly Linked List-Java
+      </a>
+    </h1>
+
+    <span class="post-date">15 Sep 2017</span>
+
+    <p>Perhaps you have seen lists in Python, or array lists in Java. A singly linked list is similar, but different in that you can use it to add elements indefinitely without worrying about size restriction, but it does not have a way to reach the element by index.</p> <p>Before we can start coding it is important to understand what exactly a singly linked list is, look at the picture above. A singly linked list is...
+
+    <hr />
+  </div>
+  
+  <div class="post">
+    <div>
+      <a href="/programming/2017/09/13/coding-a-recursive-square-function-in-python/"><img src="/public/images/articleHeaders/codeRecursiveFactorialPython.png"></img></a>
+    </div>
+
+    <h1 class="post-title">
+      <a href="/programming/2017/09/13/coding-a-recursive-square-function-in-python/">
+        How to Build a Recursive Factorial Function in Python/Java
+      </a>
+    </h1>
+
+    <span class="post-date">13 Sep 2017</span>
+
+    <p>Have you ever wondered how to implement a recursive function that does th factorial of a number for you? Well maybe you haven’t, and maybe you just need to crank something out for class. Anyway you came here looking for some information on how to do it, so I’ll show you how it’s done and try and give you some insight on what’s happening behind the scenes.</p> <h2 id="python-3"><u>Python 3</u></h2> <p>So in Python 3 you...
+
+    <hr />
+  </div>
+  
+</div>
+
+<div class="pagination">
+  
+    <span class="pagination-item older">Older</span>
+  
+  
+    
+      <a class="pagination-item newer" href="/page/2">Newer</a>
+    
+  
+</div>
+    </div>
+
+  </body>
+
+  <!-- Enable MathJax -->
+  <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -7,4 +182,6 @@
       "HTML-CSS": { linebreaks: { automatic: true } },
       SVG: { linebreaks: { automatic: true } }
     });
-  </script> <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> </html>
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</html>

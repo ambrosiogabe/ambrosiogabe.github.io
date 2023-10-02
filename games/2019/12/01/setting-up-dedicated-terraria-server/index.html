@@ -1,12 +1,290 @@
-<!DOCTYPE html> <html lang="en-us"> <head> <link href="https://gmpg.org/xfn/11" rel="profile"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta http-equiv="content-type" content="text/html; charset=utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"> <title> How to Make a Dedicated Terraria Server on Windows 10 &middot; Gabe's Blog </title> <link rel="stylesheet" href="/public/css/poole.css"> <link rel="stylesheet" href="/public/css/syntax.css"> <link rel="stylesheet" href="/public/css/hyde.css"> <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface"> <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous"> <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png"> <link rel="shortcut icon" href="/public/favicon.ico"> <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml"> </head> <body class="theme-base-0d"> <div class="sidebar"> <div class="container sidebar-sticky"> <div class="sidebar-about"> <h1> <a href="/"> Gabe's Blog </a> </h1> <p class="lead">A site for programmers by a programmer</p> </div> <nav class="sidebar-nav"> <a class="sidebar-nav-item" href="/">Home</a> <a class="sidebar-nav-item" href="/about/">About</a> <a class="sidebar-nav-item" href="/projects/">Projects</a> <div class="sidebar-hz-navs"> <a class="sidebar-nav-item" href="https://www.youtube.com/gameswithgabe" target="_blank"><i class="fab fa-youtube"></i></a> <a class="sidebar-nav-item" href="https://github.com/ambrosiogabe" target="_blank"><i class="fab fa-github"></i></a> </div> </nav> <p>&copy; 2022-2023. All rights reserved.</p> </div> </div> <div class="content container"> <div class="post"> <div> <img src="/public/images/terrariaServerArticle/terraria-server.png"></img> </div> <h1 class="post-title">How to Make a Dedicated Terraria Server on Windows 10</h1> <span class="post-date">01 Dec 2019</span> <p>I wanted to set up a dedicated Terraria server to run in the background of my Windows 10 PC, but there were no good tutorials out there. I stumbled my way through several different bits and pieces I found on the Internet, til I achieved this. Here is how I did it.</p> <h2 id="what-we-will-be-building">What We Will Be Building</h2> <p>In this tutorial, I will go over how to set up a dedicated Terraria server to run in the background of your Windows 10 PC. This means that you can set up a server and play with your friends whenever you like, but also be able to use your computer for other things.</p> <h2 id="step-1-install-appropriate-software">Step 1: Install Appropriate Software</h2> <p>You will need some additional software to get this to work properly on you’re computer. The software you need is listed below:</p> <ul> <li><a href="https://github.com/Pryaxis/TShock/releases/tag/v4.3.26">TShock</a>: This will be used to enable autosaving of your server every few minutes.</li> <li><a href="https://nssm.cc/download">NSSM</a>: This will be used to set up a daemon for the server to run on.</li> </ul> <p>And that should be it! Now a couple instructions to install the software properly.</p> <h3 id="installing-tshock">Installing TShock</h3> <p>To install TShock, go to this <a href="https://github.com/Pryaxis/TShock/releases/tag/v4.3.26">link</a> and click on <code class="language-plaintext highlighter-rouge">tshock_4.3.26.zip</code>. When prompted to save it, save it to your downloads folder or somewhere else that you will be able to easily find it. This is the version I installed, and you are welcome to follow along using it. If you want the latest version, go to this <a href="https://github.com/Pryaxis/TShock/releases">link</a> and click the version at the top, then install the zip file for that version.</p> <p>Once you have it installed, right click the file that was downloaded and press extract all, when prompted for a location, just leave the default and press OK.</p> <h3 id="installing-nssm">Installing NSSM</h3> <p>To install NSSM, go to this <a href="https://nssm.cc/download">link</a> and click on the link under latest release. Save this file to your downloads folder.</p> <img src="/public/images/terrariaServerArticle/installNSSM.png" alt="installNSSM"/> <p>Next, create a new folder under <code class="language-plaintext highlighter-rouge">C:\Program Files\</code> and name it nssm-2.0. You can replcae the 2.0 with whichever version you are using. After that, go back to where you downloaded the zip file, right-click it and press extract all, then extract the contents to the new folder you just created.</p> <h2 id="step-2-create-a-server-startup-file">Step 2: Create a Server Startup File</h2> <p>If you have not already done so, start up Terraria, and then click <code class="language-plaintext highlighter-rouge">Multiplayer</code>. Click <code class="language-plaintext highlighter-rouge">Host and Play</code>, then follow the steps to create a new world. Once that is complete, you can exit Terraria.</p> <p>Terraria saves all the worlds in the default location on Windows 10. To find the world that was just created go to <code class="language-plaintext highlighter-rouge">C:\Users\username\Documents\My Games\Terraria</code> and replace username with your user Windows username. You should see a folder labeled Worlds, and if you click into it, it should contain the newly created Terraria world, labeled <code class="language-plaintext highlighter-rouge">myWorld.wld</code>, where <code class="language-plaintext highlighter-rouge">myWorld</code> is the name of your world.</p> <p>Go up one directory back into the Terraria folder. Copy and paste the extracted TShock folder into this location, then create a new folder called Servers. Your directory should look similar to this:</p> <img src="/public/images/terrariaServerArticle/terrariaServersFolder.png" alt="Directory contents"/> <p>Navigate into the Servers folder that you just created. Create a new file called <code class="language-plaintext highlighter-rouge">myServerName.txt</code>, where <code class="language-plaintext highlighter-rouge">myServerName</code> is your server name. Open the file and copy and paste the following contents into the file.</p> <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">maxplayers</span><span class="o">=</span><span class="m">4</span>
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <script>
+    function resizeIframe(obj) {
+      obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+    }
+  </script>
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      How to Make a Dedicated Terraria Server on Windows 10 &middot; Gabe's Blog
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class="theme-base-0d">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Gabe's Blog
+        </a>
+      </h1>
+      <p class="lead">A site for programmers by a programmer</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">About</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/projects/">Projects</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <div class="sidebar-hz-navs">
+        <a class="sidebar-nav-item" href="https://www.youtube.com/gameswithgabe" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a class="sidebar-nav-item" href="https://github.com/ambrosiogabe" target="_blank"><i class="fab fa-github"></i></a>
+      </div>
+    </nav>
+
+    <p>&copy; 2022-2023. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <div>
+    <img src="/public/images/terrariaServerArticle/terraria-server.png"></img>
+  </div>
+
+  <h1 class="post-title">How to Make a Dedicated Terraria Server on Windows 10</h1>
+  <span class="post-date">01 Dec 2019</span>
+  <p>I wanted to set up a dedicated Terraria server to run in the background of my Windows 10 PC, but there were no good tutorials out there. I stumbled my way through several different bits and pieces I found on the Internet, til I achieved this. Here is how I did it.</p>
+
+<h2 id="what-we-will-be-building">What We Will Be Building</h2>
+
+<p>In this tutorial, I will go over how to set up a dedicated Terraria server to run in the background of your Windows 10 PC. This means that you can set up a server and play with your friends whenever you like, but also be able to use your computer for other things.</p>
+
+<h2 id="step-1-install-appropriate-software">Step 1: Install Appropriate Software</h2>
+
+<p>You will need some additional software to get this to work properly on you’re computer. The software you need is listed below:</p>
+
+<ul>
+  <li><a href="https://github.com/Pryaxis/TShock/releases/tag/v4.3.26">TShock</a>: This will be used to enable autosaving of your server every few minutes.</li>
+  <li><a href="https://nssm.cc/download">NSSM</a>: This will be used to set up a daemon for the server to run on.</li>
+</ul>
+
+<p>And that should be it! Now a couple instructions to install the software properly.</p>
+
+<h3 id="installing-tshock">Installing TShock</h3>
+
+<p>To install TShock, go to this <a href="https://github.com/Pryaxis/TShock/releases/tag/v4.3.26">link</a> and click on <code class="language-plaintext highlighter-rouge">tshock_4.3.26.zip</code>. When prompted to save it, save it to your downloads folder or somewhere else that you will be able to easily find it. This is the version I installed, and you are welcome to follow along using it. If you want the latest version, go to this <a href="https://github.com/Pryaxis/TShock/releases">link</a> and click the version at the top, then install the zip file for that version.</p>
+
+<p>Once you have it installed, right click the file that was downloaded and press extract all, when prompted for a location, just leave the default and press OK.</p>
+
+<h3 id="installing-nssm">Installing NSSM</h3>
+
+<p>To install NSSM, go to this <a href="https://nssm.cc/download">link</a> and click on the link under latest release. Save this file to your downloads folder.</p>
+
+<img src="/public/images/terrariaServerArticle/installNSSM.png" alt="installNSSM" />
+<p>Next, create a new folder under <code class="language-plaintext highlighter-rouge">C:\Program Files\</code> and name it nssm-2.0. You can replcae the 2.0 with whichever version you are using. After that, go back to where you downloaded the zip file, right-click it and press extract all, then extract the contents to the new folder you just created.</p>
+
+<h2 id="step-2-create-a-server-startup-file">Step 2: Create a Server Startup File</h2>
+
+<p>If you have not already done so, start up Terraria, and then click <code class="language-plaintext highlighter-rouge">Multiplayer</code>. Click <code class="language-plaintext highlighter-rouge">Host and Play</code>, then follow the steps to create a new world. Once that is complete, you can exit Terraria.</p>
+
+<p>Terraria saves all the worlds in the default location on Windows 10. To find the world that was just created go to <code class="language-plaintext highlighter-rouge">C:\Users\username\Documents\My Games\Terraria</code> and replace username with your user Windows username. You should see a folder labeled Worlds, and if you click into it, it should contain the newly created Terraria world, labeled <code class="language-plaintext highlighter-rouge">myWorld.wld</code>, where <code class="language-plaintext highlighter-rouge">myWorld</code> is the name of your world.</p>
+
+<p>Go up one directory back into the Terraria folder. Copy and paste the extracted TShock folder into this location, then create a new folder called Servers. Your directory should look similar to this:</p>
+
+<img src="/public/images/terrariaServerArticle/terrariaServersFolder.png" alt="Directory contents" />
+<p>Navigate into the Servers folder that you just created. Create a new file called <code class="language-plaintext highlighter-rouge">myServerName.txt</code>, where <code class="language-plaintext highlighter-rouge">myServerName</code> is your server name. Open the file and copy and paste the following contents into the file.</p>
+
+<div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">maxplayers</span><span class="o">=</span><span class="m">4</span>
 <span class="kd">port</span><span class="o">=</span><span class="m">7777</span>
 <span class="kd">password</span><span class="o">=</span><span class="kd">serverPassword</span>
 <span class="kd">world</span><span class="o">=</span><span class="kd">C</span>:\Users\username\Documents\My <span class="kd">Games</span>\Terraria\Worlds\myWorld.wld
 <span class="kd">worldpath</span><span class="o">=</span><span class="kd">C</span>:\Users\username\Documents\My <span class="kd">Games</span>\Terraria\Worlds\
-</code></pre></div></div> <p>Replace the server password with whatever you want your password to be, make sure there are no spaces in the password. Also, replace the world path, with the actual path to your world. You can get this by holding Shift and right-clicking your world file, then clicking copy as path. Then press Ctrl-V in your text file to paste the path into place. Lastly, you can replace maxplayers with the maximum amount of players you want allowed. You can also set up more server configuration stuff if you want, the details about how to do so can be found <a href="https://terraria.gamepedia.com/Guide:Setting_up_a_Terraria_server">here</a>.</p> <h2 id="step-3-create-the-batch-script">Step 3: Create the Batch Script</h2> <p>This next step will create the batch script, which will automatically start your server. Create a new file in your Servers folder called <code class="language-plaintext highlighter-rouge">myServer.bat</code> and replace <code class="language-plaintext highlighter-rouge">myServer</code> with the name of your server. Then right-click the file, click edit, and copy and paste the following into it:</p> <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">"C:\Users\username\Documents\My Games\Terraria\tshock_4.3.26\TerrariaServer.exe"</span> <span class="na">-config </span><span class="s2">"C:\Users\username\Documents\My Games\Terraria\Servers\myServer.txt"</span>
-</code></pre></div></div> <p>Make sure the first file path is where goes to where you installed your TShock folder, and the second path goes to the server startup file we made in step 2.</p> <p>To test and make sure that it works properly, if you double click the <code class="language-plaintext highlighter-rouge">myServer.bat</code> file it should open a command prompt window and display something that looks like this:</p> <img src="/public/images/terrariaServerArticle/terrariaServerCmd.png" alt="Terraria Cmd"/> <p>To exit this command prompt, just type exit into it and press enter. It will save your world and exit.</p> <h2 id="step-4-making-it-run-in-the-background">Step 4: Making it Run in the Background</h2> <p>This step will make the server run in the background so that you don’t have to have a Command Prompt window up all the time in order for the server to be up.</p> <p>First go the folder where you installed nssm. Click into the win64 folder and then press shift and right-click the empty directory and click <code class="language-plaintext highlighter-rouge">Open Powershell Window Here</code>. This should open a new Powershell Window in the directory. Make sure it looks like this picture, where the top line says the directory that nssm is located in:</p> <img src="/public/images/terrariaServerArticle/nssmPowershell.png" alt="Nssm Powershell"/> <p>Type in the following and hit enter:</p> <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.\nssm.exe <span class="kd">install</span> <span class="kd">TerrariaServer</span>
-</code></pre></div></div> <p>This should pop up a window labeled NSSM Service installer. You will see 3 text boxes with labels and buttons to the right of them. For the Path label, hit the button to the right of the textbox, then look for the <code class="language-plaintext highlighter-rouge">myServer.bat</code> file that we created in step 3. Click the file then press open. Your window should look like this:</p> <img src="/public/images/terrariaServerArticle/terrariaNssmInstaller.png" alt="NSSM Installer"/> <p>Next use the right arrow at the top, and arrow over until you see a tab titled I/O, click into this tab.</p> <p>For the Output(stdout): label, click the button on the right and naviagte to the same folder that you have your <code class="language-plaintext highlighter-rouge">myServer.bat</code> file located in. Then type in <code class="language-plaintext highlighter-rouge">myServer.out.log</code> for filename, and press enter.</p> <p>For the Error(stderr): label, click on the button on the right and navigate to the same folder that you have your <code class="language-plaintext highlighter-rouge">myServer.bat</code> file located in. Then type in <code class="language-plaintext highlighter-rouge">myServer.err.log</code> for filename, and press enter. Your window should look something like this now:</p> <img src="/public/images/terrariaServerArticle/terrariaNssmInstaller2.png" alt="NSSM Installer"/> <p>Finally, press install service.</p> <h2 id="step-5-starting-and-stopping-your-service">Step 5: Starting and Stopping your Service</h2> <p>If all went well, then you should now be able to start and stop your service.</p> <p>Open up a task manager, then click more details in the bottom lefthand corner, then press the services tab at the top right corner. You should see a list of services, look for your server name in that list of services. You should see it and it will look like the following picture:</p> <img src="/public/images/terrariaServerArticle/terrariaTaskManager.png" alt="terraria task manager"/> <p>Right-click your service then press start to start it. If everything was set up correctly, you should see the status switch from Stopped, to Starting, to Running.</p> <p>If you go back to your Servers folder, there should be a new file called <code class="language-plaintext highlighter-rouge">myServer.out.log</code>. If you double click this and open it in Notepad, then you should see a result similar to what it looked like when you clicked on the <code class="language-plaintext highlighter-rouge">myServer.bat</code> file in the command prompt window. If you see a <code class="language-plaintext highlighter-rouge">myServer.err.log</code> file, it means that something went wrong, open the file and see what the error is for further help in debugging.</p> <h2 id="step-6-connecting-to-your-server">Step 6: Connecting to your Server</h2> <p>Lastly, to connect to your server, open up a command prompt window by typing in cmd in the Windows search bar and pressing enter. Next type this in to the Command Prompt Window:</p> <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ipconfig</span>
-</code></pre></div></div> <p>This will display your Ip Address so that your friends can connect locally. This Ip will change from time to time, so make sure to check it frequently so your friends can know if it changed. The address they will use to connect is the one located here:</p> <img src="/public/images/terrariaServerArticle/terrariaCmdWindow.png" alt="terrariaCmdWindow"/> <p>It should look something like <code class="language-plaintext highlighter-rouge">10.0.0.12</code>. This will allow you and your friends to connect locally. Simply start Terraria, and then press Multiplayer, then click connect via IP Address. Then type in that address.</p> <p>For you to connect to your server, type in <code class="language-plaintext highlighter-rouge">127.0.0.1</code> when asked for the IP address by Terraria.</p> <h2 id="step-7-making-the-ip-public">Step 7: Making the IP Public</h2> <p>So all the steps above will only allow you and your friends to play locally, meaning you all have to be connected to the same WiFi router. I have not enabled a public connection, so this is as far as my tutorial can go unfortunately. If you have made a public IP, feel free to leave a comment and I will edit this article to include those steps.</p> <h2 id="one-final-note">One Final Note</h2> <p>This method will only let the Terraria server run as long as the computer running the service is not asleep. I have not found a good way to keep it running while the computer is asleep, if any of you know how, please leave a comment, thanks!</p> <h2 id="my-friends-cant-connect">My Friends Can’t Connect</h2> <p>If your friends can’t connect, first check and see if you can connect.</p> <ul> <li>If you cannot connect: Check if the service is running in task manager. If it’s not, start it up again.</li> <li>If the service is running: stop the service then start it again.</li> <li>If you still cannot connect: Check the myServer.err.log file for errors.</li> <li>If you can and your friends cannot connect: Redo step 6, your IP Address will change, so they may need to try another address.</li> </ul> <p>Still can’t solve it? Leave a comment below and I’ll get back to you.</p> <p>Thanks for reading!</p> </div> <div class="related"> <h2>Related Posts</h2> <ul class="related-posts"> <li> <h3> <a href="/iphone/android/2023/08/10/switching-android-to-iphone/"> Switching from Android to iPhone <small>10 Aug 2023</small> </a> </h3> </li> <li> <h3> <a href="/code/2022/02/02/a-review-of-clean-code/"> Why are people still recommending this book? <small>02 Feb 2022</small> </a> </h3> </li> <li> <h3> <a href="/games/2021/10/07/the-math-behind-font-rasterization/"> The Math Behind Font Rasterization <small>07 Oct 2021</small> </a> </h3> </li> </ul> </div> </div> </body> <script type="text/x-mathjax-config">
+</code></pre></div></div>
+
+<p>Replace the server password with whatever you want your password to be, make sure there are no spaces in the password. Also, replace the world path, with the actual path to your world. You can get this by holding Shift and right-clicking your world file, then clicking copy as path. Then press Ctrl-V in your text file to paste the path into place. Lastly, you can replace maxplayers with the maximum amount of players you want allowed. You can also set up more server configuration stuff if you want, the details about how to do so can be found <a href="https://terraria.gamepedia.com/Guide:Setting_up_a_Terraria_server">here</a>.</p>
+
+<h2 id="step-3-create-the-batch-script">Step 3: Create the Batch Script</h2>
+
+<p>This next step will create the batch script, which will automatically start your server. Create a new file in your Servers folder called <code class="language-plaintext highlighter-rouge">myServer.bat</code> and replace <code class="language-plaintext highlighter-rouge">myServer</code> with the name of your server. Then right-click the file, click edit, and copy and paste the following into it:</p>
+
+<div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">"C:\Users\username\Documents\My Games\Terraria\tshock_4.3.26\TerrariaServer.exe"</span> <span class="na">-config </span><span class="s2">"C:\Users\username\Documents\My Games\Terraria\Servers\myServer.txt"</span>
+</code></pre></div></div>
+
+<p>Make sure the first file path is where goes to where you installed your TShock folder, and the second path goes to the server startup file we made in step 2.</p>
+
+<p>To test and make sure that it works properly, if you double click the <code class="language-plaintext highlighter-rouge">myServer.bat</code> file it should open a command prompt window and display something that looks like this:</p>
+
+<img src="/public/images/terrariaServerArticle/terrariaServerCmd.png" alt="Terraria Cmd" />
+<p>To exit this command prompt, just type exit into it and press enter. It will save your world and exit.</p>
+
+<h2 id="step-4-making-it-run-in-the-background">Step 4: Making it Run in the Background</h2>
+
+<p>This step will make the server run in the background so that you don’t have to have a Command Prompt window up all the time in order for the server to be up.</p>
+
+<p>First go the folder where you installed nssm. Click into the win64 folder and then press shift and right-click the empty directory and click <code class="language-plaintext highlighter-rouge">Open Powershell Window Here</code>. This should open a new Powershell Window in the directory. Make sure it looks like this picture, where the top line says the directory that nssm is located in:</p>
+
+<img src="/public/images/terrariaServerArticle/nssmPowershell.png" alt="Nssm Powershell" />
+<p>Type in the following and hit enter:</p>
+
+<div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.\nssm.exe <span class="kd">install</span> <span class="kd">TerrariaServer</span>
+</code></pre></div></div>
+
+<p>This should pop up a window labeled NSSM Service installer. You will see 3 text boxes with labels and buttons to the right of them. For the Path label, hit the button to the right of the textbox, then look for the <code class="language-plaintext highlighter-rouge">myServer.bat</code> file that we created in step 3. Click the file then press open. Your window should look like this:</p>
+
+<img src="/public/images/terrariaServerArticle/terrariaNssmInstaller.png" alt="NSSM Installer" />
+<p>Next use the right arrow at the top, and arrow over until you see a tab titled I/O, click into this tab.</p>
+
+<p>For the Output(stdout): label, click the button on the right and naviagte to the same folder that you have your <code class="language-plaintext highlighter-rouge">myServer.bat</code> file located in. Then type in <code class="language-plaintext highlighter-rouge">myServer.out.log</code> for filename, and press enter.</p>
+
+<p>For the Error(stderr): label, click on the button on the right and navigate to the same folder that you  have your <code class="language-plaintext highlighter-rouge">myServer.bat</code> file located in. Then type in <code class="language-plaintext highlighter-rouge">myServer.err.log</code> for filename, and press enter. Your window should look something like this now:</p>
+
+<img src="/public/images/terrariaServerArticle/terrariaNssmInstaller2.png" alt="NSSM Installer" />
+<p>Finally, press install service.</p>
+
+<h2 id="step-5-starting-and-stopping-your-service">Step 5: Starting and Stopping your Service</h2>
+
+<p>If all went well, then you should now be able to start and stop your service.</p>
+
+<p>Open up a task manager, then click more details in the bottom lefthand corner, then press the services tab at the top right corner. You should see a list of services, look for your server name in that list of services. You should see it and it will look like the following picture:</p>
+
+<img src="/public/images/terrariaServerArticle/terrariaTaskManager.png" alt="terraria task manager" />
+<p>Right-click your service then press start to start it. If everything was set up correctly, you should see the status switch from Stopped, to Starting, to Running.</p>
+
+<p>If you go back to your Servers folder, there should be a new file called <code class="language-plaintext highlighter-rouge">myServer.out.log</code>. If you double click this and open it in Notepad, then you should see a result similar to what it looked like when you clicked on the <code class="language-plaintext highlighter-rouge">myServer.bat</code> file in the command prompt window. If you see a <code class="language-plaintext highlighter-rouge">myServer.err.log</code> file, it means that something went wrong, open the file and see what the error is for further help in debugging.</p>
+
+<h2 id="step-6-connecting-to-your-server">Step 6: Connecting to your Server</h2>
+
+<p>Lastly, to connect to your server, open up a command prompt window by typing in cmd in the Windows search bar and pressing enter. Next type this in to the Command Prompt Window:</p>
+
+<div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ipconfig</span>
+</code></pre></div></div>
+
+<p>This will display your Ip Address so that your friends can connect locally. This Ip will change from time to time, so make sure to check it frequently so your friends can know if it changed. The address they will use to connect is the one located here:</p>
+
+<img src="/public/images/terrariaServerArticle/terrariaCmdWindow.png" alt="terrariaCmdWindow" />
+<p>It should look something like <code class="language-plaintext highlighter-rouge">10.0.0.12</code>. This will allow you and your friends to connect locally. Simply start Terraria, and then press Multiplayer, then click connect via IP Address. Then type in that address.</p>
+
+<p>For you to connect to your server, type in <code class="language-plaintext highlighter-rouge">127.0.0.1</code> when asked for the IP address by Terraria.</p>
+
+<h2 id="step-7-making-the-ip-public">Step 7: Making the IP Public</h2>
+
+<p>So all the steps above will only allow you and your friends to play locally, meaning you all have to be connected to the same WiFi router. I have not enabled a public connection, so this is as far as my tutorial can go unfortunately. If you have made a public IP, feel free to leave a comment and I will edit this article to include those steps.</p>
+
+<h2 id="one-final-note">One Final Note</h2>
+
+<p>This method will only let the Terraria server run as long as the computer running the service is not asleep. I have not found a good way to keep it running while the computer is asleep, if any of you know how, please leave a comment, thanks!</p>
+
+<h2 id="my-friends-cant-connect">My Friends Can’t Connect</h2>
+
+<p>If your friends can’t connect, first check and see if you can connect.</p>
+
+<ul>
+  <li>If you cannot connect: Check if the service is running in task manager. If it’s not, start it up again.</li>
+  <li>If the service is running: stop the service then start it again.</li>
+  <li>If you still cannot connect: Check the myServer.err.log file for errors.</li>
+  <li>If you can and your friends cannot connect: Redo step 6, your IP Address will change, so they may need to try another address.</li>
+</ul>
+
+<p>Still can’t solve it? Leave a comment below and I’ll get back to you.</p>
+
+<p>Thanks for reading!</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/iphone/android/2023/08/10/switching-android-to-iphone/">
+            Switching from Android to iPhone
+            <small>10 Aug 2023</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/code/2022/02/02/a-review-of-clean-code/">
+            Why are people still recommending this book?
+            <small>02 Feb 2022</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/games/2021/10/07/the-math-behind-font-rasterization/">
+            The Math Behind Font Rasterization
+            <small>07 Oct 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+
+  <!-- Enable MathJax -->
+  <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
@@ -15,4 +293,6 @@
       "HTML-CSS": { linebreaks: { automatic: true } },
       SVG: { linebreaks: { automatic: true } }
     });
-  </script> <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> </html>
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</html>
