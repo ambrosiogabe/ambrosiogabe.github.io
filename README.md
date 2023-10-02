@@ -8,6 +8,7 @@ Run:
 
 ```powershell
 # NOTE: Make sure your changes are pushed to master!!!
+git status
 
 # Run these commands individually
 $env:JEKYLL_ENV="production"
